@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using TabHolidayCore.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@*@if (SignInManager.IsSignedIn(User))
+{*@
+    <li class="top-user-area-avatar">
+        <a href="user-profile.html">
+            @*<img class="origin round" src="~/img/40x40.png" alt="Image Alternative text" title="AMaze" />*@Hi, {{DispalyName}}
+        </a>
+    </li>
+    <li ng-show="IsAuthenticated">
+        <a href="#" ng-click="Logout()">Sign Out</a>
+    </li>
+@*}
+else
+{*@
+    <li ng-hide="IsAuthenticated">
+        <a href="/#!/login">Sign In</a>
+    </li>
+
+@*}*@

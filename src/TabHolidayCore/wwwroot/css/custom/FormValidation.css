@@ -1,0 +1,20 @@
+﻿.cstm-fa-position{
+    top:22px !important;
+}
+
+.cstm-fa-position-wo-label{
+    top:-2px !important;
+}
+
+.cstm-fa-valid{
+    color:green !important;
+}
+
+.cstm-fa-invalid{
+    color:darkred !important;
+}
+
+.cstm-error-message{
+    color:darkred;
+    font-size:10px;
+}

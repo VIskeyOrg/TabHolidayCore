@@ -1,0 +1,90 @@
+﻿<div class="container" ng-controller="AgencyController">
+    <h3 class="booking-title">Agencies <span ng-show="IsEditMode"> : Edit</span></h3>
+    <form class="booking-item-dates-change mb40" name="agencyForm">
+        <div class="row">
+            <div class="col-md-3 col-xs-10">
+                <div class="form-group form-group-sm form-group-icon-right">
+                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="agencyForm.agencyName.$invalid || agencyForm.agencyName.$pristine"></i>
+                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="agencyForm.agencyName.$invalid && (agencyForm.agencyName.$dirty || agencyForm.agencyName.$touched)"></i>
+                    <label>Agency Name</label>
+                    <input class="form-control" name="agencyName" type="text" ng-model="Agency.Name" required ng-minlength="4" ng-maxlength="50"/>
+                    <span class="cstm-error-message" ng-messages="agencyForm.agencyName.$error"
+                          ng-show="agencyForm.agencyName.$dirty || agencyForm.agencyName.$touched">
+                        <span ng-message="required">Required Agency Name!</span>
+                        <span ng-message="minlength">Minimum required length 4!</span>
+                        <span ng-message="maxlength">Maximum allowed length 50!</span>                        
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2 col-xs-10">
+                <div class="form-group form-group-sm">
+                    <label>Tier Level</label>
+                    <select class="form-control" ng-model="Agency.AgencyTierLevelId">
+                        <option value=0>--Select Tier Level--</option>
+                        <option ng-repeat="TierLevel in AgencyTierLevels" value="{{TierLevel.AgencyTierLevelId}}">{{TierLevel.Name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-10">
+                <div class="form-group form-group-sm">
+                    <label>Address</label>
+                    <input class="form-control" ng-model="Agency.Address" type="text" />
+                </div>
+            </div>
+            <div class="col-md-2 col-xs-10">
+                <div class="form-group form-group-sm">
+                    <label>Tax Id</label>
+                    <input class="form-control" ng-model="Agency.TaxId" type="text" />
+                </div>
+            </div>
+            <div class="col-md-2 col-xs-10">
+                <div class="form-group form-group-sm">
+                    <label>Country</label>
+                    <select class="form-control" ng-model="Agency.CountryId" type="text" >
+                        <option value=0>--Select Country--</option>
+                        <option ng-repeat="Country in Countries" value="{{Country.CountryId}}">{{Country.Name}}</option>
+                    </select>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-xs-10">
+                <button class="btn btn-primary btn-sm" type="submit" ng-click="Save()">Save</button>
+                <button class="btn  btn-sm" type="submit" ng-click="Reset()">Cancel</button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-bordered table-striped table-booking-history">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Agency Name</th>
+                <th>Tier Level</th>
+                <th>Address</th>
+                <th>Tax Id</th>
+                <th>Country</th>
+                <th>Edit</th>               
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="Agency in Agencies" >
+                <td class="booking-history-type">
+                   {{Agency.AgencyId}}
+                </td>
+                <td class="booking-history-title"> {{Agency.Name}}</td>
+                <td>{{Agency.AgencyTierLevel.Name}}</td>
+                <td>{{Agency.Address}}</td>
+                <td>{{Agency.TaxId}}</td>
+                <td>{{Agency.Country.Name}}</td>
+                <td class="text-center"> 
+                    <i class="fa fa-edit" ng-click="Edit(Agency)"></i>                  
+                </td>
+                
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>

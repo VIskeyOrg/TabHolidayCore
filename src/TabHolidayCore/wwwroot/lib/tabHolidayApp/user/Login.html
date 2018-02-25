@@ -1,0 +1,25 @@
+﻿
+<div class="gap">
+
+</div>
+<div class="container" ng-controller="Login1Controller">
+    <div class="row" data-gutter="60">      
+        <div class="col-md-4 col-md-offset-4 booking-item-dates-change" >
+            <h3>Login</h3>
+            <form>
+                <div class="form-group form-group-icon-left">
+                    <i class="fa fa-user input-icon"></i>
+                    <label>Username or email</label>
+                    <input class="form-control" placeholder="e.g. johndoe@gmail.com" type="text" ng-model="model.Username" />
+                </div>
+                <div class="form-group form-group-icon-left">
+                    <i class="fa fa-lock input-icon"></i>
+                    <label>Password</label>
+                    <input class="form-control" type="password" placeholder="my secret password" ng-model="model.Password" />
+                </div>
+                <input class="btn btn-primary" type="submit" value="Sign in"  ng-click="Submit()"/>
+            </form>
+        </div>
+       
+    </div>
+</div>

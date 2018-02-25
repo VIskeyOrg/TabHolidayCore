@@ -1,0 +1,179 @@
+﻿<div class="container" ng-controller="RegisterController">
+    <h3 class="booking-title">User Management</h3>
+    <form class="booking-item-dates-change mb40" name="newAccountForm">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group form-group-sm form-group-icon-right">
+                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid"  ng-hide="newAccountForm.usernameField.$invalid || newAccountForm.usernameField.$pristine"></i>
+                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid"  ng-show="newAccountForm.usernameField.$invalid && (newAccountForm.usernameField.$dirty || newAccountForm.usernameField.$touched)"></i>
+                    <label>Username</label>
+                    <input class="form-control"  name="usernameField"  type="text" ng-model="model.UserName" required check-availability ng-minlength="4" ng-maxlength="200"/>
+                    <span class="cstm-error-message" ng-messages="newAccountForm.usernameField.$error"
+                          ng-show="newAccountForm.usernameField.$dirty || newAccountForm.usernameField.$touched">
+                        <span ng-message="required">Required username!</span>
+                        <span ng-message="minlength">Minimum required length 4!</span>
+                        <span ng-message="minlength">Maximum allowed length 200!</span>    
+                        <span ng-message="userExist">Username already exists!</span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group  form-group-sm form-group-icon-right">
+                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="newAccountForm.actualName.$invalid || newAccountForm.actualName.$pristine"></i>
+                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="newAccountForm.actualName.$invalid && (newAccountForm.actualName.$dirty || newAccountForm.actualName.$touched)"></i>
+                    <label>Actual Name</label>
+                    <input class="form-control" type="text" name="actualName" ng-model="model.ActualName" required ng-minlength="5" ng-maxlength="200"/>
+                    <span class="cstm-error-message" ng-messages="newAccountForm.actualName.$error"
+                          ng-show="newAccountForm.actualName.$dirty || newAccountForm.actualName.$touched">
+                        <span ng-message="required">Please enter actual name of user.</span>
+                        <span ng-message="minlength">Minimum required length 5!</span>   
+                        <span ng-message="maxlength">Maximum allowed length 200!</span>                          
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group  form-group-sm form-group-icon-right">
+                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="newAccountForm.password.$invalid || newAccountForm.password.$pristine"></i>
+                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="newAccountForm.password.$invalid && (newAccountForm.password.$dirty || newAccountForm.password.$touched)"></i>
+                    <label>Password</label>
+                    <input class="form-control" type="password" name="password" ng-model="model.Password" required  ng-maxlength="20" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/"/>
+                    <span class="cstm-error-message" ng-messages="newAccountForm.password.$error"
+                          ng-show="newAccountForm.password.$dirty || newAccountForm.password.$touched">
+                        <span ng-message="pattern">
+                            Password should be atleast 8 characters long
+                            and should contain one number,one small character, one capital character and one special
+                            character
+                        </span>
+                        <span ng-message="required">Please enter valid password!</span>
+                        <span ng-message="minlength">Minimum required length 5!</span>
+                        <span ng-message="maxlength">Maximum allowed length 200!</span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group  form-group-sm form-group-icon-right">
+                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="newAccountForm.contactNumber.$invalid || newAccountForm.contactNumber.$pristine"></i>
+                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="newAccountForm.contactNumber.$invalid && (newAccountForm.contactNumber.$dirty || newAccountForm.contactNumber.$touched)"></i>
+                    <label>Contact No</label>
+                    <input class="form-control" type="text" name="contactNumber" ng-model="model.PhoneNumber" required  ng-pattern="/^(?=.*\d)[\d]{10,10}$/"/>
+                    <span class="cstm-error-message" ng-messages="newAccountForm.contactNumber.$error"
+                          ng-show="newAccountForm.contactNumber.$dirty || newAccountForm.contactNumber.$touched">
+                        <span ng-message="required">Please enter contact number!</span>
+                        <span ng-message="pattern">
+                           Contact number should be 10 digits long and should contain only numbers!
+                        </span>                        
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group  form-group-sm form-group-icon-right">
+                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="newAccountForm.email.$invalid || newAccountForm.email.$pristine"></i>
+                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="newAccountForm.email.$invalid && (newAccountForm.email.$dirty || newAccountForm.email.$touched)"></i>
+                    <label>Email</label>
+                    <input class="form-control" type="text" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"  name="email" ng-model="model.Email" required/>
+                    <span class="cstm-error-message" ng-messages="newAccountForm.email.$error"
+                          ng-show="newAccountForm.email.$dirty || newAccountForm.email.$touched">
+                        <span ng-message="required">Please enter valid email!</span>      
+                        <span ng-message="pattern">Not valid email-id!</span>                    
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group  form-group-sm form-group-icon-left">
+                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="newAccountForm.role.$invalid || newAccountForm.role.$pristine"></i>
+                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="newAccountForm.role.$invalid && (newAccountForm.role.$dirty || newAccountForm.role.$touched)"></i>
+                    <label>Role</label>
+                    <select class="form-control" name="role" ng-model="model.Role" ng-change="RoleChange()" required>
+                       
+                        <option ng-repeat="Role in Roles" value="{{Role}}">{{Role}}</option>
+                    </select>
+                    <span class="cstm-error-message" ng-messages="newAccountForm.role.$error"
+                          ng-show="newAccountForm.role.$dirty || newAccountForm.role.$touched">
+                        <span ng-message="required">Please select appropriate role!</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="model.Role == 'Admin - Travel Agent' || model.Role == 'Normal - Travel Agent'">
+           <div class="col-md-4">
+               <div class="form-group  form-group-sm form-group-icon-left">
+                   <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="newAccountForm.agency.$invalid || newAccountForm.agency.$pristine"></i>
+                   <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="newAccountForm.agency.$invalid && (newAccountForm.agency.$dirty || newAccountForm.agency.$touched)"></i>
+                   <label>Agency</label>
+                   <select class="form-control" name="agency" ng-model="model.AgencyId" require-agency required>
+                       <option value="0">--Select Agency--</option>
+                       <option ng-repeat="Agency in Agencies" value="{{Agency.AgencyId}}">{{Agency.Name}}</option>
+                   </select>   
+                   <span class="cstm-error-message" ng-messages="newAccountForm.agency.$error"
+                         ng-show="newAccountForm.agency.$dirty || newAccountForm.agency.$touched">
+                       <span ng-message="required">Please select agency!</span>
+                       <span ng-message="requireAgency">Please select agency!</span>
+                   </span>                
+               </div>
+           </div>
+        </div>
+        <button class="btn btn-primary btn-sm" type="submit" ng-click="Submit()" ng-disabled="newAccountForm.$invalid">Save</button>
+        <button class="btn  btn-sm" type="submit">Cancel</button>
+    </form>
+
+    <table class="table table-bordered table-striped table-booking-history">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Actual Name</th>
+                <th>Contact No</th>
+                <th>Email</th>
+                <th>Agency</th>
+                <th>Tier</th>
+                <th>Address</th>
+                <th>Country</th>
+                <th>Tax Id</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in Users">
+                <td class="booking-history-type">
+                    {{user.UserName}}
+                </td>
+                <td class="booking-history-title">{{user.ActualName}}</td>
+                <td>{{user.PhoneNumber}}</td>
+                <td>{{user.Email}}</td>
+                <td>{{user.Agency.Name}}</td>
+                <td>{{user.Agency.AgencyTierLevel.Name}}</td>
+                <td class="text-center">
+                    {{user.Agency.Address}}
+                </td>
+                <td class="text-center">
+                    {{user.Agency.Country.Name}}
+                </td>
+                <td class="text-center">
+                    {{user.Agency.TaxId}}
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+    <ul ng-if="pagination.pager.pages.length" class="pagination planVerify">
+        <li ng-class="{disabled:pagination.pager.currentPage === 1}">
+            <a ng-click="setPage(1)">First</a>
+        </li>
+        <li ng-class="{disabled:pagination.pager.currentPage === 1}">
+            <a ng-click="setPage(pagination.pager.currentPage - 1)">Previous</a>
+        </li>
+        <li ng-repeat="page in pagination.pager.pages" ng-class="{active:pagination.pager.currentPage === page}">
+            <a ng-click="setPage(page)">{{page}}</a>
+        </li>
+        <li ng-class="{disabled:pagination.pager.currentPage === pagination.pager.totalPages}">
+            <a ng-click="setPage(pagination.pager.currentPage + 1)">Next</a>
+        </li>
+        <li ng-class="{disabled:pagination.pager.currentPage === pagination.pager.totalPages}">
+            <a ng-click="setPage(pagination.pager.totalPages)">Last</a>
+        </li>
+    </ul>
+</div>
+
