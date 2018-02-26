@@ -120,12 +120,12 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group form-group-sm form-group-icon-right">
-                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm.faxNumber.$invalid || dmcForm.faxNumber.$pristine"></i>
-                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm.faxNumber.$invalid && (dmcForm.faxNumber.$dirty || dmcForm.faxNumber.$touched)"></i>
+                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm.BankName{{DMC.BankDetails.indexOf(BankDetail)}}.$invalid || dmcForm.BankName{{DMC.BankDetails.indexOf(BankDetail)}}.$pristine"></i>
+                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm.BankName{{DMC.BankDetails.indexOf(BankDetail)}}.$invalid && (dmcForm.BankName{{DMC.BankDetails.indexOf(BankDetail)}}.$dirty || dmcForm.BankName{{DMC.BankDetails.indexOf(BankDetail)}}.$touched)"></i>
                             <label>Bank Name</label>
-                            <input class="form-control" type="text" ng-model="BankDetail.Name" name="BankName{{DMC.BankDetails.indexOf(BankDetail)}}"/>
-                            <span class="cstm-error-message" ng-messages="dmcForm.faxNumber.$error"
-                                  ng-show="dmcForm.faxNumber.$dirty || dmcForm.faxNumber.$touched">
+                            <input class="form-control" type="text" ng-model="BankDetail.Name" name="BankName{{DMC.BankDetails.indexOf(BankDetail)}}" required/>
+                            <span class="cstm-error-message" ng-messages="dmcForm.BankName{{DMC.BankDetails.indexOf(BankDetail)}}.$error"
+                                  ng-show="dmcForm.BankName{{DMC.BankDetails.indexOf(BankDetail)}}.$dirty || dmcForm.BankName{{DMC.BankDetails.indexOf(BankDetail)}}.$touched">
                                 <span ng-message="required">Required Fax Number!</span>
                                 <span ng-message="minlength">Minimum required length 5!</span>
                                 <span ng-message="maxlength">Maximum allowed length 30!</span>
