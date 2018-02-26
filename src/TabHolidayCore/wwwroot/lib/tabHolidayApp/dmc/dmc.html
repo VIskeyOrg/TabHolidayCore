@@ -1,75 +1,129 @@
-﻿<div class="container" ng-controller="DMCController">
-    <h3 class="booking-title">DMC</h3>
-    <form class="booking-item-dates-change mb40" name="dmcForm">
-        <h4>Basic Details</h4>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="col-md-12">
-                    <div class="form-group form-group-sm form-group-icon-right">
-                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm.name.$invalid || dmcForm.name.$pristine"></i>
-                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm.name.$invalid && (dmcForm.name.$dirty || dmcForm.name.$touched)"></i>
-                        <label>Name</label>
-                        <input class="form-control" type="text" ng-model="DMC.Name" name="name" required ng-minlength="5" ng-maxlength="200"/>
-                        <span class="cstm-error-message" ng-messages="dmcForm.name.$error"
-                              ng-show="dmcForm.name.$dirty || dmcForm.name.$touched">
-                            <span ng-message="required">Required DMC Name!</span>
-                            <span ng-message="minlength">Minimum required length 5!</span>
-                            <span ng-message="maxlength">Maximum allowed length 200!</span>
-                        </span>
-                    </div>
-                </div>
+﻿<div ng-controller="DMCController">
+
+    <div class="container" ng-show="ViewMode == 'new'">
+        <div><h3 class="booking-title">DMC</h3> </div>
+        
+        <form class="booking-item-dates-change mb40" name="dmcForm">
+            <h4>Basic Details</h4>
+            <div class="row">
                 <div class="col-md-6">
-                    <div >
-                        <div class="form-group form-group-sm form-group-icon-left">
-                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm.country.$invalid || dmcForm.country.$pristine"></i>
-                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm.country.$invalid && (dmcForm.country.$dirty || dmcForm.country.$touched)"></i>
-                            <label>Country</label>
-                            <select class="form-control" ng-model="DMC.CountryId" name="country" require-option>
-                                <option value="0">--Select Country--</option>
-                                <option ng-repeat="Country in Countries" value="{{Country.CountryId}}">{{Country.Name}}</option>
-                            </select>
-                            <span class="cstm-error-message" ng-messages="dmcForm.country.$error"
-                                  ng-show="dmcForm.country.$dirty || dmcForm.country.$touched">
-                                <span ng-message="requireOption">Required Country Name!</span>                                
-                            </span>
-                        </div>
-                    </div>
-                    <div>
+                    <div class="col-md-12">
                         <div class="form-group form-group-sm form-group-icon-right">
-                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm.address.$invalid || dmcForm.address.$pristine"></i>
-                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm.address.$invalid && (dmcForm.address.$dirty || dmcForm.address.$touched)"></i>
-                            <label>Address</label>
-                            <textarea class="form-control" style="height:80px" ng-model="DMC.Address" name="address" required ng-minlength="20" maxlength="300"></textarea>
-                            <span class="cstm-error-message" ng-messages="dmcForm.address.$error"
-                                  ng-show="dmcForm.address.$dirty || dmcForm.address.$touched">
-                                <span ng-message="required">Required address!</span>
-                                <span ng-message="minlength">Minimum required length 20!</span>
-                                <span ng-message="maxlength">Maximum allowed length 300!</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div>
-                        <div class="form-group form-group-sm form-group-icon-right">
-                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm.taxNumber.$invalid || dmcForm.taxNumber.$pristine"></i>
-                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm.taxNumber.$invalid && (dmcForm.taxNumber.$dirty || dmcForm.taxNumber.$touched)"></i>
-                            <label>Tax Number</label>
-                            <input class="form-control" type="text" ng-model="DMC.TaxNumber" name="taxNumber" required ng-minlength="5" ng-maxlength="30" />
-                            <span class="cstm-error-message" ng-messages="dmcForm.taxNumber.$error"
-                                  ng-show="dmcForm.taxNumber.$dirty || dmcForm.taxNumber.$touched">
-                                <span ng-message="required">Required Tax Number!</span>
+                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm.name.$invalid || dmcForm.name.$pristine"></i>
+                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm.name.$invalid && (dmcForm.name.$dirty || dmcForm.name.$touched)"></i>
+                            <label>Name</label>
+                            <input class="form-control" type="text" ng-model="DMC.Name" name="name" required ng-minlength="5" ng-maxlength="200" />
+                            <span class="cstm-error-message" ng-messages="dmcForm.name.$error"
+                                  ng-show="dmcForm.name.$dirty || dmcForm.name.$touched">
+                                <span ng-message="required">Required DMC Name!</span>
                                 <span ng-message="minlength">Minimum required length 5!</span>
-                                <span ng-message="maxlength">Maximum allowed length 30!</span>
+                                <span ng-message="maxlength">Maximum allowed length 200!</span>
                             </span>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div>
+                            <div class="form-group form-group-sm form-group-icon-left">
+                                <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm.country.$invalid || dmcForm.country.$pristine"></i>
+                                <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm.country.$invalid && (dmcForm.country.$dirty || dmcForm.country.$touched)"></i>
+                                <label>Country</label>
+                                <select class="form-control" ng-model="DMC.CountryId" name="country" require-option>
+                                    <option value="0">--Select Country--</option>
+                                    <option ng-repeat="Country in Countries" value="{{Country.CountryId}}">{{Country.Name}}</option>
+                                </select>
+                                <span class="cstm-error-message" ng-messages="dmcForm.country.$error"
+                                      ng-show="dmcForm.country.$dirty || dmcForm.country.$touched">
+                                    <span ng-message="requireOption">Required Country Name!</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group form-group-sm form-group-icon-right">
+                                <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm.address.$invalid || dmcForm.address.$pristine"></i>
+                                <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm.address.$invalid && (dmcForm.address.$dirty || dmcForm.address.$touched)"></i>
+                                <label>Address</label>
+                                <textarea class="form-control" style="height:80px" ng-model="DMC.Address" name="address" required ng-minlength="20" maxlength="300"></textarea>
+                                <span class="cstm-error-message" ng-messages="dmcForm.address.$error"
+                                      ng-show="dmcForm.address.$dirty || dmcForm.address.$touched">
+                                    <span ng-message="required">Required address!</span>
+                                    <span ng-message="minlength">Minimum required length 20!</span>
+                                    <span ng-message="maxlength">Maximum allowed length 300!</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <div class="form-group form-group-sm form-group-icon-right">
+                                <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm.taxNumber.$invalid || dmcForm.taxNumber.$pristine"></i>
+                                <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm.taxNumber.$invalid && (dmcForm.taxNumber.$dirty || dmcForm.taxNumber.$touched)"></i>
+                                <label>Tax Number</label>
+                                <input class="form-control" type="text" ng-model="DMC.TaxNumber" name="taxNumber" required ng-minlength="5" ng-maxlength="30" />
+                                <span class="cstm-error-message" ng-messages="dmcForm.taxNumber.$error"
+                                      ng-show="dmcForm.taxNumber.$dirty || dmcForm.taxNumber.$touched">
+                                    <span ng-message="required">Required Tax Number!</span>
+                                    <span ng-message="minlength">Minimum required length 5!</span>
+                                    <span ng-message="maxlength">Maximum allowed length 30!</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group form-group-sm form-group-icon-right">
+                                <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm.faxNumber.$invalid || dmcForm.faxNumber.$pristine"></i>
+                                <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm.faxNumber.$invalid && (dmcForm.faxNumber.$dirty || dmcForm.faxNumber.$touched)"></i>
+                                <label>Fax Number</label>
+                                <input class="form-control" type="text" ng-model="DMC.FaxNumber" name="faxNumber" ng-minlength="10" ng-maxlength="20" />
+                                <span class="cstm-error-message" ng-messages="dmcForm.faxNumber.$error"
+                                      ng-show="dmcForm.faxNumber.$dirty || dmcForm.faxNumber.$touched">
+                                    <span ng-message="required">Required Fax Number!</span>
+                                    <span ng-message="minlength">Minimum required length 5!</span>
+                                    <span ng-message="maxlength">Maximum allowed length 30!</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12" style="padding-left:30px;margin-bottom:10px">
+                        Office Phone Numbers <span ng-click="AddOfficePhoneNumber()" type="button" class="btn btn-primary btn-circle-small"><i class="fa fa-plus"></i></span>
+                    </div>
                     <div>
+                        <div class="col-md-6" ng-repeat="OfficePhoneNumber in DMC.AdditionalOfficePhoneNumbers">
+                            <div class="col-md-10">
+                                <div class="form-group form-group-sm form-group-icon-right">
+                                    <span style="display:none">{{OfficePhoneNumber.Index=DMC.AdditionalOfficePhoneNumbers.indexOf(OfficePhoneNumber)}}</span>
+                                    <i class="fa fa-times-circle input-icon cstm-fa-position-wo-label cstm-fa-invalid" ng-show="dmcForm.OfficePhoneNumber{{DMC.AdditionalOfficePhoneNumbers.indexOf(OfficePhoneNumber)}}.$invalid"></i>
+
+                                    <input class="form-control" type="text" ng-model="OfficePhoneNumber.PhoneNumber" name="OfficePhoneNumber{{OfficePhoneNumber.Index}}" required />
+
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <span ng-click="RemovePhoneNumber(OfficePhoneNumber)" type="button" class="btn btn-danger btn-circle-small"><i class="fa fa-trash-o"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border-bottom:1px solid #e27513" />
+            <h4>Bank Details</h4>
+            <div ng-repeat="BankDetail in DMC.BankDetails">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h5><span type="button" class="btn btn-primary btn-circle">{{DMC.BankDetails.indexOf(BankDetail) + 1}}</span><span style="padding-left:10px">{{BankDetail.Name}}</span></h5>
+                    </div>
+                    <div class="col-md-7">
+                        <button class="btn btn-danger pull-right btn-sm" ng-click="RemoveBankDetail(BankDetail)">Remove <i class="fa fa-trash-o"></i></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
                         <div class="form-group form-group-sm form-group-icon-right">
                             <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm.faxNumber.$invalid || dmcForm.faxNumber.$pristine"></i>
                             <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm.faxNumber.$invalid && (dmcForm.faxNumber.$dirty || dmcForm.faxNumber.$touched)"></i>
-                            <label>Fax Number</label>
-                            <input class="form-control" type="text" ng-model="DMC.FaxNumber" name="faxNumber" ng-minlength="10" ng-maxlength="20"/>
+                            <label>Bank Name</label>
+                            <input class="form-control" type="text" ng-model="BankDetail.Name" name="BankName{{DMC.BankDetails.indexOf(BankDetail)}}"/>
                             <span class="cstm-error-message" ng-messages="dmcForm.faxNumber.$error"
                                   ng-show="dmcForm.faxNumber.$dirty || dmcForm.faxNumber.$touched">
                                 <span ng-message="required">Required Fax Number!</span>
@@ -78,131 +132,80 @@
                             </span>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="col-md-12" style="padding-left:30px;margin-bottom:10px">
-                    Office Phone Numbers <span ng-click="AddOfficePhoneNumber()"  type="button" class="btn btn-primary btn-circle-small"><i class="fa fa-plus"></i></span>
-                </div>
-                <div>
-                    <div class="col-md-6" ng-repeat="OfficePhoneNumber in DMC.AdditionalOfficePhoneNumbers">
-                        <div class="col-md-10">
-                            <div class="form-group form-group-sm form-group-icon-right"> 
-                                <span style="display:none">{{OfficePhoneNumber.Index=DMC.AdditionalOfficePhoneNumbers.indexOf(OfficePhoneNumber)}}</span>
-                                <i class="fa fa-times-circle input-icon cstm-fa-position-wo-label cstm-fa-invalid" ng-show="dmcForm.OfficePhoneNumber{{DMC.AdditionalOfficePhoneNumbers.indexOf(OfficePhoneNumber)}}.$invalid"></i>   
-                                                          
-                                <input class="form-control" type="text" ng-model="OfficePhoneNumber.PhoneNumber" name="OfficePhoneNumber{{OfficePhoneNumber.Index}}" required/>
-                                                                
-                            </div>
+                    <div class="col-md-4">
+                        <div class="form-group form-group-sm form-group-icon-right">
+                            <label>Branch Name</label>
+                            <input class="form-control" type="text" ng-model="BankDetail.BranchName" />
                         </div>
-                        <div class="col-md-2">
-                            <span ng-click="RemovePhoneNumber(OfficePhoneNumber)" type="button" class="btn btn-danger btn-circle-small"><i class="fa fa-trash-o"></i></span>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group form-group-sm form-group-icon-right">
+                            <label>Account Holder Name</label>
+                            <input class="form-control" type="text" ng-model="BankDetail.AccountHolderName" />
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group form-group-sm form-group-icon-right">
+                            <label>Account Type</label>
+                            <select class="form-control" ng-model="BankDetail.BankAccountTypeId">
+                                <option ng-repeat="BankAccountType in BankAccountTypes" value="{{BankAccountType.BankAccountTypeId}}">{{BankAccountType.Name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group form-group-sm form-group-icon-right">
+                            <label>Account Number</label>
+                            <input class="form-control" type="text" ng-model="BankDetail.AccountNumber" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group form-group-sm form-group-icon-right">
+                            <label>IFSC Code</label>
+                            <input class="form-control" type="text" ng-model="BankDetail.IFSCCode" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group form-group-sm form-group-icon-right">
+                            <label>MICR Code</label>
+                            <input class="form-control" type="text" ng-model="BankDetail.MICRNumber" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group form-group-sm form-group-icon-right">
+                            <label>Swift Code</label>
+                            <input class="form-control" type="text" ng-model="BankDetail.SwiftCode" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group form-group-sm form-group-icon-right">
+                            <label>Routing Number</label>
+                            <input class="form-control" type="text" ng-model="BankDetail.RoutingNumber" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group form-group-sm form-group-icon-right">
+                            <label>IBAN Code</label>
+                            <input class="form-control" type="text" ng-model="BankDetail.IBANCode" />
+                        </div>
+                    </div>
+                </div>
+                <hr />
             </div>
-        </div>
-      
-        <hr style="border-bottom:1px solid #e27513" />
-        <h4>Bank Details</h4>
-        <div ng-repeat="BankDetail in DMC.BankDetails">
+
+
+
             <div class="row">
-                <div class="col-md-5">
-                    <h5><span type="button" class="btn btn-primary btn-circle">{{DMC.BankDetails.indexOf(BankDetail) + 1}}</span><span style="padding-left:10px">{{BankDetail.Name}}</span></h5>
-                </div>
-                <div class="col-md-7">
-                    <button class="btn btn-danger pull-right btn-sm" ng-click="RemoveBankDetail(BankDetail)">Remove <i class="fa fa-trash-o"></i></button>
+                <div class="col-md-12">
+                    <span ng-click="AddBankDetail()" type="button" class="btn btn-primary btn-circle pull-right"><i class="fa fa-plus"></i></span>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group form-group-sm form-group-icon-right">
-                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm.faxNumber.$invalid || dmcForm.faxNumber.$pristine"></i>
-                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm.faxNumber.$invalid && (dmcForm.faxNumber.$dirty || dmcForm.faxNumber.$touched)"></i>
-                        <label>Bank Name</label>
-                        <input class="form-control" type="text" ng-model="BankDetail.Name" />
-                        <span class="cstm-error-message" ng-messages="dmcForm.faxNumber.$error"
-                              ng-show="dmcForm.faxNumber.$dirty || dmcForm.faxNumber.$touched">
-                            <span ng-message="required">Required Fax Number!</span>
-                            <span ng-message="minlength">Minimum required length 5!</span>
-                            <span ng-message="maxlength">Maximum allowed length 30!</span>
-                        </span>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group form-group-sm form-group-icon-right">
-                        <label>Branch Name</label>
-                        <input class="form-control" type="text" ng-model="BankDetail.BranchName" />
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group form-group-sm form-group-icon-right">
-                        <label>Account Holder Name</label>
-                        <input class="form-control" type="text" ng-model="BankDetail.AccountHolderName" />
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="form-group form-group-sm form-group-icon-right">
-                        <label>Account Type</label>
-                        <select class="form-control" ng-model="BankDetail.BankAccountTypeId">
-                            <option ng-repeat="BankAccountType in BankAccountTypes" value="{{BankAccountType.BankAccountTypeId}}">{{BankAccountType.Name}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group form-group-sm form-group-icon-right">
-                        <label>Account Number</label>
-                        <input class="form-control" type="text"  ng-model="BankDetail.AccountNumber"/>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group form-group-sm form-group-icon-right">
-                        <label>IFSC Code</label>
-                        <input class="form-control" type="text" ng-model="BankDetail.IFSCCode"/>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group form-group-sm form-group-icon-right">
-                        <label>MICR Code</label>
-                        <input class="form-control" type="text" ng-model="BankDetail.MICRNumber"/>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group form-group-sm form-group-icon-right">
-                        <label>Swift Code</label>
-                        <input class="form-control" type="text" ng-model="BankDetail.SwiftCode"/>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group form-group-sm form-group-icon-right">
-                        <label>Routing Number</label>
-                        <input class="form-control" type="text" ng-model="BankDetail.RoutingNumber"/>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group form-group-sm form-group-icon-right">
-                        <label>IBAN Code</label>
-                        <input class="form-control" type="text" ng-model="BankDetail.IBANCode"/>
-                    </div>
-                </div>
-            </div>
-            <hr />
-        </div>
-       
-        
-   
-        <div class="row">
-            <div class="col-md-12">
-                <span ng-click="AddBankDetail()" type="button" class="btn btn-primary btn-circle pull-right"><i class="fa fa-plus"></i></span>
-            </div>
-        </div>
-        <hr style="border-bottom:1px solid #e27513" />
-        <h4>Officials</h4>
-                 <div class="row" ng-repeat="DMCOfficial in DMC.DMCOfficials">
+            <hr style="border-bottom:1px solid #e27513" />
+            <h4>Officials</h4>
+            <div class="row" ng-repeat="DMCOfficial in DMC.DMCOfficials">
 
                 <div class="col-md-2">
                     <div class="form-group form-group-sm form-group-icon-right">
@@ -221,7 +224,7 @@
                 <div class="col-md-4">
                     <div class="form-group form-group-sm form-group-icon-right">
                         <label><div class="col-md-7">Email-Id</div></label>
-                        <div class="col-md-10"><input class="form-control" type="text" ng-model="DMCOfficial.EmailId"/></div>
+                        <div class="col-md-10"><input class="form-control" type="text" ng-model="DMCOfficial.EmailId" /></div>
                         <div class="col-md-1"><button ng-click="RemoveDMCOfficial()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
                     </div>
                 </div>
@@ -244,5 +247,82 @@
                     </span>
                 </div>
             </div>
-</form>
+        </form>
+
+
+    </div>
+
+    <div class="container" ng-show="ViewMode == 'list'">
+        <div class="row">
+            <div class="col-md-7">
+                <h3 class="booking-title">DMC</h3>
+            </div>
+            <div class="col-md-5" style="margin-top:15px">
+                <button class="btn btn-primary pull-right" ng-click="ViewMode = 'new'">New DMC<i class="fa fa-plus-square-o"></i></button>
+            </div>
+            
+            
+        </div>
+        
+        <form class="booking-item-dates-change mb40" >
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group form-group-sm">
+                        <label>DMC Id</label>
+                        <input type="text" class="form-control" ng-model="SearchDMC.DMCId" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-sm">
+                        <label>Name</label>
+                        <input type="text" class="form-control"ng-model="SearchDMC.Name" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group form-group-sm">
+                        <label>Country</label>
+                        <select class="form-control" ng-model="SearchDMC.CountryId">
+                            <option value="0">--Select Country--</option>
+                            <option ng-repeat="Country in Countries" value="{{Country.CountryId}}">{{Country.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group form-group-sm">
+                        <label>Office Phone Number</label>
+                        <input type="text" class="form-control" ng-model="SearchDMC.OfficeNumber"/>
+                    </div>
+                </div>
+                <div class="col-md-2 cstm-form-button">
+                    <button class="btn btn-primary" ng-click="GetDMCS()">Search <i class="fa fa-search-plus"></i></button>
+                </div>
+            </div>
+        </form>
+        <div>
+            <ul class="list-group">
+                <li class="cstm-list-group-item cstm-list-group-item-primary active">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-2 col-sm-8 col-xs-8">DMC Id</div>
+                        <div class="col-lg-4 col-md-2 hidden-sm hidden-xs">Name</div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">Country</div>
+                        <div class="col-lg-4 col-md-2 col-sm-4 col-xs-4">Phone Number</div>                        
+                        <div class="col-lg-1 col-md-2 col-sm-4 col-xs-4"></div>
+                    </div>
+                </li>
+
+                <li ng-repeat="DMC in DMCS" class="cstm-list-group-item">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-8 col-xs-8 wraptext">{{DMC.DMCId}}</div>
+                        <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">{{DMC.Name}}</div>
+                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{DMC.Country.Name}}</div>
+                        <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">{{DMC.OfficeNumber}}</div>                        
+                        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"><a href="" ng-click="SelectPlanRequest(PlanRequest)" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 </div>
+

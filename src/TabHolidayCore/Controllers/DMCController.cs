@@ -43,6 +43,47 @@ namespace TabHolidayCore.Controllers
             return returnObject.GetResponse();
         }
 
+        [HttpPost]
+        [Authorize]
+        public string GetDMCs([FromBody]DMC dmc)
+        {
+            try
+            {
+                var DMCQuery = _context.DMCs.AsQueryable();
+
+                if (dmc.DMCId > 0)
+                {
+                    DMCQuery = DMCQuery.Where(d => d.DMCId == dmc.DMCId);
+                }
+
+                if (dmc.Name != string.Empty && dmc.Name != null)
+                {
+                    DMCQuery = DMCQuery.Where(d => d.Name.Contains(dmc.Name));
+                }
+
+                if (dmc.CountryId > 0)
+                {
+                    DMCQuery = DMCQuery.Where(d => d.CountryId == dmc.CountryId);
+                }
+
+                if (dmc.OfficeNumber != string.Empty && dmc.OfficeNumber != null)
+                {
+                    DMCQuery = DMCQuery.Where(d => d.OfficeNumber.Contains(dmc.OfficeNumber));
+                }
+
+                returnObject.isSuccess = true;
+                returnObject.ChangedData = DMCQuery.Include(d=>d.Country).ToArray();
+            }
+            catch (Exception ex)
+            {
+
+                returnObject.isSuccess = false;
+                returnObject.Message = returnObject.GetErrorMessage(ex);
+            }
+           
+            return returnObject.GetResponse();
+        }
+
         public IActionResult Index()
         {
             return View();

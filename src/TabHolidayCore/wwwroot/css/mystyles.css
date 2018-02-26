@@ -31,3 +31,20 @@
     margin-left: 5px;
     border-radius: 15px;
 }
+
+.cstm-form-button{
+    top:17px;
+}
+
+.cstm-list-group-item{
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;    
+    border: 1px solid #ed8323;
+}
+
+.cstm-list-group-item-primary{
+    color:white;
+    background-color:#ed8323;
+}

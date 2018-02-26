@@ -1,6 +1,8 @@
 ﻿myapp.controller('DMCController', ['$http', '$scope', '$location', 'myappService', '$filter', function ($http, $scope, $location, myappService, $filter) {
 
-   
+    $scope.ViewMode = "list";
+
+    $scope.DMCS = [];
 
     $scope.CreateInitialDMCObject = function () {
         $scope.DMC = {};
@@ -12,6 +14,10 @@
         $scope.DMC.DMCOfficials = [];
         $scope.AddDMCOfficial();
 
+    };
+
+    $scope.InitializeDMCSearchObject = function () {
+        $scope.SearchDMC = {};
     };
 
     $scope.AddOfficePhoneNumber = function () {
@@ -63,10 +69,12 @@
 
     $scope.LoadData = function () {
         $scope.CreateInitialDMCObject();
+        $scope.InitializeDMCSearchObject();
         $scope.Countries = myappService.GetCountries();
 
         $scope.BankAccountTypes = myappService.GetBankAccountTypes();
         $scope.DMCOfficialTypes = myappService.GetDMCOfficialTypes();
+        $scope.GetDMCS();
     };
 
     $scope.CollateOfficialPhoneNumbers = function () {
@@ -106,6 +114,32 @@
              function (errorResponse) {
                  // handle errors here
              });
+    };
+
+    $scope.GetDMCS = function () {
+        
+        $http.post('/DMC/GetDMCs', $scope.SearchDMC).then(
+             function (successResponse) {
+                 if (successResponse.data.isSuccess) {
+                     $scope.DMCS = successResponse.data.ChangedData;
+                     $scope.InitializeDMCSearchObject();
+                 }
+                 else {
+
+                     alert(successResponse.data.Message);
+
+                 }
+             },
+             function (errorResponse) {
+                 // handle errors here
+             });
+
+    };
+
+    $scope.CancelForm = function () {
+        $scope.CreateInitialDMCObject();
+        $scope.InitializeDMCSearchObject();
+        $scope.ViewMode = "list";
     };
 
     $scope.LoadData();
