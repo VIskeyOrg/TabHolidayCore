@@ -15,6 +15,13 @@ myapp.config(['$routeProvider',
             when('/dmc', {
                 templateUrl: '/lib/tabHolidayApp/dmc/dmc.html'
             }).
+            when('/facility', {
+                templateUrl: '/lib/tabHolidayApp/facility/facility.html'
+            }).
+            when('/hotel', {
+                templateUrl: '/lib/tabHolidayApp/hotel/hotel.html'
+            }).
+
             when('/region', {
                 templateUrl: '/lib/myapp/Region/Index.html'
             }).
@@ -56,3 +63,18 @@ myapp.config(['$routeProvider',
             })
     }
 ]);
+
+myapp.directive('ngConfirmClick', [
+        function () {
+            return {
+                link: function (scope, element, attr) {
+                    var msg = attr.ngConfirmClick || "Are you sure?";
+                    var clickAction = attr.confirmedClick;
+                    element.bind('click', function (event) {
+                        if (window.confirm(msg)) {
+                            scope.$eval(clickAction)
+                        }
+                    });
+                }
+            };
+        }])

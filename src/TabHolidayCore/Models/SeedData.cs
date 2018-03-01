@@ -32,6 +32,9 @@ namespace TabHolidayCore.Models
                 SeedCountries(context);
                 SeedDMCOfficialTypes(context);
                 SeedBankAccountTypes(context);
+                SeedStarRatings(context);
+                SeedMeals(context);
+
             }
         }
 
@@ -133,6 +136,42 @@ namespace TabHolidayCore.Models
                 new DMCOfficialType { Name = "Sales" },
                 new DMCOfficialType { Name = "Account" },
                 new DMCOfficialType { Name = "Management" }
+                );
+
+            context.SaveChanges();
+        }
+
+        private static void SeedMeals(AppDbContext context)
+        {
+            if (context.Meals.Any())
+            {
+                return;
+            }
+
+            context.Meals.AddRange(
+                new Meal { Name = "Breakfast Included (CP)" },
+                new Meal { Name = "Breakfast and Lunch or Dinner (MAP)" },
+                new Meal { Name = "Breakfast,Lunch and Dinner (APAI)" },
+                new Meal { Name = "All Inclusive (AI)" },
+                new Meal { Name = "Room Only (RO)" }
+                );
+
+            context.SaveChanges();
+        }
+
+        private static void SeedStarRatings(AppDbContext context)
+        {
+            if (context.StarRatings.Any())
+            {
+                return;
+            }
+
+            context.StarRatings.AddRange(
+                new StarRating { Name = "1" },
+                new StarRating { Name = "2" },
+                new StarRating { Name = "3" },
+                new StarRating { Name = "4" },
+                new StarRating { Name = "5" }
                 );
 
             context.SaveChanges();

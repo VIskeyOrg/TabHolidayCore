@@ -204,7 +204,7 @@
                                     <span ng-message="minlength">Minimum allowed length 5!</span>
                                     <span ng-message="maxlength">Maximum allowed length 20!</span>
                                 </span>
-</div>
+                            </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group form-group-sm form-group-icon-right">
@@ -227,13 +227,13 @@
                                 <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm['SwiftCode' +$index].$invalid || dmcForm['SwiftCode' +$index].$pristine"></i>
                                 <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm['SwiftCode' +$index].$invalid && (dmcForm['SwiftCode' +$index].$dirty || dmcForm['SwiftCode' +$index].$touched)"></i>
                                 <label>Swift Code</label>
-                                <input class="form-control" type="text" ng-model="BankDetail.SwiftCode" name="SwiftCode{{$index}}" required ng-minlength="20" ng-maxlength="20"/>
+                                <input class="form-control" type="text" ng-model="BankDetail.SwiftCode" name="SwiftCode{{$index}}" /><!--required ng-minlength="20" ng-maxlength="20"/>-->
                                 <span class="cstm-error-message" ng-messages="dmcForm['SwiftCode' +$index].$error"
-                                      ng-show="dmcForm['SwiftCode' +$index].$dirty || dmcForm['SwiftCode' +$index].$touched">
-                                    <span ng-message="required">Required Swift Code</span>
+                                      ng-show="dmcForm['SwiftCode' +$index].$dirty || dmcForm['SwiftCode' +$index].$touched"></span>
+                                    <!--<span ng-message="required">Required Swift Code</span>
                                     <span ng-message="minlength">Minimum allowed length 20!</span>
                                     <span ng-message="maxlength">Maximum allowed length 20!</span>
-                                </span>
+                                </span>-->
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -241,13 +241,14 @@
                                 <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm['RoutingNumber' +$index].$invalid || dmcForm['RoutingNumber' +$index].$pristine"></i>
                                 <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm['RoutingNumber' +$index].$invalid && (dmcForm['RoutingNumber' +$index].$dirty || dmcForm['RoutingNumber' +$index].$touched)"></i>
                                 <label>Routing Number</label>
-                                <input class="form-control" type="text" ng-model="BankDetail.RoutingNumber" name="RoutingNumber{{$index}}" required ng-minlength="20" maxlength="20"/>
+                                <input class="form-control" type="text" ng-model="BankDetail.RoutingNumber" name="RoutingNumber{{$index}}" /><!--required ng-minlength="20" maxlength="20"/>-->
                                 <span class="cstm-error-message" ng-messages="dmcForm['RoutingNumber' +$index].$error"
                                       ng-show="dmcForm['RoutingNumber' +$index].$dirty || dmcForm['RoutingNumber' +$index].$touched">
-                                    <span ng-message="required">Required Routing Number</span>
+                                <</span>>
+                                    <!--<span ng-message="required">Required Routing Number</span>
                                     <span ng-message="minlength">Minimum allowed length 20!</span>
                                     <span ng-message="maxlength">Maximum allowed length 20!</span>
-                                </span>
+                                </span>-->
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -255,13 +256,14 @@
                                 <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm['IBANCode' +$index].$invalid || dmcForm['IBANCode' +$index].$pristine"></i>
                                 <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm['IBANCode' +$index].$invalid && (dmcForm['IBANCode' +$index].$dirty || dmcForm['IBANCode' +$index].$touched)"></i>
                                 <label>IBAN Code</label>
-                                <input class="form-control" type="text" ng-model="BankDetail.IBANCode" name="IBANCode{{$index}}" required ng-minlength="20" ng-maxlength="20"/>
+                                <input class="form-control" type="text" ng-model="BankDetail.IBANCode" name="IBANCode{{$index}}" /> <!--required ng-minlength="20" ng-maxlength="20"/>-->
                                 <span class="cstm-error-message" ng-messages="dmcForm['IBANCode' +$index].$error"
                                       ng-show="dmcForm['IBANCode' +$index].$dirty || dmcForm['IBANCode' +$index].$touched">
-                                    <span ng-message="required">Required IBAN Code</span>
+                                </span>
+                                    <!--<span ng-message="required">Required IBAN Code</span>
                                     <span ng-message="minlength">Minimum allowed length 20!</span>
                                     <span ng-message="maxlength">Maximum allowed length 20!</span>
-                                </span>
+                                </span>-->
                             </div>
                         </div>
                     </div>
@@ -314,12 +316,13 @@
                         <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm['EmailId' +$index].$invalid || dmcForm['EmailId' +$index].$pristine"></i>
                         <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm['EmailId' +$index].$invalid && ( dmcForm['EmailId' +$index].$dirty || dmcForm['EmailId' +$index].$touched)"></i>
                         <label><div class="col-md-7">Email-Id</div></label>
-                        <div class="col-md-10"><input class="form-control" type="text" ng-model="DMCOfficial.EmailId" name="EmailId{{$index}}" ng-minlength="10" ng-maxlength="200"/>
+                        <div class="col-md-10"><input class="form-control" type="text" ng-model="DMCOfficial.EmailId" name="EmailId{{$index}}" required ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" /> <!--required ng-minlength="10" ng-maxlength="200"-->
                             <span class="cstm-error-message" ng-messages="dmcForm['EmailId' +$index].$error"
                                   ng-show="dmcForm['EmailId' +$index].$dirty || dmcForm['EmailId' +$index].$touched">
                                 <span ng-message="required">Required Email Id!</span>
-                                <span ng-message="minlength">Minimum required length 10!</span>
-                                <span ng-message="maxlength">Maximum allowed length 200!</span>
+                                <span ng-message="pattern">Not valid email-id!</span>
+                                <!--<span ng-message="minlength">Minimum required length 10!</span>
+                                <span ng-message="maxlength">Maximum allowed length 200!</span>-->
                             </span>
                             
                         </div>

@@ -104,6 +104,36 @@ namespace TabHolidayCore.Models
             builder.Entity<DMC>()
                 .HasOne(d => d.Country);
 
+            builder.Entity<StarRating>()
+            .Property(a => a.Name).HasColumnType("VARCHAR(20)");
+
+            builder.Entity<Hotel>()
+          .Property(a => a.Name).HasColumnType("VARCHAR(100)");
+           builder.Entity<Hotel>()
+          .Property(a => a.TaggedLocation).HasColumnType("VARCHAR(100)");
+           builder.Entity<Hotel>()
+          .Property(a => a.DetailedLocation).HasColumnType("VARCHAR(200)");
+           builder.Entity<Hotel>()
+          .Property(a => a.Lattitude).HasColumnType("VARCHAR(200)");
+           builder.Entity<Hotel>()
+          .Property(a => a.Longitude).HasColumnType("VARCHAR(200)");
+           builder.Entity<Hotel>()
+          .Property(a => a.EmailId).HasColumnType("VARCHAR(200)");
+           builder.Entity<Hotel>()
+          .Property(a => a.PhoneNumber).HasColumnType("VARCHAR(100)");
+
+            builder.Entity<Hotel>()
+                .HasOne(b => b.StarRating);
+
+           builder.Entity<Facility>()
+           .Property(a => a.Name).HasColumnType("VARCHAR(100)");
+           builder.Entity<Facility>()
+           .Property(a => a.Class).HasColumnType("VARCHAR(100)");
+
+           builder.Entity<Meal>()
+           .Property(a => a.Name).HasColumnType("VARCHAR(100)");
+
+
             builder.Entity<Agency>()
                 .HasMany(a => a.ApplicationUsers)
                 .WithOne(b => b.Agency)
@@ -121,5 +151,9 @@ namespace TabHolidayCore.Models
         public DbSet<BankDetail> BankDetails { get; set; }
         public DbSet<DMCOfficial> DMCOfficial { get; set; }
         public DbSet<DMC> DMCs { get; set; }
+        public DbSet<StarRating> StarRatings { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<Facility> Facilities { get; set; }
+        public DbSet<Meal> Meals { get; set; }
     }
 }

@@ -63,6 +63,14 @@
             $rootScope.GetMasters();
         };
 
+        this.GetAllMeals = function () {
+            return MasterObject.Meals || [];
+        };
+
+        this.GetStarRatings = function () {
+            return MasterObject.StarRatings || [];
+
+        }
         this.Login = function (model,returnURL) {
             var IsSuccess = false;
             $http.post('/Account/Login', model).then(

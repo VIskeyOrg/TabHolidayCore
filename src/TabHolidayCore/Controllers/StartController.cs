@@ -49,6 +49,8 @@ namespace TabHolidayCore.Controllers
                 master.Agencies = _context.Agencies.ToArray();
                 master.DMCOfficialTypes = _context.DMCOfficialTypes.ToArray();
                 master.BankAccountTypes = _context.BankAccountTypes.ToArray();
+                master.Meals = _context.Meals.ToArray();
+                master.StarRatings = _context.StarRatings.ToArray();
 
                 returnObject.ChangedData = master;
                 returnObject.isSuccess = true;
