@@ -1,5 +1,5 @@
 ﻿<div ng-controller="DMCController">
-
+    <!-- Form Mode -->
     <div class="container" ng-show="ViewMode == 'new'">
         <div><h3 class="booking-title">DMC</h3> </div>
 
@@ -191,6 +191,7 @@
                                 <span ng-message="required">Required Account Number!</span>
                             </span>
                         </div>
+
                     </div>
                     <div class="col-md-3">
                         <div class="form-group form-group-sm form-group-icon-right">
@@ -262,13 +263,16 @@
                                 <span ng-message="minlength">Minimum allowed length 5!</span>
                                 <span ng-message="maxlength">Maximum allowed length 20!</span>
                             </span>
+
                         </div>
                     </div>
+
+
                 </div>
-
-
-                <hr />
             </div>
+            <hr />
+
+
 
 
 
@@ -313,23 +317,22 @@
                     <div class="form-group form-group-sm form-group-icon-right">
                         <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm['EmailId' +$index].$invalid || dmcForm['EmailId' +$index].$pristine"></i>
                         <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm['EmailId' +$index].$invalid && ( dmcForm['EmailId' +$index].$dirty || dmcForm['EmailId' +$index].$touched)"></i>
-                        <label><div class="col-md-7">Email-Id</div></label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" ng-model="DMCOfficial.EmailId" name="EmailId{{$index}}" ng-minlength="10" ng-maxlength="200" />
-                            <span class="cstm-error-message" ng-messages="dmcForm['EmailId' +$index].$error"
-                                  ng-show="dmcForm['EmailId' +$index].$dirty || dmcForm['EmailId' +$index].$touched">
-                                <span ng-message="required">Required Email Id!</span>
-                                <span ng-message="minlength">Minimum required length 10!</span>
-                                <span ng-message="maxlength">Maximum allowed length 200!</span>
-                            </span>
+                        <label>Email-Id</label>
+                        <input class="form-control" type="text" ng-model="DMCOfficial.EmailId" name="EmailId{{$index}}" required ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" /> <!--required ng-minlength="10" ng-maxlength="200"-->
 
-                        </div>
-                        <div class="col-md-1"><button ng-click="RemoveDMCOfficial()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
+                        <span class="cstm-error-message" ng-messages="dmcForm['EmailId' +$index].$error"
+                              ng-show="dmcForm['EmailId' +$index].$dirty || dmcForm['EmailId' +$index].$touched">
+                            <span ng-message="required">Required Email Id!</span>
+                            <span ng-message="pattern">Not valid email-id!</span>
+
+                        </span>                        
                     </div>
+
                 </div>
-
+                <div class="col-md-1">
+                    <button ng-click="RemoveDMCOfficial()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button>
+                </div>
             </div>
-
             <hr />
             <div class="row">
                 <div class="col-md-12">
@@ -342,7 +345,7 @@
                 <div class="col-md-12">
                     <span class="pull-right">
                         <button type="submit" class="btn btn-primary" ng-click="AddDMC()" ng-disabled="dmcForm.$invalid">Submit</button>
-                        <button class="btn btn-default">Cancel</button>
+                        <button class="btn btn-default" ng-click="CancelForm()">Cancel</button>
                     </span>
                 </div>
             </div>
@@ -351,6 +354,8 @@
 
     </div>
 
+
+    <!-- List Mode -->
     <div class="container" ng-show="ViewMode == 'list'">
         <div class="row">
             <div class="col-md-7">

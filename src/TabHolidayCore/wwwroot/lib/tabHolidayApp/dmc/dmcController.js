@@ -103,6 +103,7 @@
             function (successResponse) {
                 if (successResponse.data.isSuccess) {
                     $scope.CreateInitialDMCObject();
+                    $scope.ViewMode = "list";
                     alert(successResponse.data.Message);
 
                 }
@@ -122,6 +123,7 @@
             function (successResponse) {
                 if (successResponse.data.isSuccess) {
                     $scope.CreateInitialDMCObject();
+                    $scope.ViewMode = "list";
                     alert(successResponse.data.Message);
 
                 }

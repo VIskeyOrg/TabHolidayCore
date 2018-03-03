@@ -360,6 +360,91 @@ namespace TabHolidayCore.Migrations
                     b.ToTable("DMCOfficialTypes");
                 });
 
+            modelBuilder.Entity("TabHolidayCore.Models.Facility", b =>
+                {
+                    b.Property<short>("FacilityId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Class")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<long?>("HotelId");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.HasKey("FacilityId");
+
+                    b.HasIndex("HotelId");
+
+                    b.ToTable("Facilities");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.Hotel", b =>
+                {
+                    b.Property<long>("HotelId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("DetailedLocation")
+                        .HasColumnType("VARCHAR(200)");
+
+                    b.Property<string>("EmailId")
+                        .HasColumnType("VARCHAR(200)");
+
+                    b.Property<string>("Lattitude")
+                        .HasColumnType("VARCHAR(200)");
+
+                    b.Property<string>("Longitude")
+                        .HasColumnType("VARCHAR(200)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<int>("StarRatingId");
+
+                    b.Property<string>("TaggedLocation")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.HasKey("HotelId");
+
+                    b.HasIndex("StarRatingId");
+
+                    b.ToTable("Hotels");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.Meal", b =>
+                {
+                    b.Property<short>("MealId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long?>("HotelId");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.HasKey("MealId");
+
+                    b.HasIndex("HotelId");
+
+                    b.ToTable("Meals");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.StarRating", b =>
+                {
+                    b.Property<int>("StarRatingId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("VARCHAR(20)");
+
+                    b.HasKey("StarRatingId");
+
+                    b.ToTable("StarRatings");
+                });
+
             modelBuilder.Entity("TabHolidayCore.Models.State", b =>
                 {
                     b.Property<long>("StateId")
@@ -464,6 +549,28 @@ namespace TabHolidayCore.Migrations
                         .WithMany()
                         .HasForeignKey("DMCOfficialTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.Facility", b =>
+                {
+                    b.HasOne("TabHolidayCore.Models.Hotel")
+                        .WithMany("Facilities")
+                        .HasForeignKey("HotelId");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.Hotel", b =>
+                {
+                    b.HasOne("TabHolidayCore.Models.StarRating", "StarRating")
+                        .WithMany()
+                        .HasForeignKey("StarRatingId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.Meal", b =>
+                {
+                    b.HasOne("TabHolidayCore.Models.Hotel")
+                        .WithMany("Meals")
+                        .HasForeignKey("HotelId");
                 });
 
             modelBuilder.Entity("TabHolidayCore.Models.State", b =>

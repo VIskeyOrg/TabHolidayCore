@@ -31,7 +31,6 @@ namespace TabHolidayCore.Controllers
             {
 
                 _context.DMCs.Add(dmc);
-
                 _context.SaveChanges();
                 returnObject.isSuccess = true;
                 returnObject.ChangedData = dmc;

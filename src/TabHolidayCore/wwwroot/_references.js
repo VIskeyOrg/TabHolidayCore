@@ -11,6 +11,7 @@
 /// <reference path="js/custom.js" />
 /// <reference path="js/dropit.js" />
 /// <reference path="js/fitvids.js" />
+/// <reference path="js/fontawesome-all.js" />
 /// <reference path="js/fotorama.js" />
 /// <reference path="js/gridrotator.js" />
 /// <reference path="js/icheck.js" />

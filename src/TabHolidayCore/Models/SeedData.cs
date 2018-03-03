@@ -23,15 +23,19 @@ namespace TabHolidayCore.Models
                 var adminID = await EnsureUser(serviceProvider, testUserPw, "admin@tabholiday.com", "Admin");
                 await EnsureRole(serviceProvider, adminID, "IT Admin");
 
-                await CreateRoles(serviceProvider,  "Travel Agent");
+                await CreateRoles(serviceProvider,  "Admin - Travel Agent");
+                await CreateRoles(serviceProvider, "Normal - Travel Agent");
                 await CreateRoles(serviceProvider, "DMC");
-                await CreateRoles(serviceProvider, "B2B");
 
 
                 SeedTierLevel(context);
                 SeedCountries(context);
                 SeedDMCOfficialTypes(context);
                 SeedBankAccountTypes(context);
+                SeedStarRatings(context);
+                SeedMeals(context);
+                SeedHotelFacilities(context);
+
             }
         }
 
@@ -133,6 +137,70 @@ namespace TabHolidayCore.Models
                 new DMCOfficialType { Name = "Sales" },
                 new DMCOfficialType { Name = "Account" },
                 new DMCOfficialType { Name = "Management" }
+                );
+
+            context.SaveChanges();
+        }
+
+        private static void SeedMeals(AppDbContext context)
+        {
+            if (context.Meals.Any())
+            {
+                return;
+            }
+
+            context.Meals.AddRange(
+                new Meal { Name = "Breakfast Included (CP)" },
+                new Meal { Name = "Breakfast and Lunch or Dinner (MAP)" },
+                new Meal { Name = "Breakfast,Lunch and Dinner (APAI)" },
+                new Meal { Name = "All Inclusive (AI)" },
+                new Meal { Name = "Room Only (RO)" }
+                );
+
+            context.SaveChanges();
+        }
+
+        private static void SeedHotelFacilities(AppDbContext context)
+        {
+            if (context.Facilities.Any())
+            {
+                return;
+            }
+
+            context.Facilities.AddRange(
+                new Facility { Name = "Wifi (Paid)", Class ="im im-wi-fi" },
+                new Facility { Name = "Wifi (Free)", Class = "im im-wi-fi" },
+                new Facility { Name = "Parking (Paid)", Class = "im im-parking" },
+                new Facility { Name = "Parking (Free)", Class = "im im-parking" },
+                new Facility { Name = "Shuttle Bus Service", Class = "im im-bus" },
+                new Facility { Name = "Convention Hall", Class = "im im-meet" },
+                new Facility { Name = "Fitness Center", Class = "im im-fitness" },
+                new Facility { Name = "Pool", Class = "im im-pool" },
+                new Facility { Name = "SPA", Class = "im im-spa" },
+                new Facility { Name = "Wheel Chair Access", Class = "fa fa-wheelchair" },
+                new Facility { Name = "Business Center", Class = "fa fa-university" },
+                new Facility { Name = "Airport Transport", Class = "fa-plane" },
+                new Facility { Name = "Children Activities", Class = "fa-child" },
+                new Facility { Name = "Casino/Gambling", Class = "im im-casino" },
+                new Facility { Name = "Bar/Lounge", Class = "fa-beer" }
+                );
+
+            context.SaveChanges();
+        }
+
+        private static void SeedStarRatings(AppDbContext context)
+        {
+            if (context.StarRatings.Any())
+            {
+                return;
+            }
+
+            context.StarRatings.AddRange(
+                new StarRating { Name = "1" },
+                new StarRating { Name = "2" },
+                new StarRating { Name = "3" },
+                new StarRating { Name = "4" },
+                new StarRating { Name = "5" }
                 );
 
             context.SaveChanges();

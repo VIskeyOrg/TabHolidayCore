@@ -8,8 +8,8 @@ using TabHolidayCore.Models;
 namespace TabHolidayCore.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180130053931_UserMgmt3")]
-    partial class UserMgmt3
+    [Migration("20180303041914_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -182,6 +182,8 @@ namespace TabHolidayCore.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<bool>("IsAgencyOwner");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -219,6 +221,64 @@ namespace TabHolidayCore.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("TabHolidayCore.Models.BankAccountType", b =>
+                {
+                    b.Property<int>("BankAccountTypeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.HasKey("BankAccountTypeId");
+
+                    b.ToTable("BankAccountTypes");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.BankDetail", b =>
+                {
+                    b.Property<long>("BankDetailId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AccountHolderName")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<string>("AccountNumber")
+                        .HasColumnType("VARCHAR(20)");
+
+                    b.Property<int>("BankAccountTypeId");
+
+                    b.Property<string>("BranchName")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<long?>("DMCId");
+
+                    b.Property<string>("IBANCode")
+                        .HasColumnType("VARCHAR(20)");
+
+                    b.Property<string>("IFSCCode")
+                        .HasColumnType("VARCHAR(20)");
+
+                    b.Property<string>("MICRNumber")
+                        .HasColumnType("VARCHAR(20)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("VARCHAR(50)");
+
+                    b.Property<string>("RoutingNumber")
+                        .HasColumnType("VARCHAR(20)");
+
+                    b.Property<string>("SwiftCode")
+                        .HasColumnType("VARCHAR(20)");
+
+                    b.HasKey("BankDetailId");
+
+                    b.HasIndex("BankAccountTypeId");
+
+                    b.HasIndex("DMCId");
+
+                    b.ToTable("BankDetails");
+                });
+
             modelBuilder.Entity("TabHolidayCore.Models.Country", b =>
                 {
                     b.Property<int>("CountryId")
@@ -233,6 +293,174 @@ namespace TabHolidayCore.Migrations
                     b.HasKey("CountryId");
 
                     b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.DMC", b =>
+                {
+                    b.Property<long>("DMCId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address")
+                        .HasColumnType("VARCHAR(300)");
+
+                    b.Property<int>("CountryId");
+
+                    b.Property<string>("FaxNumber")
+                        .HasColumnType("VARCHAR(20)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<string>("OfficeNumber")
+                        .HasColumnType("VARCHAR(200)");
+
+                    b.Property<string>("TaxNumber")
+                        .HasColumnType("VARCHAR(30)");
+
+                    b.HasKey("DMCId");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("DMCs");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.DMCOfficial", b =>
+                {
+                    b.Property<long>("DMCOfficialId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long?>("DMCId");
+
+                    b.Property<int>("DMCOfficialTypeId");
+
+                    b.Property<string>("EmailId")
+                        .HasColumnType("VARCHAR(200)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.HasKey("DMCOfficialId");
+
+                    b.HasIndex("DMCId");
+
+                    b.HasIndex("DMCOfficialTypeId");
+
+                    b.ToTable("DMCOfficial");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.DMCOfficialType", b =>
+                {
+                    b.Property<int>("DMCOfficialTypeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("VARCHAR(20)");
+
+                    b.HasKey("DMCOfficialTypeId");
+
+                    b.ToTable("DMCOfficialTypes");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.Facility", b =>
+                {
+                    b.Property<short>("FacilityId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Class")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<long?>("HotelId");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.HasKey("FacilityId");
+
+                    b.HasIndex("HotelId");
+
+                    b.ToTable("Facilities");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.Hotel", b =>
+                {
+                    b.Property<long>("HotelId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("DetailedLocation")
+                        .HasColumnType("VARCHAR(200)");
+
+                    b.Property<string>("EmailId")
+                        .HasColumnType("VARCHAR(200)");
+
+                    b.Property<string>("Lattitude")
+                        .HasColumnType("VARCHAR(200)");
+
+                    b.Property<string>("Longitude")
+                        .HasColumnType("VARCHAR(200)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.Property<int>("StarRatingId");
+
+                    b.Property<string>("TaggedLocation")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.HasKey("HotelId");
+
+                    b.HasIndex("StarRatingId");
+
+                    b.ToTable("Hotels");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.Meal", b =>
+                {
+                    b.Property<short>("MealId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long?>("HotelId");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("VARCHAR(100)");
+
+                    b.HasKey("MealId");
+
+                    b.HasIndex("HotelId");
+
+                    b.ToTable("Meals");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.StarRating", b =>
+                {
+                    b.Property<int>("StarRatingId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("VARCHAR(20)");
+
+                    b.HasKey("StarRatingId");
+
+                    b.ToTable("StarRatings");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.State", b =>
+                {
+                    b.Property<long>("StateId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CountryId");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("VARCHAR(250)");
+
+                    b.HasKey("StateId");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("States");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<long>", b =>
@@ -290,6 +518,68 @@ namespace TabHolidayCore.Migrations
                     b.HasOne("TabHolidayCore.Models.Agency", "Agency")
                         .WithMany("ApplicationUsers")
                         .HasForeignKey("AgencyId");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.BankDetail", b =>
+                {
+                    b.HasOne("TabHolidayCore.Models.BankAccountType", "BankAccountType")
+                        .WithMany()
+                        .HasForeignKey("BankAccountTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("TabHolidayCore.Models.DMC")
+                        .WithMany("BankDetails")
+                        .HasForeignKey("DMCId");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.DMC", b =>
+                {
+                    b.HasOne("TabHolidayCore.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.DMCOfficial", b =>
+                {
+                    b.HasOne("TabHolidayCore.Models.DMC")
+                        .WithMany("DMCOfficials")
+                        .HasForeignKey("DMCId");
+
+                    b.HasOne("TabHolidayCore.Models.DMCOfficialType", "DMCOfficialType")
+                        .WithMany()
+                        .HasForeignKey("DMCOfficialTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.Facility", b =>
+                {
+                    b.HasOne("TabHolidayCore.Models.Hotel")
+                        .WithMany("Facilities")
+                        .HasForeignKey("HotelId");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.Hotel", b =>
+                {
+                    b.HasOne("TabHolidayCore.Models.StarRating", "StarRating")
+                        .WithMany()
+                        .HasForeignKey("StarRatingId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.Meal", b =>
+                {
+                    b.HasOne("TabHolidayCore.Models.Hotel")
+                        .WithMany("Meals")
+                        .HasForeignKey("HotelId");
+                });
+
+            modelBuilder.Entity("TabHolidayCore.Models.State", b =>
+                {
+                    b.HasOne("TabHolidayCore.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

@@ -1,0 +1,146 @@
+﻿<div class="container" ng-controller="HotelController">
+    <h3 class="booking-title">Hotel Management</h3>
+    <form class="booking-item-dates-change mb40" name="hotelForm">
+        <div class="row">
+            <div class="col-md-4 col-xs-10">
+                <div class="form-group form-group-sm form-group-icon-right">
+                    <label>Name</label>
+                    <input class="form-control" type="text" ng-model="hotel.Name" name="Name" />
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xs-10">
+                <div class="form-group form-group-sm form-group-icon-right">
+                    <label>Tagged Location</label>
+                    <input class="form-control" type="text" ng-model="hotel.TaggedLocation" name="TaggedLocation" />
+
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xs-10">
+                <div class="form-group form-group-sm form-group-icon-right">
+                    <label>Detailed Location</label>
+                    <input class="form-control" type="text" ng-model="hotel.DetailedLocation" name="DetailedLocation" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-xs-10">
+                <div class="form-group form-group-sm form-group-icon-right" display: inline-block;>
+                    <label>GPS Coordinates (Lattitude)</label>
+                    <input class="form-control" type="text" ng-model="hotel.Lattitude" name="Lattitude" />
+
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-10">
+                <div class="form-group form-group-sm form-group-icon-right" display: inline-block;>
+                    <label>GPS Coordinates (Longitude)</label>
+                    <input class="form-control" type="text" ng-model="hotel.Longitude" name="Longitude" />
+
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-10">
+                <div class="form-group form-group-sm form-group-icon-right">
+                    <label>Star Rating</label>
+                    <select class="form-control" ng-model="hotel.StarRating" name="StarRating">
+                        <option value="0">--Select Star Rating--</option>
+                        <option ng-repeat="StarRating in StarRatings" value="{{StarRating.StarRatingId}}">{{StarRating.Name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-xs-10">
+                <div class="form-group form-group-sm form-group-icon-right">
+                    <label>Email Id</label>
+                    <input class="form-control" type="text" ng-model="hotel.EmailId" name="EmailId" />
+                </div>
+            </div>
+
+            <div class="col-md-3 col-xs-10">
+                <div class="form-group form-group-sm form-group-icon-right">
+                    <label>Phone Number</label>
+                    <input class="form-control" type="text" ng-model="hotel.PhoneNumber" name="PhoneNumber" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="margin-top:15px">
+                <button class="btn btn-primary pull-right" ng-click="FacilityMode = 'add'">Add Facility<i class="fa fa-plus-square-o"></i></button>
+            </div>
+        </div>
+
+
+
+        <div class="" ng-show="FacilityMode == 'add'">
+            <hr style="border-bottom:1px solid #e27513" />
+            <h4>Add Hotel Facilities</h4>
+            <div class="row">
+                <div ng-repeat="Facility in Facilities" class="col-md-3 " style="padding-bottom:5px;padding-top:5px">
+                    <div class="col-md-2 cstm-booking-item-features"> <i class="fa" ng-class="[Facility.Class, {active : Facility.Selected}]" ng-click="SelectFacility(Facility)"></i></div>
+                    <div class="col-md-9">{{Facility.Name}}</div>
+                </div>
+            </div>
+
+        </div>
+        <hr style="border-bottom:1px solid gray" ng-show="FacilityMode == 'add'" />
+        <div class="row" ng-show="FacilityMode == 'add'">
+
+            <div class="col-md-12" style="margin-top:15px">
+                <button class="btn btn-primary pull-right" ng-click="AddFacilities()">Add<i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+
+        <div class="" ng-show="FacilityMode == 'view'">
+            <hr style="border-bottom:1px solid #e27513" />
+            <h4>Hotel Facilities</h4>
+            <div class="row">
+                <div ng-repeat="Facility in Hotel.Facilities" class="col-md-3 " style="padding-bottom:5px;padding-top:5px">
+                    <div class="col-md-2 cstm-booking-item-features"> <i class="fa" ng-class="[Facility.Class]"></i></div>
+                    <div class="col-md-9">{{Facility.Name}}</div>
+                </div>
+            </div>
+        </div>
+
+        <hr style="border-bottom:1px solid #e27513" />
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Meals</h4>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-primary pull-right" ng-show="MealMode == 'view'" ng-click="AddMeals()"> Add Meal <i class="fa fa-plus-circle"></i></button>
+            </div>
+        </div>
+
+        <div class="row" ng-show="MealMode == 'add'">
+            <div class="col-md-4" ng-repeat="Meal in Meals">
+                <label>
+                    <input type="checkbox" ng-model="Meal.Selected" style="margin-right:10px">{{Meal.Name}}
+                </label>
+            </div>
+        </div>
+
+        <hr style="border-bottom:1px solid gray" ng-show="MealMode == 'add'" />
+        <div class="row" ng-show="MealMode == 'add'">
+            <div class="col-md-12">
+                <button class="btn btn-primary pull-right" ng-click="PushMeals()">Done!<i class="fa fa-thumbs-up"></i></button>
+            </div>
+        </div>
+
+        <div class="row" ng-show="MealMode == 'view'">
+            <div class="col-md-4" ng-repeat="Meal in Hotel.Meals">
+                {{Meal.Name}}
+            </div>
+        </div>
+        <hr style="border-bottom:1px solid #e27513" />
+        <div class="row">
+            <div class="col-md-12">
+                <span class="pull-right">
+                    <button type="submit" class="btn btn-primary" ng-click="Save()">Save</button>
+                    <button class="btn btn-default">Cancel</button>
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
+
