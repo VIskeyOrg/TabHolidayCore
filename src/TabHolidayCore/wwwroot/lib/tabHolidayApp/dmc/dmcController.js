@@ -1,6 +1,7 @@
 ﻿myapp.controller('DMCController', ['$http', '$scope', '$location', 'myappService', '$filter', function ($http, $scope, $location, myappService, $filter) {
 
     $scope.ViewMode = "list";
+    $scope.IsEditMode = false;
 
     $scope.DMCS = [];
 
@@ -52,8 +53,7 @@
     };
 
     $scope.RemoveBankDetail = function (BankDetail) {
-        var index = $scope.DMC.BankDetails.indexOf(BankDetail);
-        $scope.DMC.BankDetails.splice(index, 1);
+        BankDetail.IsDelete = true;
     };
 
     $scope.AddDMCOfficial = function () {
@@ -62,8 +62,7 @@
     };
 
     $scope.RemoveDMCOfficial = function (DMCOfficial) {
-        var index = $scope.DMC.DMCOfficials.indexOf(DMCOfficial);
-        $scope.DMC.DMCOfficials.splice(index, 1);
+        DMCOfficial.IsDelete = true;
 
     };
 
@@ -98,22 +97,45 @@
 
     $scope.AddDMC = function () {
         $scope.CollateOfficialPhoneNumbers();
-        $http.post('/DMC/Add', $scope.DMC).then(
-             function (successResponse) {
-                 if (successResponse.data.isSuccess) {
-                     $scope.CreateInitialDMCObject();
-                     alert(successResponse.data.Message);
+        if (!$scope.IsEditMode)
+        {
+            $http.post('/DMC/Add', $scope.DMC).then(
+            function (successResponse) {
+                if (successResponse.data.isSuccess) {
+                    $scope.CreateInitialDMCObject();
+                    alert(successResponse.data.Message);
 
-                 }
-                 else {
+                }
+                else {
 
-                     alert(successResponse.data.Message);
+                    alert(successResponse.data.Message);
 
-                 }
-             },
-             function (errorResponse) {
-                 // handle errors here
-             });
+                }
+            },
+            function (errorResponse) {
+                // handle errors here
+            });
+        }
+        else {
+
+            $http.post('/DMC/Edit', $scope.DMC).then(
+            function (successResponse) {
+                if (successResponse.data.isSuccess) {
+                    $scope.CreateInitialDMCObject();
+                    alert(successResponse.data.Message);
+
+                }
+                else {
+
+                    alert(successResponse.data.Message);
+
+                }
+            },
+            function (errorResponse) {
+                // handle errors here
+            });
+        }
+       
     };
 
     $scope.GetDMCS = function () {
@@ -140,6 +162,38 @@
         $scope.CreateInitialDMCObject();
         $scope.InitializeDMCSearchObject();
         $scope.ViewMode = "list";
+    };
+
+    $scope.MakeNewDMCMode = function () {
+        $scope.ViewMode = "new";
+        $scope.IsEditMode = false;
+    };
+
+    $scope.Edit = function (DMC) {
+        $scope.IsEditMode = true;
+        $scope.ViewMode = "new";
+        $scope.DMC = DMC;
+        $scope.DMC.CountryId = DMC.CountryId.toString();
+        $scope.DMC.AdditionalOfficePhoneNumbers = [];
+        if($scope.DMC.OfficeNumber.indexOf('|')>0 )
+        {
+            var PhoneNumbers = $scope.DMC.OfficeNumber.split('|');
+
+            angular.forEach(PhoneNumbers, function (PhoneNumber) {
+                $scope.DMC.AdditionalOfficePhoneNumbers.push({ PhoneNumber: PhoneNumber });
+            });
+        }
+        else {
+            $scope.DMC.AdditionalOfficePhoneNumbers.push({ PhoneNumber: $scope.DMC.OfficeNumber });
+        }
+
+        angular.forEach($scope.DMC.BankDetails, function (BankDetail) {
+            BankDetail.BankAccountTypeId = BankDetail.BankAccountTypeId.toString();
+        });
+
+        angular.forEach($scope.DMC.DMCOfficials, function (DMCOfficial) {
+            DMCOfficial.DMCOfficialTypeId = DMCOfficial.DMCOfficialTypeId.toString();
+        });
     };
 
     $scope.LoadData();

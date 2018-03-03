@@ -287,4 +287,7 @@
 "C:\StudyProjects\TabHoliday\project\TabHolidayCore\src\TabHolidayCore\Models\State.cs"
 "C:\StudyProjects\TabHoliday\project\TabHolidayCore\src\TabHolidayCore\Models\UserDetail.cs"
 "C:\StudyProjects\TabHoliday\project\TabHolidayCore\src\TabHolidayCore\Models\ViewModels\ApplicationUserView.cs"
+"C:\StudyProjects\TabHoliday\project\TabHolidayCore\src\TabHolidayCore\Models\ViewModels\BankDetailView.cs"
+"C:\StudyProjects\TabHoliday\project\TabHolidayCore\src\TabHolidayCore\Models\ViewModels\DMCOfficialView.cs"
+"C:\StudyProjects\TabHoliday\project\TabHolidayCore\src\TabHolidayCore\Models\ViewModels\DMCView.cs"
 "C:\StudyProjects\TabHoliday\project\TabHolidayCore\src\TabHolidayCore\Models\ViewModels\AccountViewModels\LoginViewModel.cs"
