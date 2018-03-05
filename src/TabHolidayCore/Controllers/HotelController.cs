@@ -26,8 +26,8 @@ namespace TabHolidayCore.Controllers
         {
             try
             {
-
-                Hotel[] Hotels = _context.Hotels.ToArray();
+                
+                Hotel[] Hotels = _context.Hotels.Include(s => s.StarRating).ToArray();
                 returnObject.ChangedData = Hotels;
                 returnObject.isSuccess = true;
             }
@@ -43,15 +43,24 @@ namespace TabHolidayCore.Controllers
 
         [HttpPost]
         [Authorize]
-        public string Add([FromBody]Hotel hotel)
+        public string Add([FromBody]Hotel newHotel)
         {
             try
             {
+                if (newHotel.HotelId == 0)
+                {
+                    _context.Hotels.Add(newHotel);
+                }
+                else
+                {
+                    _context.Entry<Hotel>(newHotel).State = EntityState.Modified;
 
-                _context.Hotels.Add(hotel);
+                }
+
+                //_context.Hotels.Add(hotel);
                 _context.SaveChanges();
                 returnObject.isSuccess = true;
-                returnObject.ChangedData = hotel;
+                returnObject.ChangedData = newHotel;
                 returnObject.Message = returnObject.GetSaveMessage();
             }
             catch (Exception ex)

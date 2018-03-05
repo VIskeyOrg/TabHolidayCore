@@ -7,15 +7,29 @@
             <div class="row">
                 <div class="col-md-3 col-xs-10">
                     <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="facilityForm.Name.$invalid || facilityForm.Name.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="facilityForm.Name.$invalid && (facilityForm.Name.$dirty || facilityForm.Name.$touched)"></i>
                         <label>Name</label>
-                        <input class="form-control" type="text" ng-model="Facility.Name" name="Name" />
+                        <input class="form-control" type="text" ng-model="Facility.Name" name="Name" required ng-minlength="5" ng-maxlength="100" />
+                        <span class="cstm-error-message" ng-messages="facilityForm.Name.$error"
+                              ng-show="facilityForm.Name.$dirty || facilityForm.Name.$touched">
+                            <span ng-message="required">Required Name!</span>
+                            <span ng-message="minlength">Minimum required length 5!</span>
+                            <span ng-message="maxlength">Maximum allowed length 30!</span>
+                        </span>
                     </div>
                 </div>
 
                 <div class="col-md-3 col-xs-10">
-                    <div class="form-group form-group-sm form-group-icon-left">                        
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <!--<i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="facilityForm.Class.$invalid || facilityForm.Class.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="facilityForm.Class.$invalid && (facilityForm.Class.$dirty || facilityForm.Class.$touched)"></i>-->
                         <label>Class</label>
                         <input class="form-control" type="text" ng-model="Facility.Class" name="Class" />
+                        <!--<span class="cstm-error-message" ng-messages="facilityForm.Class.$error"
+                              ng-show="facilityForm.Class.$dirty || facilityForm.Class.$touched">
+                            <span ng-message="required">Required Class!</span>
+                        </span>-->
                     </div>
                 </div>
             </div>
@@ -47,9 +61,9 @@
                     <td class="booking-history-title"> {{Facility.Name}}</td>
                     <td><i class="fa" ng-class="Facility.Class"></i><span style="padding-left:10px">{{Facility.Class}}</span></td>
                     <td class="text-center">
-                        <span  ng-click="Edit(Facility)"><i class="fa fa-edit"></i></span>
-                        <span  confirmed-click="Delete(Facility)" ng-confirm-click="Would you like to delete {{Facility.Name}}?"><i class="far fa-trash-alt"></i></span>
-                        
+                        <span ng-click="Edit(Facility)"><i class="fa fa-edit"></i></span>
+                        <span confirmed-click="Delete(Facility)" ng-confirm-click="Would you like to delete {{Facility.Name}}?"><i class="fas fa-trash-alt"></i></span>
+
                     </td>
                 </tr>
 

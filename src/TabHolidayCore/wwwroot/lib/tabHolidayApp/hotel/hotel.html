@@ -4,32 +4,59 @@
         <div class="row">
             <div class="col-md-4 col-xs-10">
                 <div class="form-group form-group-sm form-group-icon-right">
+                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="hotelForm['Name' +$index].$invalid || hotelForm['Name' +$index].$pristine"></i>
+                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="hotelForm['Name' +$index].$invalid && ( hotelForm['Name' +$index].$dirty || hotelForm['Name' +$index].$touched)"></i>
                     <label>Name</label>
-                    <input class="form-control" type="text" ng-model="hotel.Name" name="Name" />
+                    <input class="form-control" type="text" ng-model="hotel.Name" name="Name{{$index}}" required ng-minlength="5" ng-maxlength="50" />
+                    <span class="cstm-error-message" ng-messages="hotelForm['Name' +$index].$error"
+                          ng-show="hotelForm['Name' +$index].$dirty || hotelForm['Name' +$index].$touched">
+                        <span ng-message="required">Required name!</span>
+                        <span ng-message="minlength">Minimum required length 5!</span>
+                        <span ng-message="maxlength">Maximum allowed length 50!</span>
+                    </span>
                 </div>
             </div>
 
             <div class="col-md-4 col-xs-10">
                 <div class="form-group form-group-sm form-group-icon-right">
+                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="hotelForm['TaggedLocation' +$index].$invalid || hotelForm['TaggedLocation' +$index].$pristine"></i>
+                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="hotelForm['TaggedLocation' +$index].$invalid && ( hotelForm['TaggedLocation' +$index].$dirty || hotelForm['TaggedLocation' +$index].$touched)"></i>
                     <label>Tagged Location</label>
-                    <input class="form-control" type="text" ng-model="hotel.TaggedLocation" name="TaggedLocation" />
-
+                    <input class="form-control" type="text" ng-model="hotel.TaggedLocation" name="TaggedLocation{{$index}}" required ng-minlength="5" ng-maxlength="100" />
+                    <span class="cstm-error-message" ng-messages="hotelForm['TaggedLocation' +$index].$error"
+                          ng-show="hotelForm['TaggedLocation' +$index].$dirty || hotelForm['TaggedLocation' +$index].$touched">
+                        <span ng-message="required">Required TaggedLocation!</span>
+                        <span ng-message="minlength">Minimum required length 5!</span>
+                        <span ng-message="maxlength">Maximum allowed length 100!</span>
+                    </span>
                 </div>
             </div>
 
             <div class="col-md-4 col-xs-10">
                 <div class="form-group form-group-sm form-group-icon-right">
+                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="hotelForm['DetailedLocation' +$index].$invalid || hotelForm['DetailedLocation' +$index].$pristine"></i>
+                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="hotelForm['DetailedLocation' +$index].$invalid && ( hotelForm['DetailedLocation' +$index].$dirty || hotelForm['DetailedLocation' +$index].$touched)"></i>
                     <label>Detailed Location</label>
-                    <input class="form-control" type="text" ng-model="hotel.DetailedLocation" name="DetailedLocation" />
+                    <input class="form-control" type="text" ng-model="hotel.DetailedLocation" name="DetailedLocation{{$index}}" required ng-minlength="5" ng-maxlength="200" />
+                    <span class="cstm-error-message" ng-messages="hotelForm['DetailedLocation' +$index].$error"
+                          ng-show="hotelForm['DetailedLocation' +$index].$dirty || hotelForm['DetailedLocation' +$index].$touched">
+                        <span ng-message="required">Required DetailedLocation!</span>
+                        <span ng-message="minlength">Minimum required length 5!</span>
+                        <span ng-message="maxlength">Maximum allowed length 200!</span>
+                    </span>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3 col-xs-10">
                 <div class="form-group form-group-sm form-group-icon-right" display: inline-block;>
+                    <!--<i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="hotelForm['Lattitude' +$index].$invalid || hotelForm['Lattitude' +$index].$pristine"></i>
+                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="hotelForm['Lattitude' +$index].$invalid && ( hotelForm['Lattitude' +$index].$dirty || hotelForm['Lattitude' +$index].$touched)"></i>-->
                     <label>GPS Coordinates (Lattitude)</label>
-                    <input class="form-control" type="text" ng-model="hotel.Lattitude" name="Lattitude" />
-
+                    <input class="form-control" type="text" ng-model="hotel.Lattitude" name="Lattitude{{$index}}" />
+                    <!--<span class="cstm-error-message" ng-messages="hotelForm['Lattitude' +$index].$error"
+                          ng-show="hotelForm['Lattitude' +$index].$dirty || hotelForm['Lattitude' +$index].$touched">                      
+                    </span>-->
                 </div>
             </div>
             <div class="col-md-3 col-xs-10">
@@ -40,27 +67,49 @@
                 </div>
             </div>
             <div class="col-md-3 col-xs-10">
-                <div class="form-group form-group-sm form-group-icon-right">
+                <div class="form-group form-group-sm form-group-icon-left">
+                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="hotelForm['StarRating' +$index].$invalid || hotelForm['StarRating' +$index].$pristine"></i>
+                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="hotelForm['StarRating' +$index].$invalid && ( hotelForm['StarRating' +$index].$dirty || hotelForm['StarRating' +$index].$touched)"></i>
                     <label>Star Rating</label>
-                    <select class="form-control" ng-model="hotel.StarRating" name="StarRating">
+                    <select class="form-control" ng-model="hotel.StarRating" name="StarRating{{$index}}" require-option>
                         <option value="0">--Select Star Rating--</option>
                         <option ng-repeat="StarRating in StarRatings" value="{{StarRating.StarRatingId}}">{{StarRating.Name}}</option>
                     </select>
+                    <span class="cstm-error-message" ng-messages="hotelForm['StarRating' +$index].$error"
+                          ng-show="hotelForm['StarRating' +$index].$dirty || hotelForm['StarRating' +$index].$touched">
+                        <span ng-message="requireOption">Required Star Rating!</span>
+                    </span>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3 col-xs-10">
                 <div class="form-group form-group-sm form-group-icon-right">
+                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="hotelForm['EmailId' +$index].$invalid || hotelForm['EmailId' +$index].$pristine"></i>
+                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="hotelForm['EmailId' +$index].$invalid && ( hotelForm['EmailId' +$index].$dirty || hotelForm['EmailId' +$index].$touched)"></i>
                     <label>Email Id</label>
-                    <input class="form-control" type="text" ng-model="hotel.EmailId" name="EmailId" />
+                    <input class="form-control" type="text" ng-model="hotel.EmailId" name="EmailId{{$index}}" required ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" />
+                    <span class="cstm-error-message" ng-messages="hotelForm['EmailId' +$index].$error"
+                          ng-show="hotelForm['EmailId' +$index].$dirty || hotelForm['EmailId' +$index].$touched">
+                        <span ng-message="required">Required Email Id!</span>
+                        <span ng-message="pattern">Not valid email-id!</span>
+                    </span>
                 </div>
             </div>
 
             <div class="col-md-3 col-xs-10">
                 <div class="form-group form-group-sm form-group-icon-right">
+                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="hotelForm['PhoneNumber' +$index].$invalid || hotelForm['PhoneNumber' +$index].$pristine"></i>
+                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="hotelForm['PhoneNumber' +$index].$invalid && ( hotelForm['PhoneNumber' +$index].$dirty || hotelForm['PhoneNumber' +$index].$touched)"></i>
                     <label>Phone Number</label>
-                    <input class="form-control" type="text" ng-model="hotel.PhoneNumber" name="PhoneNumber" />
+                    <input class="form-control" type="text" ng-model="hotel.PhoneNumber" name="PhoneNumber{{$index}}" required ng-pattern="/^(?=.*\d)[\d]{10,10}$/" />
+                    <span class="cstm-error-message" ng-messages="hotelForm['PhoneNumber' +$index].$error"
+                          ng-show="hotelForm['PhoneNumber' +$index].$dirty || hotelForm['PhoneNumber' +$index].$touched">
+                        <span ng-message="required">Please enter phone number!</span>
+                        <span ng-message="pattern">
+                            Contact number should be 10 digits long and should contain only numbers!
+                        </span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -136,7 +185,7 @@
         <div class="row">
             <div class="col-md-12">
                 <span class="pull-right">
-                    <button type="submit" class="btn btn-primary" ng-click="Save()">Save</button>
+                    <button type="submit" class="btn btn-primary" ng-click="Save()" ng-disabled="hotelForm.$invalid">Save</button>
                     <button class="btn btn-default">Cancel</button>
                 </span>
             </div>
