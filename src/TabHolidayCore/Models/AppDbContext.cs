@@ -155,5 +155,7 @@ namespace TabHolidayCore.Models
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Facility> Facilities { get; set; }
         public DbSet<Meal> Meals { get; set; }
+        public DbSet<HotelFacility> HotelFacilities { get; set; }
+        public DbSet<HotelMeal> HotelMeals { get; set; }
     }
 }

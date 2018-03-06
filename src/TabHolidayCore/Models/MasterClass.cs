@@ -18,6 +18,6 @@ namespace TabHolidayCore.Models
         public ICollection<BankAccountType> BankAccountTypes { get; set; }
         public ICollection<DMCOfficialType> DMCOfficialTypes { get; set; }
         public ICollection<Meal> Meals { get; set; }
-        public ICollection<StarRating> StarRatings { get; set; }
+        public ICollection<StarRating> StarRatings { get; set; }       
     }
 }
