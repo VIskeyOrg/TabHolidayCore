@@ -1,5 +1,5 @@
-﻿myapp.service('myappService', ["$rootScope", "$http","$location",
-    function ($rootScope, $http,$location) {
+﻿myapp.service('myappService', ["$rootScope", "$http", "$location",
+    function ($rootScope, $http, $location) {
         var masterReadyEvent = 'CollectedMasters';
         var masterReadyArgs = ['arg'];
 
@@ -70,8 +70,29 @@
         this.GetStarRatings = function () {
             return MasterObject.StarRatings || [];
 
+        };
+
+        this.GetSightSeeingCategories = function () {
+            return MasterObject.SightSeeingCategories || [];
+
+        };
+
+        this.GetInclusionTypes = function () {
+            return MasterObject.InclusionTypes || [];
+
+       };
+
+        this.GetTransferTypes = function () {
+            return MasterObject.TransferTypes || [];
+
+       // };
+
+       // this.GetTransferCategories = function () {
+       //     return MasterObject.TransferCategories || [];
+
+
         }
-        this.Login = function (model,returnURL) {
+        this.Login = function (model, returnURL) {
             var IsSuccess = false;
             $http.post('/Account/Login', model).then(
               function (successResponse) {
@@ -84,20 +105,20 @@
                       console.log(successResponse.data.ChangedData);
                       IsSuccess = true;
                       $location.url(returnURL);
-                     
+
                   }
                   else {
 
                       alert(successResponse.data.Message);
-                     
+
                   }
               },
               function (errorResponse) {
-                 
+
                   // handle errors here
               });
 
-           
+
         };
 
         $rootScope.CallInitiators = function () {

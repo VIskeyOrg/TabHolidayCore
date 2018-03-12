@@ -1,0 +1,58 @@
+﻿<div ng-controller="VehicleTypeController">
+    <div class="container">
+       <div> <h3 class="booking-title">Vehicle Types</h3></div>
+        <form class="booking-item-dates-change mb40" name="vehicleForm">
+            <div class="row">
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label> Vehicle Name</label>
+                        <input class="form-control" type="text" />
+                    </div>
+                </div>
+
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <label>Price</label>
+                        <input class="form-control" type="text" />
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border-bottom:1px solid #e27513" />
+            <div class="row">
+                <div class="col-md-5" style="margin-top:15px">
+                    <button class="btn btn-primary pull-left" ng-click="Save()">Add<i class="fa fa-plus-square"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+    <table class="table table-bordered table-striped table-booking-history">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Vehicle Name</th>
+                <th>Price</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="VehicleType in VehicleTypes">
+                <td class="booking-history-type">
+                    {{VehicleType.VehicleTypeId}}
+                </td>
+                <td class="booking-history-title"> {{VehicleType.Name}} </td>
+                <td class="booking-history-title"> {{VehicleType.Price}} </td>
+                <td class="text-center">
+                    <span ng-click="Edit(VehicleType)"><i class="fa fa-edit"></i></span>
+                    <span confirmed-click="Delete(VehicleType)" ng-confirm-click="Would you like to delete {{VehicleType.Name}}?"><i class="fas fa-trash-alt"></i></span>
+
+                </td>
+            </tr>
+
+        </tbody>
+        </table>
+        </div>
+</div>

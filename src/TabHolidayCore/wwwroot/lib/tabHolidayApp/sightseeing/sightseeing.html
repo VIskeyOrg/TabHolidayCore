@@ -1,0 +1,441 @@
+﻿<div ng-controller="SightSeeingController">
+    <div class="container">
+        <div><h3 class="booking-title">Sight Seeing</h3> </div>
+        <form class="booking-item-dates-change mb40" name="sightseeingForm">
+            <div class="row">
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm.name.$invalid || sightseeingForm.name.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm.name.$invalid && (sightseeingForm.name.$dirty || sightseeingForm.name.$touched)"></i>
+                        <label>Name</label>
+                        <input type="text" class="form-control" ng-model="SightSeeing.Name" name="name" required ng-minlength="5" ng-maxlength="100" />
+                        <span class="cstm-error-message" ng-messages="sightseeingForm.name.$error"
+                              ng-show="sightseeingForm.name.$dirty || sightseeingForm.name.$touched">
+                            <span ng-message="required">Required Name!</span>
+                            <span ng-message="minlength">Minimum required length 5!</span>
+                            <span ng-message="maxlength">Maximum allowed length 100!</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm.TaggedLocation.$invalid || sightseeingForm.TaggedLocation.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm.TaggedLocation.$invalid && (sightseeingForm.TaggedLocation.$dirty || sightseeingForm.TaggedLocation.$touched)"></i>
+                        <label>Tagged Location</label>
+                        <input type="text" class="form-control" ng-model="SightSeeing.TaggedLocation" name="TaggedLocation" required ng-minlength="5" ng-maxlength="100" />
+                        <span class="cstm-error-message" ng-messages="sightseeingForm.TaggedLocation.$error"
+                              ng-show="sightseeingForm.TaggedLocation.$dirty || sightseeingForm.TaggedLocation.$touched">
+                            <span ng-message="required">Required Tagged Location!</span>
+                            <span ng-message="minlength">Minimum required length 5!</span>
+                            <span ng-message="maxlength">Maximum allowed length 100!</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm.DetailedLocation.$invalid || sightseeingForm.DetailedLocation.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm.DetailedLocation.$invalid && (sightseeingForm.DetailedLocation.$dirty || sightseeingForm.DetailedLocation.$touched)"></i>
+                        <label>Detailed Location</label>
+                        <input type="text" class="form-control" ng-model="SightSeeing.DetailedLocation" name="DetailedLocation" required ng-minlength="5" ng-maxlength="100" />
+                        <span class="cstm-error-message" ng-messages="sightseeingForm.DetailedLocation.$error"
+                              ng-show="sightseeingForm.DetailedLocation.$dirty || sightseeingForm.DetailedLocation.$touched">
+                            <span ng-message="required">Required Detailed Location!</span>
+                            <span ng-message="minlength">Minimum required length 5!</span>
+                            <span ng-message="maxlength">Maximum allowed length 100!</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm.Lattitude.$invalid || sightseeingForm.Lattitude.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm.Lattitude.$invalid && (sightseeingForm.Lattitude.$dirty || sightseeingForm.Lattitude.$touched)"></i>
+                        <label>GPS Coordinates (Lattitude)</label>
+                        <input type="text" class="form-control" ng-model="SightSeeing.Lattitude" name="Lattitude" required ng-minlength="5" ng-maxlength="50" />
+                        <span class="cstm-error-message" ng-messages="sightseeingForm.Lattitude.$error"
+                              ng-show="sightseeingForm.Lattitude.$dirty || sightseeingForm.Lattitude.$touched">
+                            <span ng-message="required">Required Lattitude!</span>
+                            <span ng-message="minlength">Minimum required length 5!</span>
+                            <span ng-message="maxlength">Maximum allowed length 50!</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm.Longitude.$invalid || sightseeingForm.Longitude.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm.Longitude.$invalid && (sightseeingForm.Longitude.$dirty || sightseeingForm.Longitude.$touched)"></i>
+                        <label>GPS Coordinates (Longitude)</label>
+                        <input type="text" class="form-control" ng-model="sightseeing.Longitude" name="Longitude" required ng-minlength="5" ng-maxlength="50" />
+                        <span class="cstm-error-message" ng-messages="sightseeingForm.Longitude.$error"
+                              ng-show="sightseeingForm.Longitude.$dirty || sightseeingForm.Longitude.$touched">
+                            <span ng-message="required">Required Longitude!</span>
+                            <span ng-message="minlength">Minimum required length 5!</span>
+                            <span ng-message="maxlength">Maximum allowed length 50!</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm.SightSeeingCategory.$invalid || sightseeingForm.SightSeeingCategory.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm.SightSeeingCategory.$invalid && (sightseeingForm.SightSeeingCategory.$dirty || sightseeingForm.SightSeeingCategory.$touched)"></i>
+                        <label>Category</label>
+                        <select class="form-control" ng-model="SightSeeing.SightSeeingCategory" name="SightSeeingCategory" require-option>
+                            <option value="0">--Select Category--</option>
+                            <option ng-repeat="SightSeeingCategory in SightSeeingCategories" value="{{SightSeeingCategory.SightSeeingCategoryId}}">{{SightSeeingCategory.Name}}</option>
+                        </select>
+                        <span class="cstm-error-message" ng-messages="sightseeingForm.SightSeeingCategory.$error"
+                              ng-show="sightseeingForm.SightSeeingCategory.$dirty || sightseeingForm.SightSeeingCategory.$touched">
+                            <span ng-message="requireOption">Required Category!</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm.StarRating.$invalid || sightseeingForm.StarRating.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm.StarRating.$invalid && (sightseeingForm.StarRating.$dirty || sightseeingForm.StarRating.$touched)"></i>
+                        <label>Star Rating</label>
+                        <select class="form-control" ng-model="SightSeeing.StarRating" name="StarRating" require-option>
+                            <option value="0">--Select Star Rating--</option>
+                            <option ng-repeat="StarRating in StarRatings" value="{{StarRating.StarRatingId}}">{{StarRating.Name}}</option>
+                        </select>
+                        <span class="cstm-error-message" ng-messages="sightseeingForm.StarRating.$error"
+                              ng-show="sightseeingForm.StarRating.$dirty || sightseeingForm.StarRating.$touched">
+                            <span ng-message="requireOption">Required Star Rating!</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <hr style="border-bottom:1px solid #e27513" />
+            <h4>Time Slot</h4>
+            <div class="row">
+                <div class="col-md-2 col-xs-10">
+                    <input type="checkbox" /> Sunday
+                </div>
+                <div class="col-md-2 col-xs-10">
+                    <input type="checkbox" /> Monday
+                </div>
+                <div class="col-md-2 col-xs-10">
+                    <input type="checkbox" /> Tuesday
+                </div>
+                <div class="col-md-2 col-xs-10">
+                    <input type="checkbox" /> Wednesday
+                </div>
+                <div class="col-md-2 col-xs-10">
+                    <input type="checkbox" /> Thursday
+                </div>
+                <div class="col-md-2 col-xs-10">
+                    <input type="checkbox" /> Friday
+                </div>
+                <div class="col-md-2 col-xs-10">
+                    <input type="checkbox" /> Saturday
+                </div>
+            </div>
+
+            <div ng-repeat="TimeSlot in SightSeeing.TimeSlots">
+                <div class="row">
+                    <div class="col-md-3 col-xs-10">
+                        <div class="form-group form-group-sm form-group-icon-right">
+                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm['StartTime' +$index].$invalid || sightseeingForm['StartTime' +$index].$pristine"></i>
+                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm['StartTime' +$index].$invalid && (sightseeingForm['StartTime' +$index].$dirty || sightseeingForm['StartTime' +$index].$touched)"></i>
+                            <label>Start Time</label>
+                            <input type="time" class="form-control" ng-model="TimeSlot.StartTime" name="StartTime{{$index}}" require-option />
+                            <span class="cstm-error-message" ng-messages="sightseeingForm['StartTime' +$index].$error"
+                                  ng-show="sightseeingForm['StartTime' +$index].$dirty || sightseeingForm['StartTime' +$index].$touched">
+                                <span ng-message="requireOption">Required Start Time!</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-10">
+                        <div class="form-group form-group-sm form-group-icon-right">
+                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm['EndTime' +$index].$invalid || sightseeingForm['EndTime' +$index].$pristine"></i>
+                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm['EndTime' +$index].$invalid && ( sightseeingForm['EndTime' +$index].$dirty || sightseeingForm['EndTime' +$index].$touched)"></i>
+                            <label>End Time</label>
+                            <div class="col-md-10">
+                                <input type="time" class="form-control" ng-model="TimeSlot.EndTime" name="EndTime{{$index}}" require-option />
+                                <span class="cstm-error-message" ng-messages="sightseeingForm['EndTime' +$index].$error"
+                                      ng-show="sightseeingForm['EndTime' +$index].$dirty || sightseeingForm['EndTime' +$index].$touched">
+                                    <span ng-message="requireOption">Required End Time!</span>
+                                </span>
+                            </div>
+                            <div class="col-md-1"><button ng-click="RemoveTimeSlot()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <span ng-click="AddTimeSlot()" type="button" class="btn btn-primary btn-circle pull-right"><i class="fa fa-plus"></i></span>
+                </div>
+            </div>
+
+            <hr style="border-bottom:1px solid #e27513" />
+            <h4>Rates</h4>
+            <!--<div class="col-md-3 col-xs-10">
+            <div class="form-group form-group-sm form-group-icon-right">-->
+            <h5>Ticket Only</h5>
+            <div class="row">
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm['Adult' +$index].$invalid || sightseeingForm['Adult' +$index].$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm['Adult' +$index].$invalid && ( sightseeingForm['Adult' +$index].$dirty || sightseeingForm['Adult' +$index].$touched)"></i>
+                        <label>Adult</label>
+                        <input type="text" class="form-control" ng-model="Ticket.Adult" name="Adult{{$index}}" required />
+                        <span class="cstm-error-message" ng-messages="sightseeingForm['Adult' +$index].$error"
+                              ng-show="sightseeingForm['Adult' +$index].$dirty || sightseeingForm['Adult' +$index].$touched">
+                            <span ng-message="required">Required Rate!</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm['Child' +$index].$invalid || sightseeingForm['Child' +$index].$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm['Child' +$index].$invalid && ( sightseeingForm['Child' +$index].$dirty || sightseeingForm['Child' +$index].$touched)"></i>
+                        <label>Child</label>
+                        <input type="text" class="form-control" ng-model="Ticket.Child" name="Child{{$index}}" required />
+                        <span class="cstm-error-message" ng-messages="sightseeingForm['Child' +$index].$error"
+                              ng-show="sightseeingForm['Child' +$index].$dirty || sightseeingForm['Child' +$index].$touched">
+                            <span ng-message="required">Required Rate!</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm['Infant' +$index].$invalid || sightseeingForm['Infant' +$index].$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm['Infant' +$index].$invalid && ( sightseeingForm['Infant' +$index].$dirty || sightseeingForm['Infant' +$index].$touched)"></i>
+                        <label>Infant</label>
+                        <input type="text" class="form-control" ng-model="Ticket.Infant" name="Infant{{$index}}" required>
+                        <span class="cstm-error-message" ng-messages="sightseeingForm['Infant' +$index].$error"
+                              ng-show="sightseeingForm['Infant' +$index].$dirty || sightseeingForm['Infant' +$index].$touched">
+                            <span ng-message="required">Required Rate!</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <h5>Private Transfer</h5>
+            <div class="row">
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm['Adult1' +$index].$invalid || sightseeingForm['Adult1' +$index].$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm['Adult1' +$index].$invalid && ( sightseeingForm['Adult1' +$index].$dirty || sightseeingForm['Adult1' +$index].$touched)"></i>
+                        <label>Adult</label>
+                        <input type="text" class="form-control" ng-model="PrivateT.Adult1" name="Adult1{{$index}}" required>
+                        <span class="cstm-error-message" ng-messages="sightseeingForm['Adult1' +$index].$error"
+                              ng-show="sightseeingForm['Adult1' +$index].$dirty || sightseeingForm['Adult1' +$index].$touched">
+                            <span ng-message="required">Required Rate!</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm['Child1' +$index].$invalid || sightseeingForm['Child1' +$index].$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm['Child1' +$index].$invalid && ( sightseeingForm['Child1' +$index].$dirty || sightseeingForm['Child1' +$index].$touched)"></i>
+                        <label>Child</label>
+                        <input type="text" class="form-control" ng-model="PrivateT.Child1" name="Child1{{$index}}" required />
+                        <span class="cstm-error-message" ng-messages="sightseeingForm['Child1' +$index].$error"
+                              ng-show="sightseeingForm['Child1' +$index].$dirty || sightseeingForm['Child1' +$index].$touched">
+                            <span ng-message="required">Required Rate!</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm['Infant1' +$index].$invalid || sightseeingForm['Infant1' +$index].$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm['Infant1' +$index].$invalid && ( sightseeingForm['Infant1' +$index].$dirty || sightseeingForm['Infant1' +$index].$touched)"></i>
+                        <label>Infant</label>
+                        <input type="text" class="form-control" ng-model="PrivateT.Infant1" name="Infant1{{$index}}" required />
+                        <span class="cstm-error-message" ng-messages="sightseeingForm['Infant1' +$index].$error"
+                              ng-show="sightseeingForm['Infant1' +$index].$dirty || sightseeingForm['Infant1' +$index].$touched">
+                            <span ng-message="required">Required Rate!</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <h5>SIC</h5>
+            <div class="row">
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm['Adult2' +$index].$invalid || sightseeingForm['Adult2' +$index].$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm['Adult2' +$index].$invalid && ( sightseeingForm['Adult2' +$index].$dirty || sightseeingForm['Adult2' +$index].$touched)"></i>
+                        <label>Adult</label>
+                        <input type="text" class="form-control" ng-model="SIC.Adult2" name="Adult2{{$index}}" required />
+                        <span class="cstm-error-message" ng-messages="sightseeingForm['Adult2' +$index].$error"
+                              ng-show="sightseeingForm['Adult2' +$index].$dirty || sightseeingForm['Adult2' +$index].$touched">
+                            <span ng-message="required">Required Rate!</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm['Child2' +$index].$invalid || sightseeingForm['Child2' +$index].$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm['Child2' +$index].$invalid && ( sightseeingForm['Child2' +$index].$dirty || sightseeingForm['Child2' +$index].$touched)"></i>
+                        <label>Child</label>
+                        <input type="text" class="form-control" ng-model="SIC.Child2" name="Child2{{$index}}" required />
+                        <span class="cstm-error-message" ng-messages="sightseeingForm['Child2' +$index].$error"
+                              ng-show="sightseeingForm['Child2' +$index].$dirty || sightseeingForm['Child2' +$index].$touched">
+                            <span ng-message="required">Required Rate!</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm['Infant2' +$index].$invalid || sightseeingForm['Infant2' +$index].$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm['Infant2' +$index].$invalid && ( sightseeingForm['Infant2' +$index].$dirty || sightseeingForm['Infant2' +$index].$touched)"></i>
+                        <label>Infant</label>
+                        <input type="text" class="form-control" ng-model="SIC.Infant2" name="Infant2{{$index}}" required />
+                        <span class="cstm-error-message" ng-messages="sightseeingForm['Infant2' +$index].$error"
+                              ng-show="sightseeingForm['Infant2' +$index].$dirty || sightseeingForm['Infant2' +$index].$touched">
+                            <span ng-message="required">Required Rate!</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border-bottom:1px solid #e27513" />
+            <h4>Duration Time</h4>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group form-group-lg form-group-icon-left">
+                        <i class="fa fa-clock-o input-icon input-icon-highlight"></i>
+                        <label>Time</label>
+                        <input class="time-pick form-control" type="time" />
+                    </div>
+                </div>
+                <div class="col-md-4 ">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <input type="checkbox" />Fullday
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border-bottom:1px solid #e27513" />
+            <h4>Inclusion</h4>
+            <div ng-repeat="Inclusion in SightSeeing.Inclusions">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-danger pull-right btn-sm" ng-click="RemoveInclusion(Inclusion)">Remove <i class="fa fa-trash-o"></i></button>
+                    </div>
+                    <div class="col-md-3 col-xs-10">
+                        <div class="form-group form-group-sm form-group-icon-left">
+                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm['InclusionTypeId1' +$index].$invalid || sightseeingForm['InclusionTypeId1' +$index].$pristine"></i>
+                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm['InclusionTypeId1' +$index].$invalid && ( sightseeingForm['InclusionTypeId1' +$index].$dirty || sightseeingForm['InclusionTypeId1' +$index].$touched)"></i>
+                            <label>Inclusion Type</label>
+                            <select type="text" class="form-control" ng-model="Inclusion.InclusionTypeId1" name="InclusionTypeId1{{$index}}" require-option>
+                                <option value="0">--Select Inclusion Type--</option>
+                                <option ng-repeat="InclusionType in InclusionTypes" value="{{InclusionType.InclusionTypeId}}">{{InclusionType.Name}}</option>
+                            </select>
+                            <span class="cstm-error-message" ng-messages="sightseeingForm['InclusionTypeId1' +$index].$error"
+                                  ng-show="sightseeingForm['InclusionTypeId1' +$index].$dirty || sightseeingForm['InclusionTypeId1' +$index].$touched">
+                                <span ng-message="requireOption">Required Inclusion Type!</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group form-group-sm form-group-icon-left">
+                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm['Duration' +$index].$invalid || sightseeingForm['Duration' +$index].$pristine"></i>
+                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm['Duration' +$index].$invalid && ( sightseeingForm['Duration' +$index].$dirty || sightseeingForm['Duration' +$index].$touched)"></i>
+                            <label>Duration Time</label>
+                            <input type="time" class="form-control" ng-model="Inclusion.Duration" name="Duration{{$index}}" required />
+                            <span class="cstm-error-message" ng-messages="sightseeingForm['Duration' +$index].$error"
+                                  ng-show="sightseeingForm['Duration' +$index].$dirty || sightseeingForm['Duration' +$index].$touched">
+                                <span ng-message="required">Required Duration!</span>
+                            </span>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12" style="margin-bottom:10px">
+                        <div class="form-group form-group-sm form-group-icon-right">
+                            <span type="button" class="btn btn-primary pull-left" ng-click="AddInclusionStr(Inclusion)"> Add Inclusion <i class="fa fa-plus-square-o"></i></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div ng-repeat="InclusionStr in Inclusion.InclusionArray">
+                            <div class="col-md-4">
+                                <div class="form-group form-group-sm form-group-icon-right">
+                                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="sightseeingForm['InclusionStr' +$index].$invalid || sightseeingForm['InclusionStr' +$index].$pristine"></i>
+                                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="sightseeingForm['InclusionStr' +$index].$invalid && ( sightseeingForm['InclusionStr' +$index].$dirty || sightseeingForm['InclusionStr' +$index].$touched)"></i>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" ng-model="InclusionStr.InclusionStr" name="InclusionStr{{$index}}" required ng-minlength="5" ng-maxlength="100" />
+                                        <span class="cstm-error-message" ng-messages="sightseeingForm['InclusionStr' +$index].$error"
+                                              ng-show="sightseeingForm['InclusionStr' +$index].$dirty || sightseeingForm['InclusionStr' +$index].$touched">
+                                            <span ng-message="required">Required Inclusion!</span>
+                                            <span ng-message="minlength">Minimum required length 5!</span>
+                                            <span ng-message="maxlength">Maximum allowed length 100!</span>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <span ng-click="RemoveInclusionStr(Inclusion,InclusionStr)" type="button" class="btn btn-danger btn-circle-small"><i class="fa fa-trash-o"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <span ng-click="AddInclusion()" type="button" class="btn btn-primary btn-circle pull-right"><i class="fa fa-plus"></i></span>
+                </div>
+            </div>
+            <hr style="border-bottom:1px solid #e27513" />
+            <h4>Black Out</h4>
+            <!--<div class="row">
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Start Date</label>
+                        <input class="date-pick-years form-control" type="text"/>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>End Date</label>
+                        <input class="form-control" type="text" />
+                    </div>
+                </div>
+            </div>-->
+            <div class="col-md-5">
+                <div class="input-daterange" data-date-format="MM d, D">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group form-group-icon-left">
+                                <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                <label>Start Date</label>
+                                <input class="form-control" name="start" type="date" />
+                            </div>
+                        </div>
+                        <!--<div class="col-md-6">
+                            <div class="form-group">
+                                <label>Date of Birth</label>
+                                <input class="date-pick-years form-control" type="text" />
+                            </div>
+                        </div>-->
+
+                        <div class="col-md-6">
+                            <div class="form-group form-group-icon-left">
+                                <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                <label>End Date</label>
+                                <input class="form-control" name="end" type="date" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--<hr style="border-bottom:1px solid #e27513" />-->
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="pull-right">
+                        <button type="submit" class="btn btn-primary" ng-click="Save()">Save</button>
+                        <button class="btn btn-default">Cancel</button>
+                    </span>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

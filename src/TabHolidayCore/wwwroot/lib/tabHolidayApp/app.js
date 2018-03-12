@@ -21,7 +21,15 @@ myapp.config(['$routeProvider',
             when('/hotel', {
                 templateUrl: '/lib/tabHolidayApp/hotel/hotel.html'
             }).
-
+            when('/sightseeing', {
+                templateUrl: '/lib/tabHolidayApp/sightseeing/sightseeing.html'
+            }).
+            when('/transfer', {
+                templateUrl: '/lib/tabHolidayApp/transfer/transfer.html'
+            }).
+            when('/vehicletype', {
+                templateUrl: '/lib/tabHolidayApp/vehicletype/vehicletype.html'
+            }).
             when('/region', {
                 templateUrl: '/lib/myapp/Region/Index.html'
             }).

@@ -29,13 +29,14 @@ namespace TabHolidayCore.Controllers
         {
             ApplicationUser appuser;
 
-            try {
+            try
+            {
                 MasterClass master = new MasterClass();
 
                 if (User.Identity.IsAuthenticated)
                 {
-                   appuser = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
-                   master.IsAuthenticated = true;
+                    appuser = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+                    master.IsAuthenticated = true;
                     master.User = _mapper.Map<ApplicationUserView>(appuser);
                     master.UserRoles = _userManager.GetRolesAsync(appuser).Result;
                 }
@@ -51,6 +52,10 @@ namespace TabHolidayCore.Controllers
                 master.BankAccountTypes = _context.BankAccountTypes.ToArray();
                 master.Meals = _context.Meals.ToArray();
                 master.StarRatings = _context.StarRatings.ToArray();
+                master.SightSeeingCategories = _context.SightSeeingCategories.ToArray();
+                master.InclusionTypes = _context.InclusionTypes.ToArray();
+               
+                //master.TransferCategories = _context.TransferCategories.ToArray();
 
                 returnObject.ChangedData = master;
                 returnObject.isSuccess = true;
@@ -68,6 +73,6 @@ namespace TabHolidayCore.Controllers
             }
         }
 
-        
+
     }
 }

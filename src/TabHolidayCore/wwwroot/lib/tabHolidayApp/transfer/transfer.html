@@ -1,0 +1,218 @@
+﻿<div ng-controller="TransferController">
+    <div class="container">
+        <div><h3 class="booking-title">Transfer</h3> </div>
+        <form class="booking-item-dates-change mb40" name="transferForm">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>City</label>
+                        <input type="text" class="form-control" ng-model="transferForm.City" />
+                    </div>
+                </div>
+
+                <div class="col-md-3 ">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Short Description</label>
+                        <textarea class="form-control" style="height:80px" ng-model="transferForm.ShortDescription" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Transfer Type</label>
+                        <select type="text" class="form-control" ng-model="transferForm.TransferType" name="TransferType">
+                            <option value="0">--Select Transfer Type--</option>
+                            <option ng-repeat="TransferType in TransferTypes" value="{{TransferType.TransferTypeId}}">{{TransferType.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Transfer Category</label>
+                        <select type="text" class="form-control" ng-model="transferForm.TransferCategory" name="TransferCategory">
+                            <option value="0">--Select Transfer Category--</option>
+                            <option ng-repeat="TransferCategory in TransferCategories" value="{{TransferCategory.TransferCategoryId}}">{{TransferCategory.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Rate</label>
+                        <input type="text" class="form-control" ng-model="transferForm.Rate" />
+                        </div>
+                    </div>
+
+                        <div class="col-md-3 col-xs-10">
+                            <div class="form-group form-group-sm form-group-icon-right">
+                                <label>Duration</label>
+                                <input type="time" class="time-pick form-control" ng-model="transferForm.Duration" />
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <hr style="border-bottom:1px solid #e27513" />
+                    <h4>Vehicle Types</h4>
+                    <div ng-repeat="VehicleType in Transfer.VehicleTypes">
+                        <div class="row">
+                            <div class="col-md-3 col-xs-10">
+                                <div class="form-group form-group-sm form-group-icon-right">
+                                    <label>Vehicle Type</label>
+                                    <input type="text" class="form-control" ng-model="VehicleType.VehicleType" name="VehicleType" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-xs-10">
+                                <div class="form-group form-group-sm form-group-icon-right">
+                                    <label>Rate per hour</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" ng-model="VehicleType.RatePerHour" name="RatePerHour" />
+                                    </div>
+                                    <div class="col-md-1"><button ng-click="RemoveVehicleType()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span ng-click="AddVehicleType()" type="button" class="btn btn-primary btn-circle pull-right"><i class="fa fa-plus"></i></span>
+                        </div>
+                    </div>
+
+                    <hr style="border-bottom:1px solid #e27513" />
+                    <h4>Time Slot</h4>
+                    <div ng-repeat="TimeSlot in Transfer.TimeSlots">
+                        <div class="row">
+                            <div class="col-md-3 col-xs-10">
+                                <div class="form-group form-group-sm form-group-icon-right">
+                                    <label>Start Time</label>
+                                    <input type="time" class="form-control" ng-model="TimeSlot.StartTime" />
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-4 col-xs-10">
+                                <div class="form-group form-group-sm form-group-icon-right">
+                                    <label>End Time</label>
+                                    <div class="col-md-10">
+                                        <input type="time" class="form-control" ng-model="TimeSlot.EndTime" />
+                                    </div>
+                                    <div class="col-md-1"><button ng-click="RemoveTimeSlot()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span ng-click="AddTimeSlot()" type="button" class="btn btn-primary btn-circle pull-right"><i class="fa fa-plus"></i></span>
+                        </div>
+                    </div>
+
+                    <hr style="border-bottom:1px solid #e27513" />
+                    <h4>Black Out</h4>
+                    <div ng-repeat="BlackOut in Transfer.BlackOuts">
+                        <div class="input-daterange" data-date-format="MM d, D">
+                            <div class="row">
+                                <div class="col-md-3 col-xs-10">
+                                    <div class="form-group form-group-icon-left">
+                                        <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                        <label>Start Date</label>
+                                        <input class="form-control" name="start" type="date" ng-model="BlackOut.StartDate" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-xs-10">
+                                    <div class="form-group form-group-icon-left">
+                                        <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                        <label>End Date</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" name="end" type="date" ng-model="BlackOut.EndDate" />
+                                        </div>
+                                        <div class="col-md-1"><button ng-click="RemoveBlackOut()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span ng-click="AddBlackOut()" type="button" class="btn btn-primary btn-circle pull-right"><i class="fa fa-plus"></i></span>
+                        </div>
+                    </div>
+
+
+                    <hr style="border-bottom:1px solid #e27513" />
+                    <h4>Premium Date</h4>
+
+                    <div class="row">
+                        <div class="input-daterange" data-date-format="MM d, D">
+                            <div class="col-md-3 col-xs-10">
+                                <div class="form-group form-group-icon-left">
+                                    <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                    <label>Start Date</label>
+                                    <input class="form-control" name="start" type="date" ng-model="PremiumDate.StartDate" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-xs-10">
+                                <div class="form-group form-group-icon-left">
+                                    <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                    <label>End Date</label>
+                                    <input class="form-control" name="EndDate" type="date" ng-model="PremiumDate.EndDate" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-xs-10">
+                            <div class="form-group form-group-icon-left">
+                                <label>Rate</label>
+                                <input class="form-control" name="Rates" type="text" ng-model="PremiumDate.Rates"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <hr style="border-bottom:1px solid #e27513" />
+                    <div class="row">
+                        <div class="col-md-3 col-xs-10">
+                            <div class="form-group form-group-sm form-group-icon-right">
+                                <label>From Location</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-xs-10">
+                            <div class="form-group form-group-sm form-group-icon-right">
+                                <label>To Location</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style="border-bottom:1px solid #e27513" />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="pull-right">
+                                <button type="submit" class="btn btn-primary" ng-click="Save()">Save</button>
+                                <button class="btn btn-default">Cancel</button>
+                            </span>
+                        </div>
+                    </div>
+
+
+</form>
+    </div>
+</div>
