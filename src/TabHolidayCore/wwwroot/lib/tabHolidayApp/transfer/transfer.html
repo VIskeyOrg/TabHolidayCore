@@ -32,7 +32,7 @@
                 <div class="col-md-3 col-xs-10">
                     <div class="form-group form-group-sm form-group-icon-right">
                         <label>Transfer Category</label>
-                        <select type="text" class="form-control" ng-model="transferForm.TransferCategory" name="TransferCategory">
+                        <select type="text" class="form-control" ng-model="Transfer.TransferCategory" name="TransferCategory">
                             <option value="0">--Select Transfer Category--</option>
                             <option ng-repeat="TransferCategory in TransferCategories" value="{{TransferCategory.TransferCategoryId}}">{{TransferCategory.Name}}</option>
                         </select>
@@ -42,14 +42,14 @@
                 <div class="col-md-3 col-xs-10">
                     <div class="form-group form-group-sm form-group-icon-right">
                         <label>Rate</label>
-                        <input type="text" class="form-control" ng-model="transferForm.Rate" />
+                        <input type="text" class="form-control" ng-model="Transfer.Rate" />
                         </div>
                     </div>
 
                         <div class="col-md-3 col-xs-10">
                             <div class="form-group form-group-sm form-group-icon-right">
                                 <label>Duration</label>
-                                <input type="time" class="time-pick form-control" ng-model="transferForm.Duration" />
+                                <input type="time" class="time-pick form-control" ng-model="Transfer.Duration" />
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,6 @@
                                     <input type="time" class="form-control" ng-model="TimeSlot.StartTime" />
                                 </div>
                             </div>
-
 
 
                             <div class="col-md-4 col-xs-10">

@@ -1,0 +1,139 @@
+﻿<div ng-controller="MealController">
+    <div class="container">
+        <div><h3 class="booking-title">Meal</h3> </div>
+        <form class="booking-item-dates-change mb40" name="mealForm">
+            <div class="row">
+                <div class="col-md-4 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Name</label>
+                        <input type="text" class="form-control" ng-model="Meal.Name" />
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>City</label>
+                        <input type="text" class="form-control" ng-model="Meal.City" />
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Address</label>
+                        <input type="text" class="form-control" ng-model="Meal.Address" />
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Latitude</label>
+                        <input type="text" class="form-control" ng-model="Meal.Latitude" />
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Longitude</label>
+                        <input type="text" class="form-control" ng-model="Meal.Longitude" />
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Food Type</label>
+                        <select class="form-control" ng-model="Meal.FoodTypeId" name="FoodType">
+                            <option value="0">--Select Food Type--</option>
+                            <option ng-repeat="FoodType in FoodTypes" value="{{FoodType.FoodTypeId}}">{{FoodType.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Restaurant Type</label>
+                        <select class="form-control" ng-model="Meal.RestaurantTypeId" name="RestaurantType">
+                            <option value="0">--Select Restaurant Type--</option>
+                            <option ng-repeat="RestaurantType in RestaurantTypes" value="{{RestaurantType.RestaurantTypeId}}">{{RestaurantType.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Opening Time</label>
+                        <input type="time" class="time-pick form-control" ng-model="Meal.OpeningTime" />
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Closing Time</label>
+                        <input type="time" class="time-pick form-control" ng-model="Meal.ClosingTime" />
+                    </div>
+                </div>
+
+                
+            </div>
+
+            <hr style="border-bottom:1px solid #e27513" />
+            <h4>Menu</h4>           
+                <div class="row">
+                    <div class="col-md-4 col-xs-10">
+                        <div class="form-group form-group-sm form-group-icon-right">
+                            <label>Description</label>
+                                <textarea type="text" class="form-control" style="height:80px" ng-model="Meal.MenuDescription" />
+                        </div>
+                    </div>
+                </div>
+            
+            <hr style="border-bottom:1px solid #e27513" />
+            <h4>Meal Type</h4>
+            <div class="row">
+                <div class="col-md-2 col-xs-10">
+                    <input type="checkbox" ng-model="Meal.Breakfast"/> Breakfast
+                </div>
+
+                <div class="col-md-2 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <input type="text" class="form-control" ng-model="Meal.BreakfastRate"/>
+                    </div>
+                </div>
+
+
+                <div class="col-md-2 col-xs-10">
+                    <input type="checkbox" ng-model="Meal.Lunch"/> Lunch
+                </div>
+
+                <div class="col-md-2 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <input type="text" class="form-control" ng-model="Meal.LunchRate"/>
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-xs-10">
+                    <input type="checkbox" ng-model="Meal.Dinner"/> Dinner
+                </div>
+
+                <div class="col-md-2 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <input type="text" class="form-control" ng-model="Meal.DinnerRate"/>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <hr style="border-bottom:1px solid #e27513" />
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="pull-right">
+                        <button type="submit" class="btn btn-primary" ng-click="Save()">Save</button>
+                        <button class="btn btn-default">Cancel</button>
+                    </span>
+                </div>
+            </div>
+
+
+</form>
+    </div>
+</div>

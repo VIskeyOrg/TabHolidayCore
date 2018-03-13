@@ -36,6 +36,8 @@ namespace TabHolidayCore.Models
                 SeedMeals(context);
                 SeedSightSeeingCategories(context);
                 SeedInclusionTypes(context);
+                SeedFoodTypes(context);
+                SeedRestaurantTypes(context);
                 //SeedTransferTypes(context);
                 //SeedTransferCategories(context);
 
@@ -209,6 +211,38 @@ namespace TabHolidayCore.Models
                 new InclusionType { Name = "Standard" },
                 new InclusionType { Name = "Dulux" },
                 new InclusionType { Name = "Primium" }
+                );
+
+            context.SaveChanges();
+        }
+
+        private static void SeedFoodTypes(AppDbContext context)
+        {
+            if (context.FoodTypes.Any())
+            {
+                return;
+            }
+
+            context.FoodTypes.AddRange(
+                new FoodType { Name = "Indian" },
+                new FoodType { Name = "Chinese" },
+                new FoodType { Name = "Italian" }
+                );
+
+            context.SaveChanges();
+        }
+
+        private static void SeedRestaurantTypes(AppDbContext context)
+        {
+            if (context.RestaurantTypes.Any())
+            {
+                return;
+            }
+
+            context.RestaurantTypes.AddRange(
+                new RestaurantType { Name = "Veg" },
+                new RestaurantType { Name = "NonVeg" },
+                new RestaurantType { Name = "Veg-NonVeg" }
                 );
 
             context.SaveChanges();

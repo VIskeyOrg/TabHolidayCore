@@ -250,9 +250,13 @@ D:\project\TabHolidayCore\src\TabHolidayCore\Controllers\DMCController.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Controllers\FacilityController.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Controllers\HomeController.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Controllers\HotelController.cs
+D:\project\TabHolidayCore\src\TabHolidayCore\Controllers\MealController.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Controllers\SightSeeingController.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Controllers\StartController.cs
+D:\project\TabHolidayCore\src\TabHolidayCore\Controllers\TabMealController.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Controllers\VehicleTypeController.cs
+D:\project\TabHolidayCore\src\TabHolidayCore\Migrations\20180313095247_TabHolidayadd.cs
+D:\project\TabHolidayCore\src\TabHolidayCore\Migrations\20180313095247_TabHolidayadd.Designer.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Migrations\AppDbContextModelSnapshot.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\Agency.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\AgencyTierLevel.cs
@@ -268,6 +272,7 @@ D:\project\TabHolidayCore\src\TabHolidayCore\Models\DMC.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\DMCOfficial.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\DMCOfficialType.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\facility.cs
+D:\project\TabHolidayCore\src\TabHolidayCore\Models\FoodType.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\Hotel.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\HotelFacility.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\HotelMeal.cs
@@ -276,12 +281,15 @@ D:\project\TabHolidayCore\src\TabHolidayCore\Models\Inclusion.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\InclusionType.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\MasterClass.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\Meal.cs
+D:\project\TabHolidayCore\src\TabHolidayCore\Models\Menu.cs
+D:\project\TabHolidayCore\src\TabHolidayCore\Models\RestaurantType.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\ReturnClass.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\SeedData.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\SightSeeing.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\SightSeeingCategory.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\StarRating.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\State.cs
+D:\project\TabHolidayCore\src\TabHolidayCore\Models\TabMeal.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\TimeSlot.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\Transfer.cs
 D:\project\TabHolidayCore\src\TabHolidayCore\Models\TransferCategory.cs

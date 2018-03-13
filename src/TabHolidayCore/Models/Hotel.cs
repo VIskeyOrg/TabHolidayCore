@@ -14,24 +14,18 @@ namespace TabHolidayCore.Models
         public string Name { get; set; }
         public string TaggedLocation { get; set; }
         public string DetailedLocation { get; set; }
-        public string Lattitude { get; set; }
-        public string Longitude { get; set; }
+        public float Lattitude { get; set; }
+        public float Longitude { get; set; }
         public string EmailId { get; set; }
         public string PhoneNumber { get; set; }
                 
         public int StarRatingId { get; set; }
         public StarRating StarRating { get; set; }
-<<<<<<< HEAD
+
 
        public ICollection<HotelFacility> HotelFacilities { get; set; }
        public ICollection<HotelMeal> HotelMeals { get; set; }
-       
-
-        
-=======
                
-       public ICollection<HotelFacility> HotelFacilities { get; set; }
-       public ICollection<HotelMeal> HotelMeals { get; set; }
->>>>>>> refs/remotes/origin/anjali
+      
     }
 }

@@ -186,7 +186,31 @@ namespace TabHolidayCore.Models
 
             builder.Entity<VehicleType>()
               .Property(a => a.VehicleTypes).HasColumnType("VARCHAR(50)");
-            
+
+            builder.Entity<TabMeal>()
+           .Property(a => a.Name).HasColumnType("VARCHAR(100)");
+
+            builder.Entity<TabMeal>()
+          .Property(a => a.City).HasColumnType("VARCHAR(100)");
+
+            builder.Entity<TabMeal>()
+          .Property(a => a.Address).HasColumnType("VARCHAR(200)");
+
+            builder.Entity<TabMeal>()
+          .Property(a => a.MenuDescription).HasColumnType("VARCHAR(400)");
+
+            builder.Entity<TabMeal>()
+                .HasOne(b => b.FoodType);
+
+            builder.Entity<TabMeal>()
+                .HasOne(b => b.RestaurantType);
+
+            builder.Entity<FoodType>()
+           .Property(a => a.Name).HasColumnType("VARCHAR(50)");
+
+            builder.Entity<RestaurantType>()
+          .Property(a => a.Name).HasColumnType("VARCHAR(50)");
+
 
             builder.Entity<Agency>()
                 .HasMany(a => a.ApplicationUsers)
@@ -210,7 +234,6 @@ namespace TabHolidayCore.Models
         public DbSet<Meal> Meals { get; set; }
         public DbSet<HotelFacility> HotelFacilities { get; set; }
         public DbSet<HotelMeal> HotelMeals { get; set; }
-<<<<<<< HEAD
         public DbSet<SightSeeingCategory> SightSeeingCategories { get; set; }
         public DbSet<TimeSlot> TimeSlots { get; set; }
         public DbSet<InclusionType> InclusionTypes { get; set; }
@@ -221,13 +244,9 @@ namespace TabHolidayCore.Models
         public DbSet<VehicleType> VehicleTypes { get; set; }
         public DbSet<BlackOut> BlackOuts { get; set; }
         public DbSet<Transfer> Transfers { get; set; }
+        public DbSet<FoodType> FoodTypes { get; set; }
+        public DbSet<RestaurantType> RestaurantTypes { get; set; }
+        public DbSet<TabMeal> TabMeals { get; set; }
 
-
-
-
-
-
-=======
->>>>>>> refs/remotes/origin/anjali
     }
 }

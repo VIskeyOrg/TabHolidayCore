@@ -15,8 +15,8 @@ namespace TabHolidayCore.Models
         public string Name { get; set; }
         public string TaggedLocation { get; set; }
         public string DetailedLocation { get; set; }
-        public string Lattitude { get; set; }
-        public string Longitude { get; set; }
+        public float Lattitude { get; set; }
+        public float Longitude { get; set; }
         public bool Sunday { get; set; }
         public bool Monday { get; set; }
         public bool Tuesday { get; set; }
