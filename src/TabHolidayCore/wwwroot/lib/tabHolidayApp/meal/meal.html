@@ -1,5 +1,5 @@
 ﻿<div ng-controller="MealController">
-    <div class="container">
+    <div class="container" ng-show="ViewMode == 'new'">
         <div><h3 class="booking-title">Meal</h3> </div>
         <form class="booking-item-dates-change mb40" name="mealForm">
             <div class="row">
@@ -72,51 +72,51 @@
                     </div>
                 </div>
 
-                
+
             </div>
 
             <hr style="border-bottom:1px solid #e27513" />
-            <h4>Menu</h4>           
-                <div class="row">
-                    <div class="col-md-4 col-xs-10">
-                        <div class="form-group form-group-sm form-group-icon-right">
-                            <label>Description</label>
-                                <textarea type="text" class="form-control" style="height:80px" ng-model="Meal.MenuDescription" />
-                        </div>
+            <h4>Menu</h4>
+            <div class="row">
+                <div class="col-md-4 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Description</label>
+                        <textarea type="text" class="form-control" style="height:80px" ng-model="Meal.MenuDescription" />
                     </div>
                 </div>
-            
+            </div>
+
             <hr style="border-bottom:1px solid #e27513" />
             <h4>Meal Type</h4>
             <div class="row">
                 <div class="col-md-2 col-xs-10">
-                    <input type="checkbox" ng-model="Meal.Breakfast"/> Breakfast
+                    <input type="checkbox" ng-model="Meal.Breakfast" /> Breakfast
                 </div>
 
                 <div class="col-md-2 col-xs-10">
                     <div class="form-group form-group-sm form-group-icon-right">
-                        <input type="text" class="form-control" ng-model="Meal.BreakfastRate"/>
+                        <input type="text" class="form-control" ng-model="Meal.BreakfastRate" />
                     </div>
                 </div>
 
 
                 <div class="col-md-2 col-xs-10">
-                    <input type="checkbox" ng-model="Meal.Lunch"/> Lunch
+                    <input type="checkbox" ng-model="Meal.Lunch" /> Lunch
                 </div>
 
                 <div class="col-md-2 col-xs-10">
                     <div class="form-group form-group-sm form-group-icon-right">
-                        <input type="text" class="form-control" ng-model="Meal.LunchRate"/>
+                        <input type="text" class="form-control" ng-model="Meal.LunchRate" />
                     </div>
                 </div>
 
                 <div class="col-md-2 col-xs-10">
-                    <input type="checkbox" ng-model="Meal.Dinner"/> Dinner
+                    <input type="checkbox" ng-model="Meal.Dinner" /> Dinner
                 </div>
 
                 <div class="col-md-2 col-xs-10">
                     <div class="form-group form-group-sm form-group-icon-right">
-                        <input type="text" class="form-control" ng-model="Meal.DinnerRate"/>
+                        <input type="text" class="form-control" ng-model="Meal.DinnerRate" />
                     </div>
                 </div>
 
@@ -132,8 +132,71 @@
                     </span>
                 </div>
             </div>
-
-
-</form>
+        </form>
     </div>
+
+    <div class="container" ng-show="ViewMode == 'list'">
+        <div class="row">
+            <div class="col-md-7">
+                <h3 class="booking-title">Meal</h3>
+            </div>
+            <div class="col-md-5" style="margin-top:15px">
+                <button class="btn btn-primary pull-right" ng-click="ViewMode = 'new'">New Meal<i class="fa fa-plus-square-o"></i></button>
+            </div>
+        </div>
+
+        <form class="booking-item-dates-change mb40">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group form-group-sm">
+                        <label>Name</label>
+                        <input type="text" class="form-control" ng-model="Meal.Name"/>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group form-group-sm">
+                        <label>City</label>
+                        <input type="text" class="form-control" ng-model="Meal.City"/>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group form-group-sm">
+                        <label>Restaurant Type</label>
+                        <select class="form-control" ng-model="Meal.RestaurantTypeId" name="RestaurantType">
+                            <option value="0">--Select Restaurant Type--</option>
+                            <option ng-repeat="RestaurantType in RestaurantTypes" value="{{RestaurantType.RestaurantTypeId}}">{{RestaurantType.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+              
+
+                <div class="col-md-2 cstm-form-button">
+                    <button class="btn btn-primary" ng-click="GetTabMeals()">Search<i class="fa fa-search-plus"></i></button>
+                </div>
+            </div>
+        </form>
+    <div>
+    <ul class="list-group">
+        <li class="cstm-list-group-item cstm-list-group-item-primary active">
+            <div class="row">            
+                <div class="col-lg-4 col-md-2 hidden-sm hidden-xs">Name</div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">City</div>
+                <div class="col-lg-4 col-md-2 col-sm-4 col-xs-4">RestaurantType</div>
+            </div>
+        </li>
+        <li ng-repeat="TabMeal in TabMeals" class="cstm-list-group-item">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">{{TabMeal.Name}}</div>
+                <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{TabMeal.City}}</div>
+                <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">{{TabMeal.RestaurantType.Name}}</div>
+                <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"><a href="" ng-click="Edit(TabMeal)" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a></div>
+            </div>
+        </li>
+    </ul>
+    </div>
+</div>
+
+
 </div>
