@@ -3,9 +3,10 @@
     $scope.ViewMode = "list";
 
     $scope.Meal = {};
+    //$scope.Meals = [];
+
+   
     
-
-
     $scope.GetAllTabMeals = function () {
         $http.get('/Meal').then(
               function (successResponse) {
@@ -52,6 +53,8 @@
         $scope.RestaurantTypes = myappService.GetRestaurantTypes();
         $scope.GetAllTabMeals();
         $scope.GetTabMeals();
+      
+
        
         
     };
@@ -65,11 +68,11 @@
 
     $scope.Save = function () {
      
-            $scope.Meal.OpeningHour = Meal.OpeningTime.getHours();
-            $scope.Meal.OpeningMinute = Meal.OpeningTime.getMinutes();
+            $scope.Meal.OpeningHour = $scope.Meal.OpeningTime.getHours();
+            $scope.Meal.OpeningMinute = $scope.Meal.OpeningTime.getMinutes();
 
-            $scope.Meal.ClosingHour = Meal.ClosingTime.getHours();
-            $scope.Meal.ClosingMinute = Meal.ClosingTime.getMinutes();
+            $scope.Meal.ClosingHour = $scope.Meal.ClosingTime.getHours();
+            $scope.Meal.ClosingMinute = $scope.Meal.ClosingTime.getMinutes();
         
         $http.post('/Meal/Add', $scope.Meal).then(
             function (successResponse) {
@@ -94,19 +97,27 @@
 
     $scope.Edit = function (TabMeal) {
 
-        $scope.IsEditMode = true;
+       
         $scope.ViewMode = "new";
         $scope.Meal = TabMeal;
         $scope.Meal.FoodTypeId = $scope.Meal.FoodTypeId.toString();
         $scope.Meal.RestaurantTypeId = $scope.Meal.RestaurantTypeId.toString();
-    
 
+        var d = new Date(0, 0, 0, $scope.Meal.OpeningHour, $scope.Meal.OpeningMinute);
+
+        $scope.Meal.OpeningTime = d;
+       
+        var d = new Date(0, 0, 0, $scope.Meal.ClosingHour, $scope.Meal.ClosingMinute);
+
+        $scope.Meal.ClosingTime = d;
+       
     };
 
-    //$scope.Reset = function () {
-    //    $scope.Meal = {};
-    //    $scope.IsEditMode = false;
-    //};
+    $scope.Cancel = function () {
+        $scope.ViewMode = "list";
+    };
+
+  
 
     $scope.InitializeTabMealSearchObject = function () {
         $scope.Meal = {};
