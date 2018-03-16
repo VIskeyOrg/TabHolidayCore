@@ -38,8 +38,8 @@ namespace TabHolidayCore.Models
                 SeedInclusionTypes(context);
                 SeedFoodTypes(context);
                 SeedRestaurantTypes(context);
-                //SeedTransferTypes(context);
-                //SeedTransferCategories(context);
+                SeedTransferTypes(context);
+                SeedTransferCategories(context);
 
             }
         }
@@ -248,38 +248,38 @@ namespace TabHolidayCore.Models
             context.SaveChanges();
         }
 
-        //private static void SeedTransferTypes(AppDbContext context)
-        //{
-        //    if (context.TransferTypes.Any())
-        //    {
-        //        return;
-        //    }
+        private static void SeedTransferTypes(AppDbContext context)
+        {
+            if (context.TransferTypes.Any())
+            {
+                return;
+            }
 
-        //    context.TransferTypes.AddRange(
-        //        new TransferType { Name = "Private" },
-        //        new TransferType { Name = "SIC" }
-        //        );
+            context.TransferTypes.AddRange(
+                new TransferType { Name = "Private" },
+                new TransferType { Name = "SIC" }
+                );
 
-        //    context.SaveChanges();
-        //}
+            context.SaveChanges();
+        }
 
-        //private static void SeedTransferCategories(AppDbContext context)
-        //{
-        //    if (context.TransferCategories.Any())
-        //    {
-        //        return;
-        //    }
+        private static void SeedTransferCategories(AppDbContext context)
+        {
+            if (context.TransferCategories.Any())
+            {
+                return;
+            }
 
-        //    context.TransferCategories.AddRange(
-        //        new TransferCategory { Name = "Airport Transfer" },
-        //        new TransferCategory { Name = "Cruise Transfer" },
-        //        new TransferCategory { Name = "Meals Transfer" },
-        //        new TransferCategory { Name = "Inter Hotel Transfer" },
-        //        new TransferCategory { Name = "Vehicle at Disposal" }
-        //        );
+            context.TransferCategories.AddRange(
+                new TransferCategory { Name = "Airport Transfer" },
+                new TransferCategory { Name = "Cruise Transfer" },
+                new TransferCategory { Name = "Meals Transfer" },
+                new TransferCategory { Name = "Inter Hotel Transfer" },
+                new TransferCategory { Name = "Vehicle at Disposal" }
+                );
 
-        //    context.SaveChanges();
-        //}
+            context.SaveChanges();
+        }
 
         private static void SeedCountries(AppDbContext context)
         {

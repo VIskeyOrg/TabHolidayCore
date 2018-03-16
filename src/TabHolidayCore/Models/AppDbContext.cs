@@ -247,6 +247,7 @@ namespace TabHolidayCore.Models
         public DbSet<FoodType> FoodTypes { get; set; }
         public DbSet<RestaurantType> RestaurantTypes { get; set; }
         public DbSet<TabMeal> TabMeals { get; set; }
+        public DbSet<PremiumDate> PremiumDates { get; set; }
 
     }
 }

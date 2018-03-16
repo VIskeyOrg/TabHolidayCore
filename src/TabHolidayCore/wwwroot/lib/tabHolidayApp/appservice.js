@@ -94,10 +94,10 @@
         this.GetFoodTypes = function () {
             return MasterObject.FoodTypes || [];
 
-       // };
+        };
 
-       // this.GetTransferCategories = function () {
-       //     return MasterObject.TransferCategories || [];
+        this.GetTransferCategories = function () {
+            return MasterObject.TransferCategories || [];
 
 
         }
