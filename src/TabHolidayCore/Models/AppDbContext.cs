@@ -210,7 +210,6 @@ namespace TabHolidayCore.Models
         public DbSet<Meal> Meals { get; set; }
         public DbSet<HotelFacility> HotelFacilities { get; set; }
         public DbSet<HotelMeal> HotelMeals { get; set; }
-<<<<<<< HEAD
         public DbSet<SightSeeingCategory> SightSeeingCategories { get; set; }
         public DbSet<TimeSlot> TimeSlots { get; set; }
         public DbSet<InclusionType> InclusionTypes { get; set; }
@@ -221,13 +220,5 @@ namespace TabHolidayCore.Models
         public DbSet<VehicleType> VehicleTypes { get; set; }
         public DbSet<BlackOut> BlackOuts { get; set; }
         public DbSet<Transfer> Transfers { get; set; }
-
-
-
-
-
-
-=======
->>>>>>> refs/remotes/origin/anjali
     }
 }
