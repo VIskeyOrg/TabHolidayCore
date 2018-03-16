@@ -21,17 +21,8 @@ namespace TabHolidayCore.Models
                 
         public int StarRatingId { get; set; }
         public StarRating StarRating { get; set; }
-<<<<<<< HEAD
-
-       public ICollection<HotelFacility> HotelFacilities { get; set; }
-       public ICollection<HotelMeal> HotelMeals { get; set; }
-       
-
-        
-=======
                
        public ICollection<HotelFacility> HotelFacilities { get; set; }
        public ICollection<HotelMeal> HotelMeals { get; set; }
->>>>>>> refs/remotes/origin/anjali
     }
 }
