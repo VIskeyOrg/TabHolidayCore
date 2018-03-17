@@ -31,6 +31,13 @@ namespace TabHolidayCore.Models
 
             CreateMap<SightSeeing, SightSeeingView>();
             CreateMap<SightSeeingView, SightSeeing>();
+
+            CreateMap<BankDetail, BankDetailView>();
+            CreateMap<BankDetailView, BankDetail>();
+            CreateMap<DMCOfficial, DMCOfficialView>();
+            CreateMap<DMCOfficialView, DMCOfficial>();
+            CreateMap<DMC, DMCView>();
+            CreateMap<DMCView, DMC>();
         }
     }
 }

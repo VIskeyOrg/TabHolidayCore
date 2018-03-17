@@ -217,11 +217,6 @@ namespace TabHolidayCore.Models
         //public DbSet<VehicleType> VehicleTypes { get; set; }
         public DbSet<BlackOut> BlackOuts { get; set; }
         //public DbSet<Transfer> Transfers { get; set; }
-
-
-
-
-
-
+        
     }
 }

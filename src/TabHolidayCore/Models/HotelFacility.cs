@@ -15,5 +15,6 @@ namespace TabHolidayCore.Models
 
         public Int16 FacilityId { get; set; }
         public Facility Facility { get; set; }
+
     }
 }

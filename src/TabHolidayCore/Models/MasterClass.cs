@@ -23,5 +23,6 @@ namespace TabHolidayCore.Models
         public ICollection<InclusionType> InclusionTypes { get; set; }
        
         //public ICollection<TransferCategory> TransferCategories { get; set; }
+
     }
 }
