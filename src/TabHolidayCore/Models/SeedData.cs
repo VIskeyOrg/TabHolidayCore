@@ -236,8 +236,8 @@ namespace TabHolidayCore.Models
 
             context.InclusionTypes.AddRange(
                 new InclusionType { Name = "Standard" },
-                new InclusionType { Name = "Dulux" },
-                new InclusionType { Name = "Primium" }
+                new InclusionType { Name = "Duluxe" },
+                new InclusionType { Name = "Premium" }
                 );
 
             context.SaveChanges();

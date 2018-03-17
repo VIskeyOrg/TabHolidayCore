@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-
-namespace TabHolidayCore.Models
+namespace TabHolidayCore.Models.ViewModels
 {
-    public class SightSeeing
+    public class SightSeeingView
     {
-        [Key]
         public int SightSeeingId { get; set; }
         public string Name { get; set; }
         public string TaggedLocation { get; set; }
@@ -36,7 +32,7 @@ namespace TabHolidayCore.Models
         public Int16 DurationHour { get; set; }
         public Int16 DurationMinute { get; set; }
         public bool FullDay { get; set; }
-        
+
 
         public Int16 SightSeeingCategoryId { get; set; }
         public SightSeeingCategory SightSeeingCategory { get; set; }
@@ -44,10 +40,8 @@ namespace TabHolidayCore.Models
         public int StarRatingId { get; set; }
         public StarRating StarRating { get; set; }
 
-        public ICollection<Inclusion> Inclusions { get; set; }
-        public ICollection<TimeSlot> TimeSlots { get; set; }
-        public ICollection<BlackOut> BlackOuts { get; set; }
-
-
+        public ICollection<InclusionView> Inclusions { get; set; }
+        public ICollection<TimeSlotView> TimeSlots { get; set; }
+        public ICollection<BlackOutView> BlackOuts { get; set; }
     }
 }

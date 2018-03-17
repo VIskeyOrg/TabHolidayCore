@@ -139,11 +139,8 @@ namespace TabHolidayCore.Models
             builder.Entity<SightSeeing>()
            .Property(a => a.TaggedLocation).HasColumnType("VARCHAR(100)");
             builder.Entity<SightSeeing>()
-           .Property(a => a.DetailedLocation).HasColumnType("VARCHAR(100)");
-            builder.Entity<SightSeeing>()
-           .Property(a => a.Lattitude).HasColumnType("VARCHAR(50)");
-            builder.Entity<SightSeeing>()
-           .Property(a => a.Longitude).HasColumnType("VARCHAR(50)");
+           .Property(a => a.DetailedLocation).HasColumnType("VARCHAR(200)");
+            
 
             builder.Entity<SightSeeing>()
                .HasOne(b => b.StarRating);
@@ -160,32 +157,32 @@ namespace TabHolidayCore.Models
             builder.Entity<InclusionType>()
             .Property(a => a.Name).HasColumnType("VARCHAR(50)");
 
-            builder.Entity<Transfer>()
-            .Property(a => a.City).HasColumnType("VARCHAR(50)");
+           // builder.Entity<Transfer>()
+           // .Property(a => a.City).HasColumnType("VARCHAR(50)");
 
-            builder.Entity<Transfer>()
-           .Property(a => a.ShortDescription).HasColumnType("VARCHAR(200)");
+           // builder.Entity<Transfer>()
+           //.Property(a => a.ShortDescription).HasColumnType("VARCHAR(200)");
 
-            builder.Entity<Transfer>()
-           .Property(a => a.FromLocation).HasColumnType("VARCHAR(50)");
+           // builder.Entity<Transfer>()
+           //.Property(a => a.FromLocation).HasColumnType("VARCHAR(50)");
 
-            builder.Entity<Transfer>()
-           .Property(a => a.ToLocation).HasColumnType("VARCHAR(50)");
+           // builder.Entity<Transfer>()
+           //.Property(a => a.ToLocation).HasColumnType("VARCHAR(50)");
 
-            builder.Entity<Transfer>()
-               .HasOne(b => b.TransferType);
+           // builder.Entity<Transfer>()
+           //    .HasOne(b => b.TransferType);
 
-            builder.Entity<Transfer>()
-              .HasOne(b => b.TransferCategory);
+           // builder.Entity<Transfer>()
+           //   .HasOne(b => b.TransferCategory);
 
-            builder.Entity<TransferType>()
-               .Property(a => a.Name).HasColumnType("VARCHAR(50)");
+           // builder.Entity<TransferType>()
+           //    .Property(a => a.Name).HasColumnType("VARCHAR(50)");
 
-            builder.Entity<TransferCategory>()
-               .Property(a => a.Name).HasColumnType("VARCHAR(50)");
+           // builder.Entity<TransferCategory>()
+           //    .Property(a => a.Name).HasColumnType("VARCHAR(50)");
 
-            builder.Entity<VehicleType>()
-              .Property(a => a.VehicleTypes).HasColumnType("VARCHAR(50)");
+           // builder.Entity<VehicleType>()
+           //   .Property(a => a.VehicleTypes).HasColumnType("VARCHAR(50)");
             
 
             builder.Entity<Agency>()
@@ -215,10 +212,11 @@ namespace TabHolidayCore.Models
         public DbSet<InclusionType> InclusionTypes { get; set; }
         public DbSet<Inclusion> Inclusions { get; set; }
         public DbSet<SightSeeing> SightSeeings { get; set; }
-        public DbSet<TransferType> TransferTypes { get; set; }
-        public DbSet<TransferCategory> TransferCategories { get; set; }
-        public DbSet<VehicleType> VehicleTypes { get; set; }
+        //public DbSet<TransferType> TransferTypes { get; set; }
+        //public DbSet<TransferCategory> TransferCategories { get; set; }
+        //public DbSet<VehicleType> VehicleTypes { get; set; }
         public DbSet<BlackOut> BlackOuts { get; set; }
-        public DbSet<Transfer> Transfers { get; set; }
+        //public DbSet<Transfer> Transfers { get; set; }
+        
     }
 }
