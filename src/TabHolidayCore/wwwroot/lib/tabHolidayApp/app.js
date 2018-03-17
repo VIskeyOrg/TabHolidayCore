@@ -22,8 +22,8 @@ myapp.config(['$routeProvider',
                 templateUrl: '/lib/tabHolidayApp/hotel/hotel.html'
             }).
 
-            when('/region', {
-                templateUrl: '/lib/myapp/Region/Index.html'
+            when('/sight', {
+                templateUrl: '/lib/tabHolidayApp/sight/sight.html'
             }).
             when('/agegroup', {
                 templateUrl: '/lib/myapp/AgeGroup/Index.html'
