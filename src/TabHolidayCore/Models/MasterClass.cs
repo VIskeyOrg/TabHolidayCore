@@ -19,5 +19,10 @@ namespace TabHolidayCore.Models
         public ICollection<DMCOfficialType> DMCOfficialTypes { get; set; }
         public ICollection<Meal> Meals { get; set; }
         public ICollection<StarRating> StarRatings { get; set; }
+        public ICollection<SightSeeingCategory> SightSeeingCategories { get; set; }
+        public ICollection<InclusionType> InclusionTypes { get; set; }
+       
+        //public ICollection<TransferCategory> TransferCategories { get; set; }
+
     }
 }

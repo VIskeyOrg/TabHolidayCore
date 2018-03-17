@@ -9,17 +9,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+
 namespace TabHolidayCore.Models
 {
-    public class AppDbContext : IdentityDbContext<ApplicationUser,ApplicationRole,Int64>
+    public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Int64>
     {
-       
+
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
-            
-            
+
+
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -109,30 +110,83 @@ namespace TabHolidayCore.Models
 
             builder.Entity<Hotel>()
           .Property(a => a.Name).HasColumnType("VARCHAR(100)");
-           builder.Entity<Hotel>()
-          .Property(a => a.TaggedLocation).HasColumnType("VARCHAR(100)");
-           builder.Entity<Hotel>()
-          .Property(a => a.DetailedLocation).HasColumnType("VARCHAR(200)");
-           builder.Entity<Hotel>()
-          .Property(a => a.Lattitude).HasColumnType("VARCHAR(200)");
-           builder.Entity<Hotel>()
-          .Property(a => a.Longitude).HasColumnType("VARCHAR(200)");
-           builder.Entity<Hotel>()
-          .Property(a => a.EmailId).HasColumnType("VARCHAR(200)");
-           builder.Entity<Hotel>()
-          .Property(a => a.PhoneNumber).HasColumnType("VARCHAR(100)");
+            builder.Entity<Hotel>()
+           .Property(a => a.TaggedLocation).HasColumnType("VARCHAR(100)");
+            builder.Entity<Hotel>()
+           .Property(a => a.DetailedLocation).HasColumnType("VARCHAR(200)");
+            builder.Entity<Hotel>()
+           .Property(a => a.Lattitude).HasColumnType("VARCHAR(200)");
+            builder.Entity<Hotel>()
+           .Property(a => a.Longitude).HasColumnType("VARCHAR(200)");
+            builder.Entity<Hotel>()
+           .Property(a => a.EmailId).HasColumnType("VARCHAR(200)");
+            builder.Entity<Hotel>()
+           .Property(a => a.PhoneNumber).HasColumnType("VARCHAR(100)");
 
             builder.Entity<Hotel>()
                 .HasOne(b => b.StarRating);
 
-           builder.Entity<Facility>()
-           .Property(a => a.Name).HasColumnType("VARCHAR(100)");
-           builder.Entity<Facility>()
-           .Property(a => a.Class).HasColumnType("VARCHAR(100)");
+            builder.Entity<Facility>()
+            .Property(a => a.Name).HasColumnType("VARCHAR(100)");
+            builder.Entity<Facility>()
+            .Property(a => a.Class).HasColumnType("VARCHAR(100)");
 
-           builder.Entity<Meal>()
-           .Property(a => a.Name).HasColumnType("VARCHAR(100)");
+            builder.Entity<Meal>()
+            .Property(a => a.Name).HasColumnType("VARCHAR(100)");
 
+            builder.Entity<SightSeeing>()
+           .Property(a => a.Name).HasColumnType("VARCHAR(100)");
+            builder.Entity<SightSeeing>()
+           .Property(a => a.TaggedLocation).HasColumnType("VARCHAR(100)");
+            builder.Entity<SightSeeing>()
+           .Property(a => a.DetailedLocation).HasColumnType("VARCHAR(100)");
+            builder.Entity<SightSeeing>()
+           .Property(a => a.Lattitude).HasColumnType("VARCHAR(50)");
+            builder.Entity<SightSeeing>()
+           .Property(a => a.Longitude).HasColumnType("VARCHAR(50)");
+
+            builder.Entity<SightSeeing>()
+               .HasOne(b => b.StarRating);
+
+            builder.Entity<SightSeeing>()
+              .HasOne(b => b.SightSeeingCategory);
+
+            builder.Entity<SightSeeingCategory>()
+           .Property(a => a.Name).HasColumnType("VARCHAR(50)");
+
+            builder.Entity<Inclusion>()
+           .Property(a => a.Inclusions).HasColumnType("VARCHAR(1000)");
+
+            builder.Entity<InclusionType>()
+            .Property(a => a.Name).HasColumnType("VARCHAR(50)");
+
+            builder.Entity<Transfer>()
+            .Property(a => a.City).HasColumnType("VARCHAR(50)");
+
+            builder.Entity<Transfer>()
+           .Property(a => a.ShortDescription).HasColumnType("VARCHAR(200)");
+
+            builder.Entity<Transfer>()
+           .Property(a => a.FromLocation).HasColumnType("VARCHAR(50)");
+
+            builder.Entity<Transfer>()
+           .Property(a => a.ToLocation).HasColumnType("VARCHAR(50)");
+
+            builder.Entity<Transfer>()
+               .HasOne(b => b.TransferType);
+
+            builder.Entity<Transfer>()
+              .HasOne(b => b.TransferCategory);
+
+            builder.Entity<TransferType>()
+               .Property(a => a.Name).HasColumnType("VARCHAR(50)");
+
+            builder.Entity<TransferCategory>()
+               .Property(a => a.Name).HasColumnType("VARCHAR(50)");
+
+            builder.Entity<VehicleType>()
+              .Property(a => a.VehicleTypes).HasColumnType("VARCHAR(50)");
+            
 
             builder.Entity<Agency>()
                 .HasMany(a => a.ApplicationUsers)
@@ -140,7 +194,6 @@ namespace TabHolidayCore.Models
                 .HasForeignKey(a => a.AgencyId);
         }
 
-        
 
         public DbSet<Country> Countries { get; set; }
         public DbSet<AgencyTierLevel> AgencyTierLevels { get; set; }
@@ -155,5 +208,17 @@ namespace TabHolidayCore.Models
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Facility> Facilities { get; set; }
         public DbSet<Meal> Meals { get; set; }
+        public DbSet<HotelFacility> HotelFacilities { get; set; }
+        public DbSet<HotelMeal> HotelMeals { get; set; }
+        public DbSet<SightSeeingCategory> SightSeeingCategories { get; set; }
+        public DbSet<TimeSlot> TimeSlots { get; set; }
+        public DbSet<InclusionType> InclusionTypes { get; set; }
+        public DbSet<Inclusion> Inclusions { get; set; }
+        public DbSet<SightSeeing> SightSeeings { get; set; }
+        public DbSet<TransferType> TransferTypes { get; set; }
+        public DbSet<TransferCategory> TransferCategories { get; set; }
+        public DbSet<VehicleType> VehicleTypes { get; set; }
+        public DbSet<BlackOut> BlackOuts { get; set; }
+        public DbSet<Transfer> Transfers { get; set; }
     }
 }

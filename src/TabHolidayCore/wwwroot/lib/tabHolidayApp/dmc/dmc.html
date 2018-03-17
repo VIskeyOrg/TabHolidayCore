@@ -91,12 +91,19 @@
                         <div class="col-md-6" ng-repeat="OfficePhoneNumber in DMC.AdditionalOfficePhoneNumbers">
                             <div class="col-md-10">
                                 <div class="form-group form-group-sm form-group-icon-right">
-                                    <span style="display:none">{{OfficePhoneNumber.Index=DMC.AdditionalOfficePhoneNumbers.indexOf(OfficePhoneNumber)}}</span>
-                                    <i class="fa fa-times-circle input-icon cstm-fa-position-wo-label cstm-fa-invalid" ng-show="dmcForm.OfficePhoneNumber{{DMC.AdditionalOfficePhoneNumbers.indexOf(OfficePhoneNumber)}}.$invalid"></i>
-
-                                    <input class="form-control" type="text" ng-model="OfficePhoneNumber.PhoneNumber" name="OfficePhoneNumber{{OfficePhoneNumber.Index}}" required />
-
-                                </div>
+                                   <!-- <span style="display:none">{{OfficePhoneNumber.Index=DMC.AdditionalOfficePhoneNumbers.indexOf(OfficePhoneNumber)}}</span>-->
+                                    <!--<i class="fa fa-times-circle input-icon cstm-fa-position-wo-label cstm-fa-invalid" ng-show="dmcForm.OfficePhoneNumber{{DMC.AdditionalOfficePhoneNumbers.indexOf(OfficePhoneNumber)}}.$invalid"></i>-->
+                                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="dmcForm.OfficePhoneNumber.$invalid || dmcForm.OfficePhoneNumber.$pristine"></i>
+                                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="dmcForm.OfficePhoneNumber.$invalid && (dmcForm.OfficePhoneNumber.$dirty || dmcForm.OfficePhoneNumber.$touched)"></i>
+                                    <input class="form-control" type="text" ng-model="OfficePhoneNumber.PhoneNumber" name="OfficePhoneNumber" required ng-pattern="/^(?=.*\d)[\d]{10,10}$/"/>
+                                    <span class="cstm-error-message" ng-messages="dmcForm.OfficePhoneNumber.$error"
+                                          ng-show="dmcForm.OfficePhoneNumber.$dirty || dmcForm.OfficePhoneNumber.$touched">
+                                        <span ng-message="required">Please enter contact number!</span>
+                                        <span ng-message="pattern">
+                                            Contact number should be 10 digits long and should contain only numbers!
+                                        </span>
+                                    </span>
+</div>
                             </div>
                             <div class="col-md-2">
                                 <span ng-click="RemovePhoneNumber(OfficePhoneNumber)" type="button" class="btn btn-danger btn-circle-small"><i class="fa fa-trash-o"></i></span>
@@ -324,8 +331,7 @@
                               ng-show="dmcForm['EmailId' +$index].$dirty || dmcForm['EmailId' +$index].$touched">
                             <span ng-message="required">Required Email Id!</span>
                             <span ng-message="pattern">Not valid email-id!</span>
-
-                        </span>                        
+                        </span>                       
                     </div>
 
                 </div>

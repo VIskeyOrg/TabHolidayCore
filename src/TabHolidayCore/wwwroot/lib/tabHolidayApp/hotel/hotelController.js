@@ -6,6 +6,7 @@
 
 
     $scope.LoadData = function () {
+        $scope.StarRatings = myappService.GetStarRatings();
         $scope.GetAllFacilities();
         $scope.Meals = myappService.GetAllMeals();
 

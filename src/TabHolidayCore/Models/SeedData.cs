@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TabHolidayCore.Models
 {
-    public  class SeedData
+    public class SeedData
     {
         public static async Task Initialize(IServiceProvider serviceProvider, string testUserPw)
         {
@@ -34,23 +34,27 @@ namespace TabHolidayCore.Models
                 SeedBankAccountTypes(context);
                 SeedStarRatings(context);
                 SeedMeals(context);
+                SeedSightSeeingCategories(context);
+                SeedInclusionTypes(context);
+                //SeedTransferTypes(context);
+                //SeedTransferCategories(context);
                 SeedHotelFacilities(context);
 
             }
         }
 
         private static async Task<string> EnsureUser(IServiceProvider serviceProvider,
-                                                    string testUserPw, string UserName,string ActualName)
+                                                    string testUserPw, string UserName, string ActualName)
         {
             var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
 
             var user = await userManager.FindByNameAsync(UserName);
 
-            
+
             if (user == null)
             {
-                user = new ApplicationUser { UserName = UserName,ActualName = ActualName };
-                await userManager.CreateAsync(user, testUserPw);                
+                user = new ApplicationUser { UserName = UserName, ActualName = ActualName };
+                await userManager.CreateAsync(user, testUserPw);
             }
 
             return user.UserName;
@@ -61,7 +65,7 @@ namespace TabHolidayCore.Models
         {
             IdentityResult IR = null;
             var roleManager = serviceProvider.GetService<RoleManager<ApplicationRole>>();
-           
+
             if (!await roleManager.RoleExistsAsync(role))
             {
                 IR = await roleManager.CreateAsync(new ApplicationRole(role));
@@ -94,13 +98,13 @@ namespace TabHolidayCore.Models
 
         private static void SeedTierLevel(AppDbContext context)
         {
-            if(context.AgencyTierLevels.Any())
+            if (context.AgencyTierLevels.Any())
             {
                 return;
             }
 
             context.AgencyTierLevels.AddRange(
-                new AgencyTierLevel { Name="Tier 1" },
+                new AgencyTierLevel { Name = "Tier 1" },
                 new AgencyTierLevel { Name = "Tier 2" },
                 new AgencyTierLevel { Name = "Tier 3" },
                 new AgencyTierLevel { Name = "Tier 4" },
@@ -206,6 +210,72 @@ namespace TabHolidayCore.Models
             context.SaveChanges();
         }
 
+        private static void SeedSightSeeingCategories(AppDbContext context)
+        {
+            if (context.SightSeeingCategories.Any())
+            {
+                return;
+            }
+
+            context.SightSeeingCategories.AddRange(
+                new SightSeeingCategory { Name = "Amusement Park" },
+                new SightSeeingCategory { Name = "Water Sports" },
+                new SightSeeingCategory { Name = "Sight Seeing" },
+                new SightSeeingCategory { Name = "Historical" }
+                );
+
+            context.SaveChanges();
+        }
+
+        private static void SeedInclusionTypes(AppDbContext context)
+        {
+            if (context.InclusionTypes.Any())
+            {
+                return;
+            }
+
+            context.InclusionTypes.AddRange(
+                new InclusionType { Name = "Standard" },
+                new InclusionType { Name = "Dulux" },
+                new InclusionType { Name = "Primium" }
+                );
+
+            context.SaveChanges();
+        }
+
+        //private static void SeedTransferTypes(AppDbContext context)
+        //{
+        //    if (context.TransferTypes.Any())
+        //    {
+        //        return;
+        //    }
+
+        //    context.TransferTypes.AddRange(
+        //        new TransferType { Name = "Private" },
+        //        new TransferType { Name = "SIC" }
+        //        );
+
+        //    context.SaveChanges();
+        //}
+
+        //private static void SeedTransferCategories(AppDbContext context)
+        //{
+        //    if (context.TransferCategories.Any())
+        //    {
+        //        return;
+        //    }
+
+        //    context.TransferCategories.AddRange(
+        //        new TransferCategory { Name = "Airport Transfer" },
+        //        new TransferCategory { Name = "Cruise Transfer" },
+        //        new TransferCategory { Name = "Meals Transfer" },
+        //        new TransferCategory { Name = "Inter Hotel Transfer" },
+        //        new TransferCategory { Name = "Vehicle at Disposal" }
+        //        );
+
+        //    context.SaveChanges();
+        //}
+
         private static void SeedCountries(AppDbContext context)
         {
             if (context.Countries.Any())
@@ -213,7 +283,7 @@ namespace TabHolidayCore.Models
                 return;
             }
 
-            context.Countries.AddRange(                
+            context.Countries.AddRange(
                 new Country { Name = "Afghanistan", Extention = "AF" },
                 new Country { Name = "Albania", Extention = "AL" },
                 new Country { Name = "Algeria", Extention = "DZ" },

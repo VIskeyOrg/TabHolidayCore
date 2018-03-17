@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,17 +7,18 @@ using Microsoft.AspNetCore.Authorization;
 using TabHolidayCore.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace TabHolidayCore.Controllers
 {
-    public class HotelController : Controller
+    public class SightSeeingController : Controller
     {
-
         private readonly AppDbContext _context;
         private ReturnClass returnObject = new ReturnClass();
 
-        public HotelController(AppDbContext context)
+        public SightSeeingController(AppDbContext context)
         {
             _context = context;
+
         }
 
         [HttpGet]
@@ -26,9 +27,8 @@ namespace TabHolidayCore.Controllers
         {
             try
             {
-                
-                Hotel[] Hotels = _context.Hotels.Include(s => s.StarRating).ToArray();
-                returnObject.ChangedData = Hotels;
+                SightSeeing[] SightSeeings = _context.SightSeeings.Include(s => s.StarRating).Include(a => a.SightSeeingCategory).ToArray();
+                returnObject.ChangedData = SightSeeings;
                 returnObject.isSuccess = true;
             }
             catch (Exception ex)
@@ -37,30 +37,30 @@ namespace TabHolidayCore.Controllers
                 returnObject.Message = returnObject.GetErrorMessage(ex);
             }
 
-
             return returnObject.GetResponse();
         }
 
+
+
         [HttpPost]
         [Authorize]
-        public string Add([FromBody]Hotel newHotel)
+        public string Add([FromBody]SightSeeing newSightSeeing)
         {
             try
             {
-                if (newHotel.HotelId == 0)
+                if (newSightSeeing.SightSeeingId == 0)
                 {
-                    _context.Hotels.Add(newHotel);
+                    _context.SightSeeings.Add(newSightSeeing);
                 }
                 else
                 {
-                    _context.Entry<Hotel>(newHotel).State = EntityState.Modified;
+                    _context.Entry<SightSeeing>(newSightSeeing).State = EntityState.Modified;
 
                 }
 
-                //_context.Hotels.Add(hotel);
                 _context.SaveChanges();
+                returnObject.ChangedData = newSightSeeing;
                 returnObject.isSuccess = true;
-                returnObject.ChangedData = newHotel;
                 returnObject.Message = returnObject.GetSaveMessage();
             }
             catch (Exception ex)
@@ -71,7 +71,5 @@ namespace TabHolidayCore.Controllers
             }
             return returnObject.GetResponse();
         }
-
-
     }
 }
