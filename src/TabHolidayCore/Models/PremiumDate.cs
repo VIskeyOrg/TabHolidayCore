@@ -7,13 +7,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TabHolidayCore.Models
 {
-    public class HotelMeal
+    public class PremiumDate
     {
         [Key]
-        public Int16 HotelMealId { get; set; }
-        public decimal Price { get; set; }
-
-        public Int16 MealId { get; set; }
-        public Meal Meal { get; set; }
+        public int PremiumDateId { get; set; }
+        public DateTime PremiumStartDate { get; set; }
+        public DateTime PremiumEndDate { get; set; }
+        public decimal Rates { get; set; }
     }
 }

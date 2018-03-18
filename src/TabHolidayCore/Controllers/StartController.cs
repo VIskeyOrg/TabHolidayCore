@@ -54,8 +54,10 @@ namespace TabHolidayCore.Controllers
                 master.StarRatings = _context.StarRatings.ToArray();
                 master.SightSeeingCategories = _context.SightSeeingCategories.ToArray();
                 master.InclusionTypes = _context.InclusionTypes.ToArray();
-               
-                //master.TransferCategories = _context.TransferCategories.ToArray();
+                master.TransferTypes = _context.TransferTypes.ToArray();
+                master.TransferCategories = _context.TransferCategories.ToArray();
+                master.FoodTypes = _context.FoodTypes.ToArray();
+                master.RestaurantTypes = _context.RestaurantTypes.ToArray();
 
                 returnObject.ChangedData = master;
                 returnObject.isSuccess = true;

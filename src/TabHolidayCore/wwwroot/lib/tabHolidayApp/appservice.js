@@ -83,12 +83,21 @@
        };
 
         this.GetTransferTypes = function () {
-            return MasterObject.TransferTypes || [];
+            return MasterObject.TransferTypes || [];     
 
-       // };
+        };
 
-       // this.GetTransferCategories = function () {
-       //     return MasterObject.TransferCategories || [];
+        this.GetRestaurantTypes = function () {
+            return MasterObject.RestaurantTypes || [];
+        };
+
+        this.GetFoodTypes = function () {
+            return MasterObject.FoodTypes || [];
+
+        };
+
+        this.GetTransferCategories = function () {
+            return MasterObject.TransferCategories || [];
 
 
         }

@@ -27,6 +27,9 @@ myapp.config(['$routeProvider',
             when('/transfer', {
                 templateUrl: '/lib/tabHolidayApp/transfer/transfer.html'
             }).
+            when('/meal', {
+                templateUrl: '/lib/tabHolidayApp/meal/meal.html'
+            }).
             when('/vehicletype', {
                 templateUrl: '/lib/tabHolidayApp/vehicletype/vehicletype.html'
             }).         

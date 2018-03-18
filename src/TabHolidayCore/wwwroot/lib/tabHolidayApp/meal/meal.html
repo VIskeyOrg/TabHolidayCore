@@ -1,0 +1,280 @@
+﻿<div ng-controller="MealController">
+    <div class="container" ng-show="ViewMode == 'new'">
+        <div><h3 class="booking-title">Meal</h3> </div>
+        <form class="booking-item-dates-change mb40" name="mealForm">
+            <div class="row">
+                <div class="col-md-4 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="mealForm.Name.$invalid || mealForm.Name.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="mealForm.Name.$invalid && ( mealForm.Name.$dirty || mealForm.Name.$touched)"></i>
+                        <label>Name</label>
+                        <input type="text" class="form-control" ng-model="Meal.Name" name="Name" required ng-minlength="5" ng-maxlength="50" />
+                        <span class="cstm-error-message" ng-messages="mealForm.Name.$error"
+                              ng-show="mealForm.Name.$dirty || mealForm.Name.$touched">
+                            <span ng-message="required">Required name!</span>
+                            <span ng-message="minlength">Minimum required length 5!</span>
+                            <span ng-message="maxlength">Maximum allowed length 50!</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="mealForm.City.$invalid || mealForm.City.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="mealForm.City.$invalid && ( mealForm.City.$dirty || mealForm.City.$touched)"></i>
+                        <label>City</label>
+                        <input type="text" class="form-control" ng-model="Meal.City" name="City" required ng-minlength="5" ng-maxlength="100" />
+                        <span class="cstm-error-message" ng-messages="mealForm.City.$error"
+                              ng-show="mealForm.City.$dirty || mealForm.City.$touched">
+                            <span ng-message="required">Required City!</span>
+                            <span ng-message="minlength">Minimum required length 5!</span>
+                            <span ng-message="maxlength">Maximum allowed length 100!</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="mealForm.Address.$invalid || mealForm.Address.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="mealForm.Address.$invalid && ( mealForm.Address.$dirty || mealForm.Address.$touched)"></i>
+                        <label>Address</label>
+                        <input type="text" class="form-control" ng-model="Meal.Address" name="Address" required ng-minlength="10" ng-required="200" />
+                        <span class="cstm-error-message" ng-messages="mealForm.Address.$error"
+                              ng-show="mealForm.Address.$dirty || mealForm.Address.$touched">
+                            <span ng-message="required">Required Address!</span>
+                            <span ng-message="minlength">Minimum required length 10!</span>
+                            <span ng-message="maxlength">Maximum allowed length 200!</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Latitude</label>
+                        <input type="text" class="form-control" ng-model="Meal.Latitude" name="Latitude" pattern="/^[-+]?[0-9]{1,7}(\.[0-9]+)?$/" />
+                        <span class="cstm-error-message" ng-messages="mealForm.Latitude.$error"
+                              ng-show="mealForm.Latitude.$dirty || mealForm.Latitude.$touched">
+                            <span ng-message="pattern"> Not a Valid Format!</span>
+                        </span>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <label>Longitude</label>
+                        <input type="text" class="form-control" ng-model="Meal.Longitude" name="Longitude" pattern="/^[-+]?[0-9]{1,7}(\.[0-9]+)?$/" />
+                        <span class="cstm-error-message" ng-messages="mealForm.Longitude.$error"
+                              ng-show="mealForm.Longitude.$dirty || mealForm.Longitude.$touched">
+                            <span ng-message="pattern"> Not a Valid Format!</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="mealForm.FoodType.$invalid || mealForm.FoodType.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="mealForm.FoodType.$invalid && ( mealForm.FoodType.$dirty || mealForm.FoodType.$touched)"></i>
+                        <label>Food Type</label>
+                        <select class="form-control" ng-model="Meal.FoodTypeId" name="FoodType" require-option>
+                            <option value="0">--Select Food Type--</option>
+                            <option ng-repeat="FoodType in FoodTypes" value="{{FoodType.FoodTypeId}}">{{FoodType.Name}}</option>
+                        </select>
+                        <span class="cstm-error-message" ng-messages="mealForm.FoodType.$error"
+                              ng-show="mealForm.FoodType.$dirty || mealForm.FoodType.$touched">
+                            <span ng-message="requireOption">Required Food Type!</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="mealForm.RestaurantType.$invalid || mealForm.RestaurantType.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="mealForm.RestaurantType.$invalid && ( mealForm.RestaurantType.$dirty || mealForm.RestaurantType.$touched)"></i>
+                        <label>Restaurant Type</label>
+                        <select class="form-control" ng-model="Meal.RestaurantTypeId" name="RestaurantType" require-option>
+                            <option value="0">--Select Restaurant Type--</option>
+                            <option ng-repeat="RestaurantType in RestaurantTypes" value="{{RestaurantType.RestaurantTypeId}}">{{RestaurantType.Name}}</option>
+                        </select>
+                        <span class="cstm-error-message" ng-messages="mealForm.RestaurantType.$error"
+                              ng-show="mealForm.RestaurantType.$dirty || mealForm.RestaurantType.$touched">
+                            <span ng-message="requireOption">Required Restaurant Type!</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="mealForm.OpeningTime.$invalid || mealForm.OpeningTime.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="mealForm.OpeningTime.$invalid && ( mealForm.OpeningTime.$dirty || mealForm.OpeningTime.$touched)"></i>
+                        <label>Opening Time</label>
+                        <input type="time" class="time-pick form-control" ng-model="Meal.OpeningTime" name="OpeningTime" required/>
+                        <span class="cstm-error-message" ng-messages="mealForm.OpeningTime.$error"
+                              ng-show="mealForm.OpeningTime.$dirty || mealForm.OpeningTime.$touched">
+                            <span ng-message="required"> Required opening time!</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="mealForm.ClosingTime.$invalid || mealForm.ClosingTime.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="mealForm.ClosingTime.$invalid && ( mealForm.ClosingTime.$dirty || mealForm.ClosingTime.$touched)"></i>
+                        <label>Closing Time</label>
+                        <input type="time" class="time-pick form-control" ng-model="Meal.ClosingTime" name="ClosingTime" required/>
+                        <span class="cstm-error-message" ng-messages="mealForm.ClosingTime.$error"
+                              ng-show="mealForm.ClosingTime.$dirty || mealForm.ClosingTime.$touched">
+                            <span ng-message="required"> Required Closing Time!</span>
+                        </span>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <hr style="border-bottom:1px solid #e27513" />
+            <h4>Menu</h4>
+            <div class="row">
+                <div class="col-md-4 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="mealForm.MenuDescription.$invalid || mealForm.MenuDescription.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="mealForm.MenuDescription.$invalid && ( mealForm.MenuDescription.$dirty || mealForm.MenuDescription.$touched)"></i>
+                        <label>Description</label>
+                        <textarea type="text" class="form-control" style="height:80px" ng-model="Meal.MenuDescription" name="MenuDescription" required ng-minlength="20" ng-maxlength="400"/>
+                        <span class="cstm-error-message" ng-messages="mealForm.MenuDescription.$error"
+                              ng-show="mealForm.MenuDescription.$dirty || mealForm.MenuDescription.$touched">
+                            <span ng-message="required">Required Menu Description!</span>
+                            <span ng-message="minlength">Minimum required length 20!</span>
+                            <span ng-message="maxlength">Maximum allowed length 400!</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border-bottom:1px solid #e27513" />
+            <h4>Meal Type</h4>
+            <div class="row">
+                <div class="col-md-2 col-xs-10">
+                    <input type="checkbox" ng-model="Meal.Breakfast" /> Breakfast
+                </div>
+
+                <div class="col-md-2 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <input type="text" class="form-control" ng-model="Meal.BreakfastRate" name="BreakfastRate" pattern="/^\d+([,.]\d+)?$/"/>
+                        <span class="cstm-error-message" ng-messages="mealForm.BreakfastRate.$error"
+                              ng-show="mealForm.BreakfastRate.$dirty || mealForm.BreakfastRate.$touched">
+                            <span ng-message="pattern"> Not a Valid Format!</span>
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="col-md-2 col-xs-10">
+                    <input type="checkbox" ng-model="Meal.Lunch" /> Lunch
+                </div>
+
+                <div class="col-md-2 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <input type="text" class="form-control" ng-model="Meal.LunchRate" name="LunchRate" pattern="/^\d+([,.]\d+)?$/" />
+                        <span class="cstm-error-message" ng-messages="mealForm.LunchRate.$error"
+                              ng-show="mealForm.LunchRate.$dirty || mealForm.LunchRate.$touched">
+                            <span ng-message="pattern"> Not a Valid Format!</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-2 col-xs-10">
+                    <input type="checkbox" ng-model="Meal.Dinner" /> Dinner
+                </div>
+
+                <div class="col-md-2 col-xs-10">
+                    <div class="form-group form-group-sm form-group-icon-right">
+                        <input type="text" class="form-control" ng-model="Meal.DinnerRate" name="DinnerRate" pattern="/^\d+([,.]\d+)?$/"/>
+                        <span class="cstm-error-message" ng-messages="mealForm.DinnerRate.$error"
+                              ng-show="mealForm.DinnerRate.$dirty || mealForm.DinnerRate.$touched">
+                            <span ng-message="pattern"> Not a Valid Format!</span>
+                        </span>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <hr style="border-bottom:1px solid #e27513" />
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="pull-right">
+                        <button type="submit" class="btn btn-primary" ng-click="Save()">Save</button>
+                        <button class="btn btn-default" ng-click="Cancel()">Cancel</button>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="container" ng-show="ViewMode == 'list'">
+        <div class="row">
+            <div class="col-md-7">
+                <h3 class="booking-title">Meal</h3>
+            </div>
+            <div class="col-md-5" style="margin-top:15px">
+                <button class="btn btn-primary pull-right" ng-click="ViewMode = 'new'">New Meal<i class="fa fa-plus-square-o"></i></button>
+            </div>
+        </div>
+
+        <form class="booking-item-dates-change mb40">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group form-group-sm">
+                        <label>Name</label>
+                        <input type="text" class="form-control" ng-model="Meal.Name" />
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group form-group-sm">
+                        <label>City</label>
+                        <input type="text" class="form-control" ng-model="Meal.City" />
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group form-group-sm">
+                        <label>Restaurant Type</label>
+                        <select class="form-control" ng-model="Meal.RestaurantTypeId" name="RestaurantType">
+                            <option value="0">--Select Restaurant Type--</option>
+                            <option ng-repeat="RestaurantType in RestaurantTypes" value="{{RestaurantType.RestaurantTypeId}}">{{RestaurantType.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="col-md-2 cstm-form-button">
+                    <button class="btn btn-primary" ng-click="GetTabMeals()">Search<i class="fa fa-search-plus"></i></button>
+                </div>
+            </div>
+        </form>
+        <div>
+            <ul class="list-group">
+                <li class="cstm-list-group-item cstm-list-group-item-primary active">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-2 hidden-sm hidden-xs">Name</div>
+                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">City</div>
+                        <div class="col-lg-4 col-md-2 col-sm-4 col-xs-4">RestaurantType</div>
+                    </div>
+                </li>
+                <li ng-repeat="TabMeal in TabMeals" class="cstm-list-group-item">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">{{TabMeal.Name}}</div>
+                        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{TabMeal.City}}</div>
+                        <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">{{TabMeal.RestaurantType.Name}}</div>
+                        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"><a href="" ng-click="Edit(TabMeal)" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>

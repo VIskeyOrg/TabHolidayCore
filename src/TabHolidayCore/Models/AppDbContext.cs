@@ -157,33 +157,56 @@ namespace TabHolidayCore.Models
             builder.Entity<InclusionType>()
             .Property(a => a.Name).HasColumnType("VARCHAR(50)");
 
-           // builder.Entity<Transfer>()
-           // .Property(a => a.City).HasColumnType("VARCHAR(50)");
+            builder.Entity<Transfer>()
+            .Property(a => a.City).HasColumnType("VARCHAR(50)");
 
-           // builder.Entity<Transfer>()
-           //.Property(a => a.ShortDescription).HasColumnType("VARCHAR(200)");
+            builder.Entity<Transfer>()
+           .Property(a => a.ShortDescription).HasColumnType("VARCHAR(200)");
 
-           // builder.Entity<Transfer>()
-           //.Property(a => a.FromLocation).HasColumnType("VARCHAR(50)");
+            builder.Entity<Transfer>()
+           .Property(a => a.FromLocation).HasColumnType("VARCHAR(50)");
 
-           // builder.Entity<Transfer>()
-           //.Property(a => a.ToLocation).HasColumnType("VARCHAR(50)");
+            builder.Entity<Transfer>()
+           .Property(a => a.ToLocation).HasColumnType("VARCHAR(50)");
 
-           // builder.Entity<Transfer>()
-           //    .HasOne(b => b.TransferType);
+            builder.Entity<Transfer>()
+               .HasOne(b => b.TransferType);
 
-           // builder.Entity<Transfer>()
-           //   .HasOne(b => b.TransferCategory);
+            builder.Entity<Transfer>()
+              .HasOne(b => b.TransferCategory);
 
-           // builder.Entity<TransferType>()
-           //    .Property(a => a.Name).HasColumnType("VARCHAR(50)");
+            builder.Entity<TransferType>()
+               .Property(a => a.Name).HasColumnType("VARCHAR(50)");
 
-           // builder.Entity<TransferCategory>()
-           //    .Property(a => a.Name).HasColumnType("VARCHAR(50)");
+            builder.Entity<TransferCategory>()
+               .Property(a => a.Name).HasColumnType("VARCHAR(50)");
 
-           // builder.Entity<VehicleType>()
-           //   .Property(a => a.VehicleTypes).HasColumnType("VARCHAR(50)");
-            
+            builder.Entity<VehicleType>()
+              .Property(a => a.VehicleTypes).HasColumnType("VARCHAR(50)");
+
+            builder.Entity<TabMeal>()
+           .Property(a => a.Name).HasColumnType("VARCHAR(100)");
+
+            builder.Entity<TabMeal>()
+          .Property(a => a.City).HasColumnType("VARCHAR(100)");
+
+            builder.Entity<TabMeal>()
+          .Property(a => a.Address).HasColumnType("VARCHAR(200)");
+
+            builder.Entity<TabMeal>()
+          .Property(a => a.MenuDescription).HasColumnType("VARCHAR(400)");
+
+            builder.Entity<TabMeal>()
+                .HasOne(b => b.FoodType);
+
+            builder.Entity<TabMeal>()
+                .HasOne(b => b.RestaurantType);
+
+            builder.Entity<FoodType>()
+           .Property(a => a.Name).HasColumnType("VARCHAR(50)");
+
+            builder.Entity<RestaurantType>()
+          .Property(a => a.Name).HasColumnType("VARCHAR(50)");
 
             builder.Entity<Agency>()
                 .HasMany(a => a.ApplicationUsers)
@@ -212,11 +235,14 @@ namespace TabHolidayCore.Models
         public DbSet<InclusionType> InclusionTypes { get; set; }
         public DbSet<Inclusion> Inclusions { get; set; }
         public DbSet<SightSeeing> SightSeeings { get; set; }
-        //public DbSet<TransferType> TransferTypes { get; set; }
-        //public DbSet<TransferCategory> TransferCategories { get; set; }
-        //public DbSet<VehicleType> VehicleTypes { get; set; }
+        public DbSet<TransferType> TransferTypes { get; set; }
+        public DbSet<TransferCategory> TransferCategories { get; set; }
+        public DbSet<VehicleType> VehicleTypes { get; set; }
         public DbSet<BlackOut> BlackOuts { get; set; }
-        //public DbSet<Transfer> Transfers { get; set; }
-        
+        public DbSet<Transfer> Transfers { get; set; }
+        public DbSet<FoodType> FoodTypes { get; set; }
+        public DbSet<RestaurantType> RestaurantTypes { get; set; }
+        public DbSet<TabMeal> TabMeals { get; set; }
+        public DbSet<PremiumDate> PremiumDates { get; set; }
     }
 }

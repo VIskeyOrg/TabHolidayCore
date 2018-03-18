@@ -16,9 +16,6 @@ namespace TabHolidayCore.Models
         public decimal Rate { get; set; }
         public Int16 DurationHour { get; set; }
         public Int16 DurationMinute { get; set; }
-        public DateTime PremiumDateStartDate { get; set; }
-        public DateTime PremiumDateEndDate { get; set; }
-        public decimal Rates { get; set; }
         public string FromLocation { get; set; }
         public string ToLocation { get; set; }
         
@@ -31,5 +28,9 @@ namespace TabHolidayCore.Models
         public ICollection<VehicleType> VehicleTypes { get; set; }
         public ICollection<TimeSlot> TimeSlots { get; set; }
         public ICollection<BlackOut> BlackOuts { get; set; }
+        public ICollection<PremiumDate> PremiumDates { get; set; }
+
+
+
     }
 }

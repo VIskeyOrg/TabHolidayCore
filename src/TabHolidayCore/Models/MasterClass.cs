@@ -21,8 +21,10 @@ namespace TabHolidayCore.Models
         public ICollection<StarRating> StarRatings { get; set; }
         public ICollection<SightSeeingCategory> SightSeeingCategories { get; set; }
         public ICollection<InclusionType> InclusionTypes { get; set; }
-       
-        //public ICollection<TransferCategory> TransferCategories { get; set; }
+        public ICollection<TransferType> TransferTypes { get; set; }
+        public ICollection<TransferCategory> TransferCategories { get; set; }
+        public ICollection<FoodType> FoodTypes { get; set; }
+        public ICollection<RestaurantType> RestaurantTypes { get; set; }
 
     }
 }
