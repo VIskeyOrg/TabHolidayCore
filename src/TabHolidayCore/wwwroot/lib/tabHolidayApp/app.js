@@ -9,7 +9,7 @@ myapp.config(['$routeProvider',
             when('/login', {
                 templateUrl: '/lib/tabHolidayApp/user/Login.html'
             }).
-             when('/agencies', {
+             when('/agency', {
                  templateUrl: '/lib/tabHolidayApp/agency/agency.html'
              }).
             when('/dmc', {
