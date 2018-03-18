@@ -10,7 +10,6 @@ namespace TabHolidayCore.Models
     public class HotelMeal
     {
         [Key]
-
         public Int16 HotelMealId { get; set; }
         public decimal Price { get; set; }
 

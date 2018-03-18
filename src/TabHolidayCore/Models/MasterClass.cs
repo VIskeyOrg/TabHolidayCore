@@ -26,6 +26,5 @@ namespace TabHolidayCore.Models
         public ICollection<FoodType> FoodTypes { get; set; }
         public ICollection<RestaurantType> RestaurantTypes { get; set; }
 
-
     }
 }

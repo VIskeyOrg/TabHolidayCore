@@ -139,11 +139,8 @@ namespace TabHolidayCore.Models
             builder.Entity<SightSeeing>()
            .Property(a => a.TaggedLocation).HasColumnType("VARCHAR(100)");
             builder.Entity<SightSeeing>()
-           .Property(a => a.DetailedLocation).HasColumnType("VARCHAR(100)");
-            builder.Entity<SightSeeing>()
-           .Property(a => a.Lattitude).HasColumnType("VARCHAR(50)");
-            builder.Entity<SightSeeing>()
-           .Property(a => a.Longitude).HasColumnType("VARCHAR(50)");
+           .Property(a => a.DetailedLocation).HasColumnType("VARCHAR(200)");
+            
 
             builder.Entity<SightSeeing>()
                .HasOne(b => b.StarRating);
@@ -211,7 +208,6 @@ namespace TabHolidayCore.Models
             builder.Entity<RestaurantType>()
           .Property(a => a.Name).HasColumnType("VARCHAR(50)");
 
-
             builder.Entity<Agency>()
                 .HasMany(a => a.ApplicationUsers)
                 .WithOne(b => b.Agency)
@@ -248,6 +244,5 @@ namespace TabHolidayCore.Models
         public DbSet<RestaurantType> RestaurantTypes { get; set; }
         public DbSet<TabMeal> TabMeals { get; set; }
         public DbSet<PremiumDate> PremiumDates { get; set; }
-
     }
 }

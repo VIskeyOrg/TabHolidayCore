@@ -9,7 +9,7 @@ myapp.config(['$routeProvider',
             when('/login', {
                 templateUrl: '/lib/tabHolidayApp/user/Login.html'
             }).
-             when('/agencies', {
+             when('/agency', {
                  templateUrl: '/lib/tabHolidayApp/agency/agency.html'
              }).
             when('/dmc', {
@@ -32,9 +32,10 @@ myapp.config(['$routeProvider',
             }).
             when('/vehicletype', {
                 templateUrl: '/lib/tabHolidayApp/vehicletype/vehicletype.html'
-            }).
-            when('/region', {
-                templateUrl: '/lib/myapp/Region/Index.html'
+            }).         
+
+            when('/sight', {
+                templateUrl: '/lib/tabHolidayApp/sight/sight.html'
             }).
             when('/agegroup', {
                 templateUrl: '/lib/myapp/AgeGroup/Index.html'

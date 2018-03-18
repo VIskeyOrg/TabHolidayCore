@@ -2,6 +2,15 @@
     top:22px !important;
 }
 
+.cstm-fa-position-2{
+    left:15px !important;
+}
+
+.cstm-fa-position-3{
+    top:-3px !important;
+    right:72px !important;
+}
+
 .cstm-fa-position-wo-label{
     top:-2px !important;
 }

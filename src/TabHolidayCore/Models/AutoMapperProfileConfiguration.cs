@@ -19,6 +19,25 @@ namespace TabHolidayCore.Models
         {
             CreateMap<ApplicationUser, ApplicationUserView>();
             CreateMap<ApplicationUserView, ApplicationUser>();
+
+            CreateMap<BlackOut, BlackOutView>();
+            CreateMap<BlackOutView, BlackOut>();
+
+            CreateMap<TimeSlot, TimeSlotView>();
+            CreateMap<TimeSlotView, TimeSlot>();
+
+            CreateMap<Inclusion, InclusionView>();
+            CreateMap<InclusionView, Inclusion>();
+
+            CreateMap<SightSeeing, SightSeeingView>();
+            CreateMap<SightSeeingView, SightSeeing>();
+
+            CreateMap<BankDetail, BankDetailView>();
+            CreateMap<BankDetailView, BankDetail>();
+            CreateMap<DMCOfficial, DMCOfficialView>();
+            CreateMap<DMCOfficialView, DMCOfficial>();
+            CreateMap<DMC, DMCView>();
+            CreateMap<DMCView, DMC>();
         }
     }
 }
