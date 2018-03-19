@@ -5,51 +5,91 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm.City.$invalid || transferForm.City.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm.City.$invalid && (transferForm.City.$dirty || transferForm.City.$touched)"></i>
                         <label>City</label>
-                        <input type="text" class="form-control" ng-model="Transfer.City" />
+                        <input type="text" class="form-control" ng-model="Transfer.City" name="City" required ng-minlength="3" ng-maxlength="50" />
+                        <span class="cstm-error-message" ng-messages="transferForm.City.$error"
+                              ng-show="transferForm.City.$dirty || transferForm.City.$touched">
+                            <span ng-message="required">Required City!</span>
+                            <span ng-message="minlength">Minimum required length 3!</span>
+                            <span ng-message="maxlength">Maximum allowed length 50!</span>
+                        </span>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm.ShortDescription.$invalid || transferForm.ShortDescription.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm.ShortDescription.$invalid && (transferForm.ShortDescription.$dirty || transferForm.ShortDescription.$touched)"></i>
                         <label>Short Description</label>
-                        <textarea class="form-control" style="height:25px" ng-model="Transfer.ShortDescription" />
+                        <textarea class="form-control" style="height:25px" ng-model="Transfer.ShortDescription" name="ShortDescription" required ng-minlength="20" ng-maxlength="200" />
+                        <span class="cstm-error-message" ng-messages="transferForm.ShortDescription.$error"
+                              ng-show="transferForm.ShortDescription.$dirty || transferForm.ShortDescription.$touched">
+                            <span ng-message="required">Required Description!</span>
+                            <span ng-message="minlength">Minimum required length 20!</span>
+                            <span ng-message="maxlength">Maximum allowed length 200!</span>
+                        </span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-3 col-xs-10">
-                    <div class="form-group form-group-sm form-group-icon-right">
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm.TransferType.$invalid || transferForm.TransferType.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm.TransferType.$invalid && (transferForm.TransferType.$dirty || transferForm.TransferType.$touched)"></i>
                         <label>Transfer Type</label>
-                        <select type="text" class="form-control" ng-model="Transfer.TransferTypeId" name="TransferType">
+                        <select type="text" class="form-control" ng-model="Transfer.TransferTypeId" name="TransferType" require-option>
                             <option value="0">--Select Transfer Type--</option>
                             <option ng-repeat="TransferType in TransferTypes" value="{{TransferType.TransferTypeId}}">{{TransferType.Name}}</option>
                         </select>
+                        <span class="cstm-error-message" ng-messages="transferForm.TransferType.$error"
+                              ng-show="transferForm.TransferType.$dirty || transferForm.TransferType.$touched">
+                            <span ng-message="requireOption">Required Transfer Type!</span>
+                        </span>
                     </div>
                 </div>
 
 
                 <div class="col-md-3 col-xs-10">
-                    <div class="form-group form-group-sm form-group-icon-right">
+                    <div class="form-group form-group-sm form-group-icon-left">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm.TransferCategory.$invalid || transferForm.TransferCategory.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm.TransferCategory.$invalid && (transferForm.TransferCategory.$dirty || transferForm.TransferCategory.$touched)"></i>
                         <label>Transfer Category</label>
-                        <select type="text" class="form-control" ng-model="Transfer.TransferCategoryId" name="TransferCategory">
+                        <select type="text" class="form-control" ng-model="Transfer.TransferCategoryId" name="TransferCategory" require-option>
                             <option value="0">--Select Transfer Category--</option>
                             <option ng-repeat="TransferCategory in TransferCategories" value="{{TransferCategory.TransferCategoryId}}">{{TransferCategory.Name}}</option>
                         </select>
+                        <span class="cstm-error-message" ng-messages="transferForm.TransferCategory.$error"
+                              ng-show="transferForm.TransferCategory.$dirty || transferForm.TransferCategory.$touched">
+                            <span ng-message="requireOption">Required Transfer Category!</span>
+                        </span>
                     </div>
                 </div>
 
                 <div class="col-md-3 col-xs-10">
                     <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm.Rate.$invalid || transferForm.Rate.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm.Rate.$invalid && (transferForm.Rate.$dirty || transferForm.Rate.$touched)"></i>
                         <label>Rate</label>
-                        <input type="text" class="form-control" ng-model="Transfer.Rate" />
+                        <input type="text" class="form-control" ng-model="Transfer.Rate" name="Rate" ng-pattern="/^\d+([,.]\d+)?$/" />
+                        <span class="cstm-error-message" ng-messages="transferForm.Rate.$error"
+                              ng-show="transferForm.Rate.$dirty || transferForm.Rate.$touched">
+                            <span ng-message="pattern"> Not a Valid Format!</span>
+                        </span>
                     </div>
                 </div>
 
                 <div class="col-md-3 col-xs-10">
                     <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm.Duration.$invalid || transferForm.Duration.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm.Duration.$invalid && (transferForm.Duration.$dirty || transferForm.Duration.$touched)"></i>
                         <label>Duration</label>
-                        <input type="time" class="time-pick form-control" ng-model="Transfer.Duration" />
+                        <input type="time" class="time-pick form-control" ng-model="Transfer.Duration" name="Duration" required />
+                        <span class="cstm-error-message" ng-messages="transferForm.Duration.$error"
+                              ng-show="transferForm.Duration.$dirty || transferForm.Duration.$touched">
+                            <span ng-message="required">Required Duration!</span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -62,16 +102,31 @@
                 <div class="row">
                     <div class="col-md-3 col-xs-10">
                         <div class="form-group form-group-sm form-group-icon-right">
+                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm['VehicleTypes' +$index].$invalid || transferForm['VehicleTypes' +$index].$pristine"></i>
+                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm['VehicleTypes' +$index].$invalid && ( transferForm['VehicleTypes' +$index].$dirty || transferForm['VehicleTypes' +$index].$touched)"></i>
                             <label>Vehicle Type</label>
-                            <input type="text" class="form-control" ng-model="VehicleType.VehicleTypes" name="VehicleTypes" />
+                            <input type="text" class="form-control" ng-model="VehicleType.VehicleTypes" name="VehicleTypes{{$index}}" required ng-minlength="3" ng-maxlength="50" />
+                            <span class="cstm-error-message" ng-messages="transferForm['VehicleTypes' +$index].$error"
+                                  ng-show="transferForm['VehicleTypes' +$index].$dirty || transferForm['VehicleTypes' +$index].$touched">
+                                <span ng-message="required">Required Vehicle Type!</span>
+                                <span ng-message="minlength">Minimum required length 3!</span>
+                                <span ng-message="maxlength">Maximum allowed length 50!</span>
+                            </span>
                         </div>
                     </div>
 
                     <div class="col-md-4 col-xs-10">
                         <div class="form-group form-group-sm form-group-icon-right">
+                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm['RatePerHour' +$index].$invalid || transferForm['RatePerHour' +$index].$pristine"></i>
+                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm['RatePerHour' +$index].$invalid && ( transferForm['RatePerHour' +$index].$dirty || transferForm['RatePerHour' +$index].$touched)"></i>
                             <label>Rate per hour</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" ng-model="VehicleType.RatePerHour" name="RatePerHour" />
+                                <input type="text" class="form-control" ng-model="VehicleType.RatePerHour" name="RatePerHour{{$index}}" required ng-pattern="/^\d+([,.]\d+)?$/" />
+                                <span class="cstm-error-message" ng-messages="transferForm['RatePerHour' +$index].$error"
+                                      ng-show="transferForm['RatePerHour' +$index].$dirty || transferForm['RatePerHour' +$index].$touched">
+                                    <span ng-message="required">Required Rate!</span>
+                                    <span ng-message="pattern">Not a Valid Format!</span>
+                                </span>
                             </div>
                             <div class="col-md-1"><button ng-click="RemoveVehicleType()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
 
@@ -93,17 +148,29 @@
                 <div class="row">
                     <div class="col-md-3 col-xs-10">
                         <div class="form-group form-group-sm form-group-icon-right">
+                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm['StartTime' +$index].$invalid || transferForm['StartTime' +$index].$pristine"></i>
+                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm['StartTime' +$index].$invalid && ( transferForm['StartTime' +$index].$dirty || transferForm['StartTime' +$index].$touched)"></i>
                             <label>Start Time</label>
-                            <input type="time" class="form-control" ng-model="TimeSlot.StartTime" />
+                            <input type="time" class="form-control" ng-model="TimeSlot.StartTime" name="StartTime{{$index}}" required />
+                            <span class="cstm-error-message" ng-messages="transferForm['StartTime' +$index].$error"
+                                  ng-show="transferForm['StartTime' +$index].$dirty || transferForm['StartTime' +$index].$touched">
+                                <span ng-message="required">Required Start Time!</span>
+                            </span>
                         </div>
                     </div>
 
 
                     <div class="col-md-4 col-xs-10">
                         <div class="form-group form-group-sm form-group-icon-right">
+                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm['EndTime' +$index].$invalid || transferForm['EndTime' +$index].$pristine"></i>
+                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm['EndTime' +$index].$invalid && ( transferForm['EndTime' +$index].$dirty || transferForm['EndTime' +$index].$touched)"></i>
                             <label>End Time</label>
                             <div class="col-md-10">
-                                <input type="time" class="form-control" ng-model="TimeSlot.EndTime" />
+                                <input type="time" class="form-control" ng-model="TimeSlot.EndTime" name="EndTime{{$index}}" required />
+                                <span class="cstm-error-message" ng-messages="transferForm['EndTime' +$index].$error"
+                                      ng-show="transferForm['EndTime' +$index].$dirty || transferForm['EndTime' +$index].$touched">
+                                    <span ng-message="required">Required End Time!</span>
+                                </span>
                             </div>
                             <div class="col-md-1"><button ng-click="RemoveTimeSlot()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
                         </div>
@@ -127,19 +194,36 @@
                         <div class="col-md-3 col-xs-10">
                             <div class="form-group form-group-icon-left">
                                 <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
-                                <label>Start Date</label>
-                                <input class="form-control" name="start" type="date" ng-model="BlackOut.StartDate" />
+                                <div class="form-group form-group-icon-right">
+                                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm['BlackOutStartDate' +$index].$invalid || transferForm['BlackOutStartDate' +$index].$pristine"></i>
+                                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm['BlackOutStartDate' +$index].$invalid && ( transferForm['BlackOutStartDate' +$index].$dirty || transferForm['BlackOutStartDate' +$index].$touched)"></i>
+                                    <label>Start Date</label>
+                                    <input class="form-control" type="date" ng-model="BlackOut.BlackOutStartDate" name="BlackOutStartDate{{$index}}" required />
+                                    <span class="cstm-error-message" ng-messages="transferForm['BlackOutStartDate' +$index].$error"
+                                          ng-show="transferForm['BlackOutStartDate' +$index].$dirty || transferForm['BlackOutStartDate' +$index].$touched">
+                                        <span ng-message="required">Required Start Date!</span>
+                                    </span>
+                                </div>
                             </div>
                         </div>
+
 
                         <div class="col-md-4 col-xs-10">
                             <div class="form-group form-group-icon-left">
                                 <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
-                                <label>End Date</label>
-                                <div class="col-md-10">
-                                    <input class="form-control" name="end" type="date" ng-model="BlackOut.EndDate" />
+                                <div class="form-group form-group-icon-right">
+                                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm['BlackOutEndDate' +$index].$invalid || transferForm['BlackOutEndDate' +$index].$pristine"></i>
+                                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm['BlackOutEndDate' +$index].$invalid && ( transferForm['BlackOutEndDate' +$index].$dirty || transferForm['BlackOutEndDate' +$index].$touched)"></i>
+                                    <label>End Date</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control" type="date" ng-model="BlackOut.BlackOutEndDate" name="BlackOutEndDate{{$index}}" required />
+                                        <span class="cstm-error-message" ng-messages="transferForm['BlackOutEndDate' +$index].$error"
+                                              ng-show="transferForm['BlackOutEndDate' +$index].$dirty || transferForm['BlackOutEndDate' +$index].$touched">
+                                            <span ng-message="required">Required End Date!</span>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-1"><button ng-click="RemoveBlackOut()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
                                 </div>
-                                <div class="col-md-1"><button ng-click="RemoveBlackOut()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
                             </div>
                         </div>
                     </div>
@@ -162,8 +246,16 @@
                         <div class="col-md-3 col-xs-10">
                             <div class="form-group form-group-icon-left">
                                 <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
-                                <label>Start Date</label>
-                                <input class="form-control" name="start" type="date" ng-model="PremiumDate.StartDate" />
+                                <div class="form-group form-group-icon-right">
+                                    <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm['PremiumStartDate' +$index].$invalid || transferForm['PremiumStartDate' +$index].$pristine"></i>
+                                    <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm['PremiumStartDate' +$index].$invalid && ( transferForm['PremiumStartDate' +$index].$dirty || transferForm['PremiumStartDate' +$index].$touched)"></i>
+                                    <label>Start Date</label>
+                                    <input class="form-control" type="date" ng-model="PremiumDate.PremiumStartDate" name="PremiumStartDate{{$index}}" required />
+                                    <span class="cstm-error-message" ng-messages="transferForm['PremiumStartDate' +$index].$error"
+                                          ng-show="transferForm['PremiumStartDate' +$index].$dirty || transferForm['PremiumStartDate' +$index].$touched">
+                                        <span ng-message="required">Required Start Date!</span>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -172,17 +264,32 @@
                     <div class="col-md-3 col-xs-10">
                         <div class="form-group form-group-icon-left">
                             <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
-                            <label>End Date</label>
-                            <input class="form-control" name="EndDate" type="date" ng-model="PremiumDate.EndDate" />
+                            <div class="form-group form-group-icon-right">
+                                <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm['PremiumEndDate' +$index].$invalid || transferForm['PremiumEndDate' +$index].$pristine"></i>
+                                <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm['PremiumEndDate' +$index].$invalid && ( transferForm['PremiumEndDate' +$index].$dirty || transferForm['PremiumEndDate' +$index].$touched)"></i>
+                                <label>End Date</label>
+                                <input class="form-control" type="date" ng-model="PremiumDate.PremiumEndDate" name="PremiumEndDate{{$index}}" required />
+                                <span class="cstm-error-message" ng-messages="transferForm['PremiumEndDate' +$index].$error"
+                                      ng-show="transferForm['PremiumEndDate' +$index].$dirty || transferForm['PremiumEndDate' +$index].$touched">
+                                    <span ng-message="required">Required End Date!</span>
+                                </span>
+                            </div>
                         </div>
                     </div>
 
 
                     <div class="col-md-3 col-xs-10">
-                        <div class="form-group form-group-icon-left">
+                        <div class="form-group form-group-icon-right">
+                            <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm['Rates' +$index].$invalid || transferForm['Rates' +$index].$pristine"></i>
+                            <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm['Rates' +$index].$invalid && ( transferForm['Rates' +$index].$dirty || transferForm['Rates' +$index].$touched)"></i>
                             <label>Rate</label>
                             <div class="col-md-10">
-                                <input class="form-control" name="Rates" type="text" ng-model="PremiumDate.Rates" />
+                                <input class="form-control" type="text" ng-model="PremiumDate.Rates" name="Rates{{$index}}" required ng-pattern="/^\d+([,.]\d+)?$/" />
+                                <span class="cstm-error-message" ng-messages="transferForm['Rates' +$index].$error"
+                                      ng-show="transferForm['Rates' +$index].$dirty || transferForm['Rates' +$index].$touched">
+                                    <span ng-message="required">Required Rate!</span>
+                                    <span ng-message="pattern">Not a valid format!</span>
+                                </span>
                             </div>
                             <div class="col-md-1"><button ng-click="RemovePremiumDate()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
                         </div>
@@ -202,15 +309,31 @@
             <div class="row">
                 <div class="col-md-3 col-xs-10">
                     <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm.FromLocation.$invalid || transferForm.FromLocation.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm.FromLocation.$invalid && (transferForm.FromLocation.$dirty || transferForm.FromLocation.$touched)"></i>
                         <label>From Location</label>
-                        <input type="text" class="form-control" ng-model="Transfer.FromLocation" />
+                        <input type="text" class="form-control" ng-model="Transfer.FromLocation" name="FromLocation" required ng-minlength="3" ng-maxlength="50" />
+                        <span class="cstm-error-message" ng-messages="transferForm.FromLocation.$error"
+                              ng-show="transferForm.FromLocation.$dirty || transferForm.FromLocation.$touched">
+                            <span ng-message="required">Required Location!</span>
+                            <span ng-message="minlength">Minimum required length 3!</span>
+                            <span ng-message="maxlength">Maximum allowed length 50!</span>
+                        </span>
                     </div>
                 </div>
 
                 <div class="col-md-3 col-xs-10">
                     <div class="form-group form-group-sm form-group-icon-right">
+                        <i class="fa fa-check-circle input-icon cstm-fa-position cstm-fa-valid" ng-hide="transferForm.ToLocation.$invalid || transferForm.ToLocation.$pristine"></i>
+                        <i class="fa fa-times-circle input-icon cstm-fa-position cstm-fa-invalid" ng-show="transferForm.ToLocation.$invalid && (transferForm.ToLocation.$dirty || transferForm.ToLocation.$touched)"></i>
                         <label>To Location</label>
-                        <input type="text" class="form-control" ng-model="Transfer.ToLocation" />
+                        <input type="text" class="form-control" ng-model="Transfer.ToLocation" name="ToLocation" required ng-minlength="3" ng-maxlength="50" />
+                        <span class="cstm-error-message" ng-messages="transferForm.ToLocation.$error"
+                              ng-show="transferForm.ToLocation.$dirty || transferForm.ToLocation.$touched">
+                            <span ng-message="required">Required Location!</span>
+                            <span ng-message="minlength">Minimum required length 3!</span>
+                            <span ng-message="maxlength">Maximum allowed length 50!</span>
+                        </span>
                     </div>
                 </div>
             </div>
