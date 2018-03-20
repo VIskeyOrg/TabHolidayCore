@@ -2,40 +2,50 @@
 
     $scope.ViewMode = "list";
 
-        $scope.Transfer = {};
-        $scope.Transfer.TimeSlots = [];
-        $scope.Transfer.BlackOuts = [];
-        $scope.Transfer.VehicleTypes = [];
-        $scope.Transfer.PremiumDates = [];
-    
-
-      $scope.LoadData = function () {
-        $scope.TransferTypes = myappService.GetTransferTypes();
-        $scope.TransferCategories = myappService.GetTransferCategories();
-        $scope.GetAllTransfers();
         
 
-         if ($scope.Transfer.TimeSlots < 1) {
-            $scope.AddTimeSlot();
-         }
 
-         if ($scope.Transfer.BlackOuts < 1) {
-             $scope.AddBlackOut();
-         }
+    $scope.InitializeObject = function () {
+            $scope.Transfer = {};
+            $scope.Transfer.TimeSlots = [];
+            $scope.Transfer.BlackOuts = [];
+            $scope.Transfer.VehicleTypes = [];
+            $scope.Transfer.PremiumDates = [];
 
-         if ($scope.Transfer.VehicleTypes < 1) {
-             $scope.AddVehicleType();
-         }
+            if ($scope.Transfer.TimeSlots < 1) {
+                $scope.AddTimeSlot();
+            }
 
-         if ($scope.Transfer.PremiumDates < 1) {
-             $scope.AddPremiumDate();
-         }
+            if ($scope.Transfer.BlackOuts < 1) {
+                $scope.AddBlackOut();
+            }
 
+            if ($scope.Transfer.VehicleTypes < 1) {
+                $scope.AddVehicleType();
+            }
 
-      };
+            if ($scope.Transfer.PremiumDates < 1) {
+                $scope.AddPremiumDate();
+            }
+        };
+    
+    $scope.NewTransfer = function () {
+            $scope.InitializeObject();
+            $scope.ViewMode = "new";
+            $scope.IsEditMode = false;
+        };
 
-     
+    $scope.LoadData = function () {
 
+        $scope.Hours = [];
+        for (i = 0; i <= 24; i++) {
+            $scope.Hours.push(i);
+        }
+
+            $scope.TransferTypes = myappService.GetTransferTypes();
+            $scope.TransferCategories = myappService.GetTransferCategories();
+            $scope.GetAllTransfers();
+          };  
 
     $scope.AddTimeSlot = function () {
         var IsEmpty = false;
@@ -53,8 +63,15 @@
     };
 
     $scope.RemoveTimeSlot = function (TimeSlot) {
-        var index = $scope.Transfer.TimeSlots.indexOf({ StartTime: "", EndTime: "" });
-        $scope.Transfer.TimeSlots.splice(index, 1);
+        if (!$scope.IsEditMode)
+        {
+            var index = $scope.Transfer.TimeSlots.indexOf(TimeSlot);
+            $scope.Transfer.TimeSlots.splice(index, 1);
+        }
+        else {
+            TimeSlot.IsDelete = true;
+        }
+        
     };
 
     $scope.AddBlackOut = function () {
@@ -73,8 +90,14 @@
     };
 
     $scope.RemoveBlackOut = function (BlackOut) {
-        var index = $scope.Transfer.BlackOuts.indexOf({ StartDate: "", EndDate: "" });
-        $scope.Transfer.BlackOuts.splice(index, 1);
+        if (!$scope.IsEditMode) {
+            var index = $scope.Transfer.BlackOuts.indexOf(BlackOut);
+            $scope.Transfer.BlackOuts.splice(index, 1);
+        }
+        else {
+            BlackOut.IsDelete = true;
+        }
+        
     };
 
     $scope.AddVehicleType = function () {
@@ -93,8 +116,14 @@
     };
 
     $scope.RemoveVehicleType = function (VehicleType) {
-        var index = $scope.Transfer.VehicleTypes.indexOf({ VehicleTypes: "", RatePerHour: "" });
-        $scope.Transfer.VehicleTypes.splice(index, 1);
+        if (!$scope.IsEditMode) {
+            var index = $scope.Transfer.VehicleTypes.indexOf(VehicleType);
+            $scope.Transfer.VehicleTypes.splice(index, 1);
+        }
+        else {
+            VehicleType.IsDelete = true;
+        }
+        
     };
 
     $scope.AddPremiumDate = function () {
@@ -113,14 +142,17 @@
     };
 
     $scope.RemovePremiumDate = function (PremiumDate) {
-        var index = $scope.Transfer.PremiumDates.indexOf({ PremiumStartDate: "", PremiumEndDate: "", Rates: "" });
-        $scope.Transfer.PremiumDates.splice(index, 1);
+        if (!$scope.IsEditMode) {
+            var index = $scope.Transfer.PremiumDates.indexOf(PremiumDate);
+            $scope.Transfer.PremiumDates.splice(index, 1);
+        }
+        else {
+            PremiumDate.IsDelete = true;
+        }
+        
     };
    
-    $scope.Save = function () {
-
-        $scope.Transfer.DurationHour = $scope.Transfer.Duration.getHours();
-        $scope.Transfer.DurationMinute = $scope.Transfer.Duration.getMinutes();
+    $scope.Save = function () {        
 
         angular.forEach($scope.Transfer.TimeSlots, function (TimeSlot) {
             TimeSlot.StartHour = TimeSlot.StartTime.getHours();
@@ -130,11 +162,14 @@
             TimeSlot.EndMinute = TimeSlot.EndTime.getMinutes();
         });
 
-        $http.post('/Transfer/Add', $scope.Transfer).then(
+        if (!$scope.IsEditMode)
+        {
+            $http.post('/Transfer/Add', $scope.Transfer).then(
             function (successResponse) {
                 if (successResponse.data.isSuccess) {
 
                     $scope.Transfer = {};
+                    $scope.ViewMode = "list";
                     alert(successResponse.data.Message);
 
                 }
@@ -147,6 +182,29 @@
               function (errorResponse) {
 
               });
+        }
+        else {
+            $http.post('/Transfer/Edit', $scope.Transfer).then(
+            function (successResponse) {
+                if (successResponse.data.isSuccess) {
+
+                    $scope.Transfer = {};
+                    $scope.ViewMode = "list";
+                    alert(successResponse.data.Message);
+
+                }
+                else {
+
+                    alert(successResponse.data.Message);
+
+                }
+            },
+              function (errorResponse) {
+
+              });
+        }
+
+        
 
     };
 
@@ -167,24 +225,19 @@
               function (errorResponse) {
                   // handle errors here
               });
-    };
-
-
-   
-   
+    };  
 
     $scope.Edit = function (Transfer) {
 
         $scope.ViewMode = "new";
+        $scope.IsEditMode = true;
         $scope.Transfer = Transfer;
         $scope.Transfer.TransferTypeId = $scope.Transfer.TransferTypeId.toString();
-        $scope.Transfer.TransferCategoryId = $scope.Transfer.TransferCategoryId.toString();
+        $scope.Transfer.TransferCategoryId = $scope.Transfer.TransferCategoryId.toString();       
 
-        var d = new Date(0, 0, 0, $scope.Transfer.DurationHour, $scope.Transfer.DurationMinute);
+        $scope.Transfer.DurationHour = $scope.Transfer.DurationHour.toString();
+        $scope.Transfer.DurationMinute = $scope.Transfer.DurationMinute.toString();
 
-        $scope.Transfer.Duration = d;
-
-       
 
         angular.forEach($scope.Transfer.TimeSlots, function (TimeSlot) {
             TimeSlot.StartTime = new Date(0, 0, 0, TimeSlot.StartHour, TimeSlot.StartMinute);
@@ -193,13 +246,13 @@
         });
         
         angular.forEach($scope.Transfer.BlackOuts, function (BlackOut) {
-            BlackOut.StartDate = new Date(BlackOut.BlackOutStartDate);
-            BlackOut.EndDate = new Date(BlackOut.BlackOutEndDate);
+            BlackOut.BlackOutStartDate = new Date(BlackOut.BlackOutStartDate);
+            BlackOut.BlackOutEndDate = new Date(BlackOut.BlackOutEndDate);
         });
 
         angular.forEach($scope.Transfer.PremiumDates, function (PremiumDate) {
-            PremiumDate.StartDate = new Date(PremiumDate.PremiumStartDate);
-            PremiumDate.EndDate = new Date(PremiumDate.PremiumEndDate);
+            PremiumDate.PremiumStartDate = new Date(PremiumDate.PremiumStartDate);
+            PremiumDate.PremiumEndDate = new Date(PremiumDate.PremiumEndDate);
         });
         
 
@@ -209,14 +262,11 @@
         $scope.ViewMode = "list";
     };
 
-
     $scope.LoadData();
 
     $scope.$on("CollectedMasters", function () {
         $scope.LoadData();
 
-    });
-
-    
+    });    
 
 }]);
