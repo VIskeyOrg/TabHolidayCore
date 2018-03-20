@@ -38,6 +38,15 @@ namespace TabHolidayCore.Models
             CreateMap<DMCOfficialView, DMCOfficial>();
             CreateMap<DMC, DMCView>();
             CreateMap<DMCView, DMC>();
+
+            CreateMap<VehicleType, VehicleTypeView>();
+            CreateMap<VehicleTypeView, VehicleType>();
+
+            CreateMap<PremiumDate, PremiumDateView>();
+            CreateMap<PremiumDateView, PremiumDate>();
+
+            CreateMap<Transfer, TransferView>();
+            CreateMap<TransferView, Transfer>();
         }
     }
 }

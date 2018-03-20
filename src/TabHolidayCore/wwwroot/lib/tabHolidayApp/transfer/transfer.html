@@ -39,57 +39,70 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-xs-10">
+                <div class="col-md-3 col-xs-10"  ng-hide="Transfer.TransferCategoryId==5">
                     <div class="form-group form-group-sm form-group-icon-right">
                         <label>Rate</label>
                         <input type="text" class="form-control" ng-model="Transfer.Rate" />
                     </div>
                 </div>
 
-                <div class="col-md-3 col-xs-10">
-                    <div class="form-group form-group-sm form-group-icon-right">
+                <div class="col-md-3 col-xs-10" ng-hide="Transfer.TransferCategoryId==5">
+                    <div class="form-group form-group-sm form-group-icon-left">
                         <label>Duration</label>
-                        <input type="time" class="time-pick form-control" ng-model="Transfer.Duration" />
+                        <select ng-model="Transfer.DurationHour">
+                            <option ng-repeat="h in Hours" value={{h}}>{{h}}</option>
+                        </select>
+                        <span>Hrs</span>
+                        <select ng-model="Transfer.DurationMinute">
+                            <option value=0>0</option>
+                            <option value=30>30</option>
+                        </select>
+                        <span>Mnts</span>
                     </div>
                 </div>
             </div>
-
-
-
             <hr style="border-bottom:1px solid #e27513" />
-            <h4>Vehicle Types</h4>
-            <div ng-repeat="VehicleType in Transfer.VehicleTypes">
-                <div class="row">
-                    <div class="col-md-3 col-xs-10">
-                        <div class="form-group form-group-sm form-group-icon-right">
-                            <label>Vehicle Type</label>
-                            <input type="text" class="form-control" ng-model="VehicleType.VehicleTypes" name="VehicleTypes" />
-                        </div>
-                    </div>
 
-                    <div class="col-md-4 col-xs-10">
-                        <div class="form-group form-group-sm form-group-icon-right">
-                            <label>Rate per hour</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" ng-model="VehicleType.RatePerHour" name="RatePerHour" />
+            <!--Vehicle type-->
+            <div ng-show="Transfer.TransferCategoryId==5">
+                <h4>Vehicle Types</h4>
+                <div ng-repeat="VehicleType in Transfer.VehicleTypes" ng-hide="VehicleType.IsDelete">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-10">
+                            <div class="form-group form-group-sm form-group-icon-right">
+                                <label>Vehicle Type</label>
+                                <input type="text" class="form-control" ng-model="VehicleType.VehicleTypes" name="VehicleTypes" />
                             </div>
-                            <div class="col-md-1"><button ng-click="RemoveVehicleType()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
+                        </div>
 
+                        <div class="col-md-4 col-xs-10">
+                            <div class="form-group form-group-sm form-group-icon-right">
+                                <label>Rate per hour</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" ng-model="VehicleType.RatePerHour" name="RatePerHour" />
+                                </div>
+                                <div class="col-md-1"><button ng-click="RemoveVehicleType(VehicleType)" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <hr />
-            <div class="row">
-                <div class="col-md-12">
-                    <span ng-click="AddVehicleType()" type="button" class="btn btn-primary btn-circle pull-right"><i class="fa fa-plus"></i></span>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <span ng-click="AddVehicleType()" type="button" class="btn btn-primary btn-circle pull-right"><i class="fa fa-plus"></i></span>
+                    </div>
                 </div>
+                <hr style="border-bottom:1px solid #e27513" />
+
             </div>
 
-            <hr style="border-bottom:1px solid #e27513" />
+           
+
+
             <h4>Time Slot</h4>
-            <div ng-repeat="TimeSlot in Transfer.TimeSlots">
+            <div ng-repeat="TimeSlot in Transfer.TimeSlots" ng-hide="TimeSlot.IsDelete">
                 <div class="row">
                     <div class="col-md-3 col-xs-10">
                         <div class="form-group form-group-sm form-group-icon-right">
@@ -105,7 +118,7 @@
                             <div class="col-md-10">
                                 <input type="time" class="form-control" ng-model="TimeSlot.EndTime" />
                             </div>
-                            <div class="col-md-1"><button ng-click="RemoveTimeSlot()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
+                            <div class="col-md-1"><button ng-click="RemoveTimeSlot(TimeSlot)" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
                         </div>
                     </div>
                 </div>
@@ -121,14 +134,14 @@
 
             <hr style="border-bottom:1px solid #e27513" />
             <h4>Black Out</h4>
-            <div ng-repeat="BlackOut in Transfer.BlackOuts">
+            <div ng-repeat="BlackOut in Transfer.BlackOuts" ng-hide="BlackOut.IsDelete">
                 <div class="input-daterange" data-date-format="MM d, D">
                     <div class="row">
                         <div class="col-md-3 col-xs-10">
                             <div class="form-group form-group-icon-left">
                                 <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
                                 <label>Start Date</label>
-                                <input class="form-control" name="start" type="date" ng-model="BlackOut.StartDate" />
+                                <input class="form-control" name="start" type="date" ng-model="BlackOut.BlackOutStartDate" />
                             </div>
                         </div>
 
@@ -137,9 +150,9 @@
                                 <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
                                 <label>End Date</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" name="end" type="date" ng-model="BlackOut.EndDate" />
+                                    <input class="form-control" name="end" type="date" ng-model="BlackOut.BlackOutEndDate" />
                                 </div>
-                                <div class="col-md-1"><button ng-click="RemoveBlackOut()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
+                                <div class="col-md-1"><button ng-click="RemoveBlackOut(BlackOut)" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
                             </div>
                         </div>
                     </div>
@@ -156,14 +169,14 @@
 
             <hr style="border-bottom:1px solid #e27513" />
             <h4>Premium Date</h4>
-            <div ng-repeat="PremiumDate in Transfer.PremiumDates">
+            <div ng-repeat="PremiumDate in Transfer.PremiumDates" ng-hide="PremiumDate.IsDelete">
                 <div class="row">
                     <div class="input-daterange" data-date-format="MM d, D">
                         <div class="col-md-3 col-xs-10">
                             <div class="form-group form-group-icon-left">
                                 <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
                                 <label>Start Date</label>
-                                <input class="form-control" name="start" type="date" ng-model="PremiumDate.StartDate" />
+                                <input class="form-control" name="start" type="date" ng-model="PremiumDate.PremiumStartDate" />
                             </div>
                         </div>
                     </div>
@@ -173,7 +186,7 @@
                         <div class="form-group form-group-icon-left">
                             <i class="fa fa-calendar input-icon input-icon-hightlight"></i>
                             <label>End Date</label>
-                            <input class="form-control" name="EndDate" type="date" ng-model="PremiumDate.EndDate" />
+                            <input class="form-control" name="EndDate" type="date" ng-model="PremiumDate.PremiumEndDate" />
                         </div>
                     </div>
 
@@ -184,7 +197,7 @@
                             <div class="col-md-10">
                                 <input class="form-control" name="Rates" type="text" ng-model="PremiumDate.Rates" />
                             </div>
-                            <div class="col-md-1"><button ng-click="RemovePremiumDate()" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
+                            <div class="col-md-1"><button ng-click="RemovePremiumDate(PremiumDate)" type="button" class="btn btn-danger  btn-circle"> <i class="fa fa-trash-o"></i></button></div>
                         </div>
                     </div>
                 </div>
@@ -199,7 +212,7 @@
 
 
             <hr style="border-bottom:1px solid #e27513" />
-            <div class="row">
+            <!--<div class="row">
                 <div class="col-md-3 col-xs-10">
                     <div class="form-group form-group-sm form-group-icon-right">
                         <label>From Location</label>
@@ -215,7 +228,7 @@
                 </div>
             </div>
 
-            <hr style="border-bottom:1px solid #e27513" />
+            <hr style="border-bottom:1px solid #e27513" />-->
             <div class="row">
                 <div class="col-md-12">
                     <span class="pull-right">
@@ -235,7 +248,7 @@
                 <h3 class="booking-title">Transfer</h3>
             </div>
             <div class="col-md-5" style="margin-top:15px">
-                <button class="btn btn-primary pull-right" ng-click="ViewMode = 'new'">New Transfer<i class="fa fa-plus-square-o"></i></button>
+                <button class="btn btn-primary pull-right" ng-click="NewTransfer()">New Transfer<i class="fa fa-plus-square-o"></i></button>
             </div>
         </div>
 
