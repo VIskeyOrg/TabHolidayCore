@@ -1,4 +1,4 @@
-﻿var myapp = angular.module('myapp', ['ngRoute', 'ui.bootstrap', 'angular.filter','ngMessages']);
+﻿var myapp = angular.module('myapp', ['ngRoute', 'ui.bootstrap', 'angular.filter', 'ngMessages']);
 
 myapp.config(['$routeProvider',
     function ($routeProvider) {
@@ -30,9 +30,13 @@ myapp.config(['$routeProvider',
             when('/meal', {
                 templateUrl: '/lib/tabHolidayApp/meal/meal.html'
             }).
+            when('/approval', {
+                templateUrl: '/lib/tabHolidayApp/approval/approval.html'
+            }).
+
             when('/vehicletype', {
                 templateUrl: '/lib/tabHolidayApp/vehicletype/vehicletype.html'
-            }).         
+            }).
 
             when('/sight', {
                 templateUrl: '/lib/tabHolidayApp/sight/sight.html'

@@ -475,21 +475,39 @@
                 <div class="col-md-2">
                     <div class="form-group form-group-sm">
                         <label>Sight Seeing Id</label>
-                        <input type="text" class="form-control" ng-model="SearchDMC.DMCId" />
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group form-group-sm">
-                        <label>Name</label>
-                        <input type="text" class="form-control" ng-model="SearchDMC.Name" />
+                        <input type="text" class="form-control" ng-model="SightSeeing.SightSeeingId" />
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group form-group-sm">
-                        <label>Country</label>
-                        <input class="form-control" type="text" ng-model="SearchDMC.Name"/>
+                        <label>Name</label>
+                        <input type="text" class="form-control" ng-model="SightSeeing.Name" />
                     </div>
-                </div>                
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group form-group-sm">
+                        <label>Location</label>
+                        <input class="form-control" type="text" ng-model="SightSeeing.TaggedLocation"/>
+                    </div>
+                </div> 
+                <div class="col-md-2">
+                    <div class="form-group form-group-sm">
+                        <label>Category</label>
+                        <select class="form-control" type="text" ng-model="SightSeeing.SightSeeingCategoryId" >
+                            <option value="0">--Select Category--</option>
+                            <option ng-repeat="SightSeeingCategory in SightSeeingCategories" value="{{SightSeeingCategory.SightSeeingCategoryId}}">{{SightSeeingCategory.Name}}</option>
+                            </select>
+                    </div>
+                </div> 
+                <div class="col-md-2">
+                    <div class="form-group form-group-sm">
+                        <label>Star Rating</label>
+                        <select class="form-control" type="text" ng-model="SightSeeing.StarRatingId">
+                            <option value="0">--Select Star Rating--</option>
+                            <option ng-repeat="StarRating in StarRatings" value="{{StarRating.StarRatingId}}">{{StarRating.Name}}</option>
+                        </select>
+                    </div>
+                </div>            
                 <div class="col-md-2 cstm-form-button">
                     <button class="btn btn-primary" ng-click="GetSightSeeings()">Search <i class="fa fa-search-plus"></i></button>
                 </div>
@@ -501,7 +519,6 @@
                     <div class="row">
                         <div class="col-lg-1 col-md-2 col-sm-8 col-xs-8">Id</div>
                         <div class="col-lg-4 col-md-2 hidden-sm hidden-xs">Name</div>
-
                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">Location</div>
                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">Category</div>
                         <div class="col-lg-1 col-md-2 col-sm-4 col-xs-4">Rating</div>
